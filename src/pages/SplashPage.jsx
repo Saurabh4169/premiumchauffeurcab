@@ -10,11 +10,11 @@ export default function SplashPage() {
   const [showSplash, setShowSplash] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-dismiss splash screen after 1.8s
+  // Auto-dismiss splash screen after 2.2s
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 1800);
+    }, 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -61,33 +61,48 @@ export default function SplashPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
-            className="flex-1 flex flex-col items-center justify-center text-center my-auto py-20"
+            className="flex-1 flex flex-col items-center justify-center text-center my-auto py-16 px-4"
           >
+            {/* Official Company Logo */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="w-20 h-20 rounded-3xl bg-slate-900 p-0.5 shadow-2xl mb-6 flex items-center justify-center"
+              initial={{ scale: 0.88, opacity: 0, y: 15 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-[310px] mb-6 flex flex-col items-center justify-center relative"
             >
-              <div className="w-full h-full rounded-[22px] bg-slate-900 flex items-center justify-center">
-                <Sparkles className="w-9 h-9 text-[#F43F43] animate-pulse" />
-              </div>
+              {/* Soft luxury ambient glow behind the logo */}
+              <div className="absolute inset-0 bg-amber-500/10 blur-2xl rounded-full pointer-events-none scale-125" />
+              
+              <img
+                src="/company-logo.png"
+                alt="Premium Chauffeur's Nationwide Transportation Services"
+                className="w-full h-auto object-contain drop-shadow-sm relative z-10"
+              />
             </motion.div>
 
+            {/* Nationwide Operating Hubs & Motto */}
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 15, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
+              className="space-y-2 relative z-10"
             >
-              <span className="text-[11px] font-sans tracking-[0.2em] uppercase text-slate-500 block mb-2 font-bold">
-                Lombard • Chicago • New York • Miami • LA
-              </span>
-              <h1 className="text-[28px] leading-[32px] font-display font-semibold text-[#101417] tracking-tight">
-                Premium Chauffeur
-              </h1>
-              <p className="italic text-[#F43F43] font-display text-[16px] mt-1 font-semibold">
+              <div className="flex items-center justify-center gap-2">
+                <span className="h-[1px] w-6 bg-[#C9A24B]/40" />
+                <span className="text-[10px] font-sans tracking-[0.22em] uppercase text-[#6B7075] font-bold">
+                  Lombard • Chicago • New York • Miami • LA
+                </span>
+                <span className="h-[1px] w-6 bg-[#C9A24B]/40" />
+              </div>
+
+              <p className="italic text-[#F43F43] font-display text-[15px] font-semibold">
                 "The car is there before you are."
               </p>
+
+              <div className="pt-2 flex items-center justify-center gap-1.5 text-[11px] text-[#6B7075] font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>24/7 Lombard Dispatch · Fixed Written Quotes</span>
+              </div>
             </motion.div>
           </motion.div>
         ) : (
@@ -99,64 +114,70 @@ export default function SplashPage() {
             transition={{ duration: 0.4 }}
             className="flex-1 flex flex-col justify-between py-4"
           >
-            {/* Top Bar: Skip button */}
+            {/* Top Bar: Official Logo & Skip button */}
             <div className="flex justify-between items-center mb-4">
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-bold">
-                Premium Chauffeur Services
-              </span>
+              <img
+                src="/company-logo.png"
+                alt="Premium Chauffeur"
+                className="h-6 w-auto object-contain"
+              />
               <button
                 type="button"
                 onClick={() => navigate('/home')}
-                className="text-[13px] text-slate-500 hover:text-slate-900 font-medium transition-colors cursor-pointer"
+                className="text-[13px] text-slate-500 hover:text-slate-900 font-semibold transition-colors cursor-pointer"
               >
                 Skip
               </button>
             </div>
 
-            {/* Slide Hero Graphic & Content */}
-            <div className="my-auto py-4">
+            {/* Slide Hero Graphic & Content (Cardless Premium Showcase) */}
+            <div className="my-auto py-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.35 }}
                   className="flex flex-col items-center text-center"
                 >
-                  {/* Hero Graphic Card with Vehicle Image */}
-                  <div className="w-full max-w-[280px] h-40 rounded-3xl bg-white border border-slate-200/80 p-3 shadow-md flex items-center justify-center mb-6 relative overflow-hidden">
-                    <img
-                      src="/fleet/bmw-m550i.webp"
-                      alt="Chauffeured Luxury"
-                      onError={(e) => {
-                        e.currentTarget.src = '/fleet/mercedes-s-class.webp';
-                      }}
-                      className="w-full h-full object-contain drop-shadow-md"
+                  {/* Cardless Floating Luxury Vehicle Showcase */}
+                  <div className="relative w-full max-w-[340px] h-44 flex items-center justify-center mb-4 select-none">
+                    {/* Ambient subtle warm backlight */}
+                    <div className="absolute inset-0 bg-radial from-rose-500/10 via-amber-500/5 to-transparent blur-2xl rounded-full scale-110 pointer-events-none" />
+
+                    {/* Floating S-Class Cutout */}
+                    <motion.img
+                      key={currentSlide}
+                      initial={{ scale: 0.94, opacity: 0, x: 20 }}
+                      animate={{ scale: 1, opacity: 1, x: 0 }}
+                      exit={{ scale: 0.94, opacity: 0, x: -20 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      src="/onboarding-car.png"
+                      alt="Flagship Mercedes-Benz S-Class"
+                      className="w-full max-h-[175px] object-contain drop-shadow-[0_16px_20px_rgba(0,0,0,0.20)] relative z-10"
                     />
-                    <div className="absolute top-3 left-3 w-8 h-8 rounded-xl bg-red-50 text-[#F43F43] flex items-center justify-center">
-                      {React.createElement(slides[currentSlide].icon, {
-                        className: 'w-4 h-4'
-                      })}
-                    </div>
+
+                    {/* Floor contact shadow */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4/5 h-3 bg-black/15 blur-md rounded-full pointer-events-none" />
                   </div>
 
-                  <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-3 border border-slate-200">
+                  <span className="inline-block px-3 py-1 rounded-full bg-white text-[10.5px] font-bold text-[#101417] uppercase tracking-wider mb-2.5 border border-[#E8E8EC] shadow-2xs">
                     {slides[currentSlide].badge}
                   </span>
 
-                  <h2 className="text-[28px] leading-[32px] font-display font-semibold text-[#101417] mb-2">
+                  <h2 className="text-[26px] leading-[30px] font-display font-semibold text-[#101417] mb-2">
                     {slides[currentSlide].title}{' '}
                     <span className="text-[#F43F43] italic font-display block">
                       {slides[currentSlide].italicAccent}
                     </span>
                   </h2>
 
-                  <p className="text-[14px] text-[#6B7075] max-w-[320px] leading-[20px] mb-4 font-normal">
+                  <p className="text-[13.5px] text-[#6B7075] max-w-[330px] leading-[19px] mb-3.5 font-normal">
                     {slides[currentSlide].description}
                   </p>
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[12px] font-medium">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11.5px] font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                     <span>{slides[currentSlide].perk}</span>
                   </div>
@@ -183,32 +204,32 @@ export default function SplashPage() {
                 ))}
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons (Signature Red Gradient) */}
               <div className="space-y-2">
                 {currentSlide < slides.length - 1 ? (
                   <button
                     type="button"
                     onClick={() => setCurrentSlide(prev => prev + 1)}
-                    className="w-full h-12 btn-primary rounded-[14px] font-semibold text-[15px] text-[#101417] flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-rose-500/25 transition-all cursor-pointer"
                   >
                     <span>Continue</span>
-                    <ArrowRight className="w-4 h-4 stroke-[2.2]" />
+                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 ) : (
                   <button
                     type="button"
-                    onClick={() => navigate('/auth')}
-                    className="w-full h-12 btn-primary rounded-[14px] font-semibold text-[15px] text-[#101417] flex items-center justify-center gap-2 cursor-pointer"
+                    onClick={() => navigate('/home')}
+                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-rose-500/25 transition-all cursor-pointer"
                   >
                     <span>Get Started</span>
-                    <ArrowRight className="w-4 h-4 stroke-[2.2]" />
+                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 )}
 
                 <button
                   type="button"
                   onClick={() => navigate('/home')}
-                  className="w-full py-2.5 text-center text-[13px] font-semibold text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+                  className="w-full py-2.5 text-center text-[13px] font-bold text-[#6B7075] hover:text-[#101417] transition-colors cursor-pointer"
                 >
                   Explore as Guest
                 </button>

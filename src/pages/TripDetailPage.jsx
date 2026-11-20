@@ -109,13 +109,26 @@ export default function TripDetailPage() {
         </div>
 
         {/* Live Chauffeur Vehicle Coordinate */}
-        <div className="absolute left-[45%] top-[30%] -translate-x-1/2 flex flex-col items-center z-10">
-          <div className="w-10 h-10 rounded-full btn-primary flex items-center justify-center shadow-xl ring-4 ring-red-500/25 animate-bounce">
-            <Car className="w-5 h-5 text-white" />
+        <div className="absolute left-[46%] top-[22%] -translate-x-1/2 flex flex-col items-center z-10 select-none">
+          {/* Live GPS Radar Pulse Ring */}
+          <div className="relative flex flex-col items-center">
+            <div className="absolute inset-0 -m-1 rounded-2xl bg-[#F43F43]/25 animate-ping pointer-events-none" />
+
+            {/* Luxury Vehicle Capsule with Real Car Image */}
+            <div className="relative px-2.5 py-1 rounded-2xl bg-white border border-[#E8E8EC] shadow-[0_8px_20px_rgba(16,20,23,0.14)] flex items-center gap-1.5 transition-transform hover:scale-105">
+              <img
+                src="/onboarding-car.png"
+                alt={trip.vehicleName || "Chauffeur Vehicle"}
+                className="w-12 h-auto max-h-7 object-contain drop-shadow-sm select-none"
+              />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-pulse" />
+            </div>
+
+            {/* Live ETA Pill */}
+            <span className="text-[10px] font-bold bg-[#101417] text-white border border-white/20 px-2.5 py-0.5 rounded-full mt-1.5 shadow-md whitespace-nowrap tracking-wide">
+              {trip.chauffeur?.etaMinutes ? `ETA ${trip.chauffeur.etaMinutes}m` : 'Buffer Staged'}
+            </span>
           </div>
-          <span className="text-[10px] font-bold bg-[#111114] border border-white/20 px-2 py-0.5 rounded-full text-white mt-1 shadow-md">
-            {trip.chauffeur?.etaMinutes ? `ETA ${trip.chauffeur.etaMinutes}m` : 'Buffer Staged'}
-          </span>
         </div>
 
         {/* Destination Pin */}
@@ -173,7 +186,7 @@ export default function TripDetailPage() {
             <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
               <a
                 href={`tel:${trip.chauffeur.phone}`}
-                className="btn-primary h-11 rounded-2xl flex items-center justify-center gap-2 text-[13px] font-bold text-white shadow-md shadow-red-500/25"
+                className="bg-gradient-to-r from-[#F43F43] to-[#DC2626] h-11 rounded-2xl flex items-center justify-center gap-2 text-[13px] font-bold text-white shadow-md shadow-red-500/25 hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
               >
                 <Phone className="w-4 h-4 fill-current" />
                 <span>Call Chauffeur</span>

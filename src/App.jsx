@@ -55,7 +55,7 @@ export default function App() {
           {/* Customer Mobile App Shell (Layout Containment) */}
           <Route element={<AppShell />}>
             <Route path="/" element={<SplashPage />} />
-            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/auth" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/fleet" element={<FleetPage />} />
             <Route path="/fleet/:id" element={<VehicleDetailPage />} />

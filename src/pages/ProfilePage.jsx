@@ -36,11 +36,11 @@ export default function ProfilePage() {
   const handleConfirmSignOut = () => {
     setUser(prev => ({
       ...prev,
-      isAuthenticated: false
+      isAuthenticated: true
     }));
     setShowSignOutConfirm(false);
     showToast('Signed out successfully', 'success');
-    navigate('/auth');
+    navigate('/home');
   };
 
   return (
