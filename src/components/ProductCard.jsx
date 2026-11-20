@@ -40,7 +40,7 @@ export default function ProductCard({
   className = ''
 }) {
   const navigate = useNavigate();
-  const { isSaved, toggleSave, isInCompare, toggleCompare } = useApp();
+  const { isSaved, toggleSave, isInCompare, toggleCompare, updateBookingDraft } = useApp();
   const [imgError, setImgError] = useState(false);
 
   // SKELETON VARIANT
@@ -113,6 +113,16 @@ export default function ProductCard({
   const handleSaveClick = (e) => {
     e.stopPropagation();
     toggleSave(type, itemId, title);
+  };
+
+  const handleBookClick = (e) => {
+    e.stopPropagation();
+    if (type === 'vehicle') {
+      updateBookingDraft({ selectedVehicleId: itemId });
+    } else {
+      updateBookingDraft({ serviceType: item.slug || itemId });
+    }
+    navigate('/book');
   };
 
   // LIST VARIANT (Flush image on left, content on right)
@@ -199,10 +209,14 @@ export default function ProductCard({
               <span className="font-medium text-[var(--text-muted)] truncate max-w-[100px]">
                 {category}
               </span>
-              <span className="font-bold text-[var(--accent)] text-[13px] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                <span>Details</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </span>
+              <button
+                type="button"
+                onClick={handleBookClick}
+                className="h-7 px-3 rounded-[8px] bg-[var(--ink)] hover:bg-[var(--accent)] text-white text-[12px] font-bold flex items-center gap-1 transition-colors cursor-pointer shadow-xs shrink-0"
+              >
+                <span>Book</span>
+                <ArrowRight className="w-3 h-3 stroke-[2.2]" />
+              </button>
             </div>
           </div>
         </div>
@@ -311,15 +325,19 @@ export default function ProductCard({
         {/* Hairline Divider */}
         <div className="h-[1px] w-full bg-[var(--border)] my-1" />
 
-        {/* Footer row: Category left, "Details" right */}
-        <div className="flex items-center justify-between text-[11px]">
-          <span className="font-medium text-[var(--text-muted)] truncate max-w-[80px]">
+        {/* Footer row: Category left, "Book" button right */}
+        <div className="flex items-center justify-between text-[11px] gap-1">
+          <span className="font-medium text-[var(--text-muted)] truncate max-w-[70px]">
             {category}
           </span>
-          <span className="font-bold text-[var(--accent)] text-[11.5px] flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform shrink-0">
-            <span>Details</span>
-            <ArrowRight className="w-3 h-3 stroke-[2.2]" />
-          </span>
+          <button
+            type="button"
+            onClick={handleBookClick}
+            className="h-6 px-2.5 rounded-[7px] bg-[var(--ink)] hover:bg-[var(--accent)] text-white text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer shadow-xs shrink-0"
+          >
+            <span>Book</span>
+            <ArrowRight className="w-2.5 h-2.5 stroke-[2.2]" />
+          </button>
         </div>
       </div>
     </motion.div>

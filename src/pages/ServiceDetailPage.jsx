@@ -15,11 +15,13 @@ import ProductCard from '../components/ProductCard.jsx';
 import { SERVICES, getServiceBySlug } from '../data/services.js';
 import { FLEET } from '../data/fleet.js';
 import { useApp } from '../context/AppContext.jsx';
+import { useAgentStore } from '../store/agentStore.js';
 
 export default function ServiceDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { updateBookingDraft } = useApp();
+  const { openAgent } = useAgentStore();
 
   const service = getServiceBySlug(slug) || SERVICES[0];
 
@@ -151,7 +153,10 @@ export default function ServiceDetailPage() {
         <div className="flex items-center gap-2 pt-1 pb-4">
           <button
             type="button"
-            onClick={() => navigate(`/ai?q=Tell me details about ${encodeURIComponent(service.title)}`)}
+            onClick={() => openAgent({
+              prefill: `Tell me details about ${service.title}`,
+              context: { route: `/services/${slug}`, item: service }
+            })}
             className="flex-1 h-11 px-3 rounded-full bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)]/40 shadow-xs text-[13px] font-semibold text-[var(--ink)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
@@ -175,7 +180,7 @@ export default function ServiceDetailPage() {
           onClick: handleRequestQuote
         }}
         primaryAction={{
-          label: 'Get fixed quote',
+          label: 'Book Now',
           icon: <ArrowRight className="w-4 h-4 stroke-[2.2]" />,
           onClick: handleGetFixedQuote
         }}

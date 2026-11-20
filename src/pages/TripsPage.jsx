@@ -23,42 +23,43 @@ export default function TripsPage() {
     : quoteTrips;
 
   return (
-    <div className="min-h-full pb-28 bg-[var(--page)]">
+    <div className="min-h-full pb-28 bg-[#FAFAFC]">
       {/* Clean Header */}
       <AppHeader showBack={false} />
 
-      {/* Page Title: "My trips" (display 28) + subtitle */}
+      {/* Page Title: "My trips" + New Booking RED Button */}
       <div className="px-4 pt-3 pb-2 flex items-center justify-between">
         <div>
-          <h1 className="text-[28px] leading-[32px] font-display font-semibold text-[var(--ink)]">
-            My trips
+          <h1 className="text-[26px] leading-[30px] font-bold text-[#101417] tracking-tight">
+            My Trips
           </h1>
-          <p className="text-[13px] text-[var(--text-muted)] mt-1 leading-[18px]">
-            Chauffeur-driven journeys & quotes
+          <p className="text-[12.5px] text-[#6B7075] mt-0.5 font-medium leading-[16px]">
+            Chauffeur-driven journeys & written quotes
           </p>
         </div>
 
+        {/* RED NEW BOOKING BUTTON */}
         <button
           type="button"
           onClick={() => navigate('/book')}
-          className="w-10 h-10 rounded-full btn-primary flex items-center justify-center text-white shadow-xs cursor-pointer shrink-0"
+          className="w-10 h-10 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] flex items-center justify-center text-white shadow-md shadow-rose-500/25 cursor-pointer shrink-0 transition-all active:scale-95"
           title="New Booking"
           aria-label="New booking"
         >
-          <Plus className="w-5 h-5 stroke-[2.2]" />
+          <Plus className="w-5 h-5 stroke-[2.5]" />
         </button>
       </div>
 
-      {/* Tabs (44px high track) */}
+      {/* Luxury Segmented Tabs */}
       <div className="px-4 my-3.5">
-        <div className="h-11 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-xs grid grid-cols-3 gap-1">
+        <div className="h-11 p-1 rounded-full bg-white border border-[#E8E8EC] shadow-xs grid grid-cols-3 gap-1">
           <button
             type="button"
             onClick={() => setActiveTab('upcoming')}
-            className={`rounded-full text-[13px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+            className={`rounded-full text-[12.5px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'upcoming'
-                ? 'bg-[var(--ink)] text-white shadow-xs'
-                : 'text-[var(--text-muted)] hover:text-[var(--ink)]'
+                ? 'bg-[#101417] text-white shadow-sm'
+                : 'text-[#6B7075] hover:text-[#101417]'
             }`}
           >
             <Calendar className="w-3.5 h-3.5" />
@@ -68,10 +69,10 @@ export default function TripsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('past')}
-            className={`rounded-full text-[13px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+            className={`rounded-full text-[12.5px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'past'
-                ? 'bg-[var(--ink)] text-white shadow-xs'
-                : 'text-[var(--text-muted)] hover:text-[var(--ink)]'
+                ? 'bg-[#101417] text-white shadow-sm'
+                : 'text-[#6B7075] hover:text-[#101417]'
             }`}
           >
             <History className="w-3.5 h-3.5" />
@@ -81,10 +82,10 @@ export default function TripsPage() {
           <button
             type="button"
             onClick={() => setActiveTab('quotes')}
-            className={`rounded-full text-[13px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+            className={`rounded-full text-[12.5px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'quotes'
-                ? 'bg-[var(--ink)] text-white shadow-xs'
-                : 'text-[var(--text-muted)] hover:text-[var(--ink)]'
+                ? 'bg-[#101417] text-white shadow-sm'
+                : 'text-[#6B7075] hover:text-[#101417]'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -93,7 +94,7 @@ export default function TripsPage() {
         </div>
       </div>
 
-      {/* Trips Stream (Cards with padding 14, route lines 14/600) */}
+      {/* Trips Stream */}
       <div className="px-4">
         {displayedTrips.length > 0 ? (
           <div>
@@ -106,12 +107,12 @@ export default function TripsPage() {
             title={`No ${activeTab} trips found`}
             description={
               activeTab === 'upcoming'
-                ? 'You have no scheduled chauffeur rides. All bookings include flight tracking and 60m free wait.'
+                ? "You do not have any upcoming chauffeured reservations scheduled."
                 : activeTab === 'past'
-                ? 'Your completed journeys and invoices will appear here.'
-                : 'Any written quote requests under review will show here.'
+                ? "Your completed journeys and digital receipts will appear here."
+                : "You don't have any pending written quotes waiting for review."
             }
-            actionLabel="Book a Chauffeur"
+            actionLabel="Book a Ride"
             onAction={() => navigate('/book')}
           />
         )}

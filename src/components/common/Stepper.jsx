@@ -9,17 +9,17 @@ export default function Stepper({
   onStepClick
 }) {
   return (
-    <div className="w-full py-2">
+    <div className="w-full py-1">
       {/* Step Numbers & Connectors */}
-      <div className="flex items-center justify-between relative">
+      <div className="flex items-center justify-between relative px-2">
         {/* Background track line */}
-        <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-0.5 bg-white/10 z-0" />
+        <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#E8E8EC] z-0" />
         
         {/* Active progress fill */}
         <div
-          className="absolute left-4 top-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-[#F43F43] to-[#FDEEEA] transition-all duration-300 z-0"
+          className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#F43F43] transition-all duration-300 z-0"
           style={{
-            width: `${((currentStep - 1) / (steps.length - 1)) * 90}%`
+            width: `${((currentStep - 1) / (steps.length - 1)) * 88}%`
           }}
         />
 
@@ -34,27 +34,28 @@ export default function Stepper({
                 type="button"
                 onClick={() => onStepClick && isCompleted && onStepClick(stepNumber)}
                 disabled={!isCompleted && !isCurrent}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold transition-all duration-300 ${
+                aria-label={`Step ${stepNumber}: ${stepName}`}
+                className={`w-7.5 h-7.5 rounded-full flex items-center justify-center text-[12px] font-bold transition-all duration-300 ${
                   isCompleted
-                    ? 'bg-[#F43F43] text-[#101417] cursor-pointer hover:scale-105'
+                    ? 'bg-emerald-600 text-white cursor-pointer shadow-xs hover:scale-105'
                     : isCurrent
-                    ? 'bg-gradient-to-br from-[#FDEEEA] to-[#F43F43] text-[#101417] ring-4 ring-[#F43F43]/30 scale-110 shadow-lg shadow-[#F43F43]/40'
-                    : 'bg-[#1a0f14] border border-white/20 text-white/40'
+                    ? 'bg-[#F43F43] text-white ring-4 ring-rose-100 shadow-md shadow-rose-500/25 scale-105'
+                    : 'bg-[#F5F5F7] border border-[#E8E8EC] text-[#6B7075] cursor-default'
                 }`}
               >
-                {isCompleted ? <Check className="w-4 h-4 stroke-[3]" /> : stepNumber}
+                {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : stepNumber}
               </button>
             </div>
           );
         })}
       </div>
 
-      {/* Step Label Display */}
+      {/* Step Label Display (High Contrast & Visible) */}
       <div className="text-center mt-2.5">
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-[#F43F43]">
-          Step {currentStep} of {steps.length}
+        <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#F43F43] block">
+          STEP {currentStep} OF {steps.length}
         </span>
-        <h4 className="text-[15px] font-sans font-bold text-[#faf6f0]">
+        <h4 className="text-[15px] font-bold text-[#101417] leading-tight mt-0.5">
           {steps[currentStep - 1]}
         </h4>
       </div>

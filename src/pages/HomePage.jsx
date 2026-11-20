@@ -123,51 +123,39 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 3. HERO FEATURE BANNER */}
+      {/* 3. HERO FEATURE BANNER (Clean Luxury Edition - Crystal Clear Vehicle Imagery) */}
       <div className="px-4 mb-4">
-        <div className="relative rounded-[24px] p-5 bg-gradient-to-br from-[#101417] via-[#15191C] to-[#1E2328] text-white shadow-md overflow-hidden flex flex-col justify-between min-h-[175px]">
-          {/* Subtle background car imagery with dark gradient overlay */}
-          <div className="absolute right-0 top-0 bottom-0 w-[60%] pointer-events-none overflow-hidden">
+        <div className="relative rounded-[22px] p-5 bg-gradient-to-br from-[#12161A] via-[#101417] to-[#0A0C0E] border border-white/10 text-white shadow-md overflow-hidden flex flex-col justify-between min-h-[160px]">
+          {/* Crystal Clear Vehicle Photo on Right */}
+          <div className="absolute right-0 top-0 bottom-0 w-[55%] pointer-events-none overflow-hidden">
             <img
               src="/fleet/mercedes-s-class.webp"
-              alt="Flagship Fleet"
-              className="w-full h-full object-cover opacity-50 object-right"
+              alt="Flagship Mercedes-Benz S-Class"
+              className="w-full h-full object-cover object-right select-none"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#101417] via-[#101417]/85 to-transparent" />
+            {/* Subtle feathering strictly on the left transition edge to keep text legible while the car remains 100% clear */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#12161A] via-[#12161A]/60 to-transparent pointer-events-none" />
           </div>
 
-          <div className="relative z-10 space-y-2 max-w-[270px]">
-            {/* Inset Badge Pill */}
-            <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.06em] text-white inline-block leading-none">
-              15+ YEARS CHAUFFEUR EXCELLENCE
-            </span>
-
-            {/* Banner Headline */}
-            <h2 className="text-[20px] font-bold text-white leading-[25px]">
-              Flagship Luxury Sedans, SUVs & Jet Sprinters
+          {/* Left Content: Clean, uncluttered, premium copy */}
+          <div className="relative z-10 space-y-1.5 max-w-[210px]">
+            <h2 className="text-[20px] font-bold text-white leading-[25px] tracking-tight">
+              First-Class Chauffeur Service
             </h2>
-            <p className="text-[12px] text-white/70 font-medium leading-[16px] line-clamp-1">
-              Flat-rate written quotes · Zero surge · 60m free wait
+            <p className="text-[12px] text-white/75 font-medium leading-[17px]">
+              Flat rates · Zero surge · 24/7 Lombard dispatch
             </p>
           </div>
 
-          {/* Banner Action Buttons */}
-          <div className="relative z-10 flex items-center gap-2.5 pt-3">
+          {/* Single High-End Action Button */}
+          <div className="relative z-10 pt-3">
             <button
               type="button"
               onClick={handleDirectBooking}
-              className="h-10 px-4 rounded-full bg-gradient-to-r from-[var(--accent-top)] to-[var(--accent-bottom)] text-white text-[13px] font-bold flex items-center gap-1.5 shadow-md shadow-[var(--accent)]/30 hover:opacity-95 active:scale-98 transition-all cursor-pointer"
+              className="h-10 px-5 rounded-full bg-gradient-to-r from-[var(--accent-top)] to-[var(--accent-bottom)] text-white text-[13px] font-bold flex items-center gap-1.5 shadow-md shadow-[var(--accent)]/30 hover:opacity-95 active:scale-98 transition-all cursor-pointer"
             >
               <span>Explore Fleet</span>
               <ArrowRight className="w-4 h-4 stroke-[2.2]" />
-            </button>
-
-            <button
-              type="button"
-              onClick={() => navigate('/services')}
-              className="h-10 px-4 rounded-full bg-white/10 hover:bg-white/15 backdrop-blur-md text-white text-[13px] font-bold border border-white/20 transition-all cursor-pointer active:scale-98"
-            >
-              View Services
             </button>
           </div>
         </div>
@@ -253,9 +241,9 @@ export default function HomePage() {
               type="button"
               onClick={handleDirectBooking}
               className="h-9 px-4 rounded-full bg-gradient-to-r from-[var(--accent-top)] to-[var(--accent-bottom)] text-white text-[12.5px] font-bold flex items-center gap-1.5 shadow-sm shadow-[var(--accent)]/25 hover:opacity-95 active:scale-95 transition-all cursor-pointer shrink-0"
-              aria-label="Get fixed quote"
+              aria-label="Book now"
             >
-              <span>Get Fixed Quote</span>
+              <span>Book Now</span>
               <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
             </button>
           </div>

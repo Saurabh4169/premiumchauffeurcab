@@ -13,10 +13,12 @@ import {
 } from 'lucide-react';
 import { FAQS } from '../data/faqs.js';
 import { useApp } from '../context/AppContext.jsx';
+import { useAgentStore } from '../store/agentStore.js';
 
 export default function SupportPage() {
   const navigate = useNavigate();
   const { companyInfo } = useApp();
+  const { openAgent } = useAgentStore();
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggleAccordion = (index) => {
@@ -135,7 +137,7 @@ export default function SupportPage() {
 
         {/* "Ask AI Concierge" Card */}
         <div
-          onClick={() => navigate('/ai')}
+          onClick={() => openAgent({ context: { route: '/support' } })}
           className="p-3.5 rounded-[16px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#F43F43]/50 flex items-center justify-between cursor-pointer group transition-all"
         >
           <div className="flex items-center gap-3 min-w-0">

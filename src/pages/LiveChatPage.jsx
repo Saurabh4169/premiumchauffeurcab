@@ -23,6 +23,7 @@ import {
 import { sendLiveChatMessage, getRandomDispatcher } from '../services/liveChat.js';
 import { useApp } from '../context/AppContext.jsx';
 import { usePortalContainer } from '../hooks/usePortalContainer.js';
+import { useAgentStore } from '../store/agentStore.js';
 
 const TOPIC_CHIPS = [
   'Airport pickup',
@@ -39,6 +40,7 @@ export default function LiveChatPage() {
   const refParam = searchParams.get('ref');
 
   const { companyInfo, showToast } = useApp();
+  const { openAgent } = useAgentStore();
   const portalContainer = usePortalContainer();
 
   const [activeTopic, setActiveTopic] = useState(refParam ? `Inquiry regarding ${refParam}` : '');
@@ -237,8 +239,8 @@ export default function LiveChatPage() {
           <span className="text-white/30">|</span>
           <button
             type="button"
-            onClick={() => navigate('/ai')}
-            className="text-white/70 hover:text-white flex items-center gap-1"
+            onClick={() => openAgent({ context: { route: '/support/chat' } })}
+            className="text-white/70 hover:text-white flex items-center gap-1 cursor-pointer"
           >
             <Sparkles className="w-3 h-3 text-[#FDEEEA]" />
             <span>AI Butler</span>

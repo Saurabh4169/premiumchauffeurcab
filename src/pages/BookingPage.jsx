@@ -7,11 +7,17 @@ import {
   ArrowRight, 
   MapPin, 
   Plus, 
+  Minus,
   Trash2, 
   Baby, 
   Accessibility, 
   Check, 
-  CreditCard
+  CreditCard,
+  Plane,
+  Briefcase,
+  Navigation,
+  Clock,
+  Users
 } from 'lucide-react';
 import Screen from '../components/common/Screen.jsx';
 import StickyCta from '../components/common/StickyCta.jsx';
@@ -22,6 +28,13 @@ import DatePicker from '../components/common/DatePicker.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { FLEET, getVehicleById } from '../data/fleet.js';
 import { SERVICES } from '../data/services.js';
+
+const SERVICE_ICONS = {
+  'airport-transportation': Plane,
+  'corporate-executive': Briefcase,
+  'suburb-long-distance': Navigation,
+  'hourly-chauffeur': Clock
+};
 
 export default function BookingPage() {
   const navigate = useNavigate();
@@ -164,113 +177,149 @@ export default function BookingPage() {
           >
             {/* Service Category */}
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5 ml-1">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7075] mb-2 ml-0.5">
                 Service Category
               </label>
-              <div className="grid grid-cols-2 gap-2">
-                {SERVICES.slice(0, 4).map((s) => (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => updateBookingDraft({ serviceType: s.id })}
-                    className={`p-3.5 rounded-[16px] border text-left transition-all cursor-pointer ${
-                      bookingDraft.serviceType === s.id
-                        ? 'bg-[var(--accent-tint)] border-[var(--accent)] ring-1 ring-[var(--accent)]'
-                        : 'bg-[var(--surface)] border-[var(--border)] hover:bg-[var(--surface-muted)] shadow-xs'
-                    }`}
-                  >
-                    <span className="text-[13px] font-bold text-[var(--ink)] block">{s.shortTitle}</span>
-                    <span className="text-[10px] text-[var(--text-muted)] block truncate font-medium mt-0.5">{s.tagline}</span>
-                  </button>
-                ))}
+              <div className="grid grid-cols-2 gap-2.5">
+                {SERVICES.slice(0, 4).map((s) => {
+                  const Icon = SERVICE_ICONS[s.id] || Navigation;
+                  const isSelected = bookingDraft.serviceType === s.id;
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => updateBookingDraft({ serviceType: s.id })}
+                      className={`relative p-3.5 rounded-[18px] border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[82px] ${
+                        isSelected
+                          ? 'bg-rose-50/60 border-[#F43F43] ring-1.5 ring-[#F43F43]/30 shadow-sm'
+                          : 'bg-white border-[#E8E8EC] hover:border-[#D1D1D6] hover:bg-[#FAFAFA] shadow-xs'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between w-full mb-1">
+                        <div className={`w-7 h-7 rounded-[10px] flex items-center justify-center transition-colors ${
+                          isSelected ? 'bg-[#F43F43] text-white shadow-xs' : 'bg-[#F5F5F7] text-[#6B7075]'
+                        }`}>
+                          <Icon className="w-3.5 h-3.5" />
+                        </div>
+                        {isSelected && (
+                          <div className="w-2 h-2 rounded-full bg-[#F43F43] shadow-xs" />
+                        )}
+                      </div>
+                      <div>
+                        <span className="text-[13px] font-bold text-[#101417] block leading-tight">
+                          {s.shortTitle}
+                        </span>
+                        <span className="text-[10px] text-[#6B7075] block truncate font-medium mt-0.5">
+                          {s.tagline}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Pickup Location */}
-            <div className="relative">
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5 ml-1">
-                Pickup Address / Terminal
-              </label>
-              <div className="relative flex items-center h-12 rounded-[14px] px-4 border border-[var(--border)] bg-[var(--surface)] shadow-xs focus-within:border-[var(--accent)] transition-all">
-                <MapPin className="w-4 h-4 text-[var(--accent)] mr-3 shrink-0" />
-                <input
-                  type="text"
-                  value={bookingDraft.pickup}
-                  onChange={(e) => updateBookingDraft({ pickup: e.target.value })}
-                  placeholder="Address, hotel or airport terminal..."
-                  className="w-full bg-transparent text-[14px] text-[var(--ink)] placeholder:text-[var(--text-subtle)] outline-none font-medium"
-                />
-              </div>
-
-              {/* Suggestions */}
-              <div className="flex gap-1.5 mt-2 overflow-x-auto pb-1 no-scrollbar">
-                {activeCity.popularLocations.slice(0, 3).map((loc, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => updateBookingDraft({ pickup: loc.name })}
-                    className="px-2.5 py-1 rounded-[10px] bg-[var(--surface)] hover:bg-[var(--surface-muted)] border border-[var(--border)] text-[11px] text-[var(--text)] font-medium whitespace-nowrap cursor-pointer shadow-xs"
-                  >
-                    {loc.name.split('(')[0]}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Stops */}
-            {stops.map((stop, index) => (
-              <div key={index} className="relative">
-                <div className="flex items-center justify-between mb-1 ml-1">
-                  <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
-                    Intermediate Stop #{index + 1}
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => removeStop(index)}
-                    className="text-[11px] text-[var(--accent)] hover:underline flex items-center gap-1 cursor-pointer font-bold"
-                  >
-                    <Trash2 className="w-3 h-3" />
-                    <span>Remove</span>
-                  </button>
+            {/* Route Section */}
+            <div className="bg-white rounded-[20px] p-4 border border-[#E8E8EC] shadow-xs space-y-3">
+              {/* Pickup Location */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F43F43] ring-4 ring-rose-100 shrink-0" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7075]">
+                      Pickup Location
+                    </span>
+                  </div>
                 </div>
-                <div className="relative flex items-center h-12 rounded-[14px] px-4 border border-[var(--border)] bg-[var(--surface)] shadow-xs focus-within:border-[var(--accent)] transition-all">
-                  <MapPin className="w-4 h-4 text-[var(--text-muted)] mr-3 shrink-0" />
+                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#F9F9FB] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all">
                   <input
                     type="text"
-                    value={stop}
-                    onChange={(e) => updateStop(index, e.target.value)}
-                    placeholder="Stop address or venue..."
-                    className="w-full bg-transparent text-[13px] text-[var(--ink)] placeholder:text-[var(--text-subtle)] outline-none font-medium"
+                    value={bookingDraft.pickup}
+                    onChange={(e) => updateBookingDraft({ pickup: e.target.value })}
+                    placeholder="Address, airport or hotel..."
+                    className="w-full bg-transparent text-[13.5px] text-[#101417] placeholder:text-[#9E9EA7] outline-none font-medium"
                   />
                 </div>
+
+                {/* Quick Airport / Landmark Chips */}
+                <div className="flex gap-1.5 mt-2 overflow-x-auto pb-0.5 no-scrollbar">
+                  {activeCity.popularLocations.slice(0, 4).map((loc, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => updateBookingDraft({ pickup: loc.name })}
+                      className="px-2.5 py-1 rounded-[10px] bg-[#F5F5F7] hover:bg-[#EAEAEA] active:scale-95 border border-[#E8E8EC] text-[11px] text-[#101417] font-semibold whitespace-nowrap cursor-pointer transition-all"
+                    >
+                      {loc.name.split('(')[0].trim()}
+                    </button>
+                  ))}
+                </div>
               </div>
-            ))}
 
-            {stops.length < 3 && (
-              <button
-                type="button"
-                onClick={addStop}
-                className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[var(--accent)] hover:underline cursor-pointer ml-1"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>+ Add intermediate stop (+$35)</span>
-              </button>
-            )}
+              {/* Intermediate Stops */}
+              {stops.map((stop, index) => (
+                <div key={index} className="pt-1 border-t border-[#F0F0F2]">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500 ring-4 ring-amber-100 shrink-0" />
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7075]">
+                        Intermediate Stop #{index + 1}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeStop(index)}
+                      className="text-[11px] text-[#F43F43] hover:underline flex items-center gap-1 cursor-pointer font-bold"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                      <span>Remove</span>
+                    </button>
+                  </div>
+                  <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#F9F9FB] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all">
+                    <input
+                      type="text"
+                      value={stop}
+                      onChange={(e) => updateStop(index, e.target.value)}
+                      placeholder="Stop address or venue..."
+                      className="w-full bg-transparent text-[13.5px] text-[#101417] placeholder:text-[#9E9EA7] outline-none font-medium"
+                    />
+                  </div>
+                </div>
+              ))}
 
-            {/* Drop-off Location */}
-            <div className="relative">
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1.5 ml-1">
-                Drop-off Destination
-              </label>
-              <div className="relative flex items-center h-12 rounded-[14px] px-4 border border-[var(--border)] bg-[var(--surface)] shadow-xs focus-within:border-[var(--accent)] transition-all">
-                <MapPin className="w-4 h-4 text-[var(--success)] mr-3 shrink-0" />
-                <input
-                  type="text"
-                  value={bookingDraft.dropoff}
-                  onChange={(e) => updateBookingDraft({ dropoff: e.target.value })}
-                  placeholder="Destination address, airport, or hotel..."
-                  className="w-full bg-transparent text-[14px] text-[var(--ink)] placeholder:text-[var(--text-subtle)] outline-none font-medium"
-                />
+              {/* Add Stop Button */}
+              {stops.length < 3 && (
+                <div className="pt-0.5 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={addStop}
+                    className="inline-flex items-center gap-1 text-[11.5px] font-bold text-[#F43F43] hover:text-[#DC2626] active:scale-95 transition-all cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Add intermediate stop (+$35)</span>
+                  </button>
+                </div>
+              )}
+
+              {/* Drop-off Location */}
+              <div className="pt-1 border-t border-[#F0F0F2]">
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 shrink-0" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7075]">
+                      Drop-off Destination
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#F9F9FB] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all">
+                  <input
+                    type="text"
+                    value={bookingDraft.dropoff}
+                    onChange={(e) => updateBookingDraft({ dropoff: e.target.value })}
+                    placeholder="Destination address, airport, or hotel..."
+                    className="w-full bg-transparent text-[13.5px] text-[#101417] placeholder:text-[#9E9EA7] outline-none font-medium"
+                  />
+                </div>
               </div>
             </div>
 
@@ -283,84 +332,122 @@ export default function BookingPage() {
             />
 
             {/* Stepper counts */}
-            <div className="grid grid-cols-2 gap-3 pt-1">
-              <div className="bg-[var(--surface)] rounded-[16px] p-3 border border-[var(--border)] shadow-xs">
-                <span className="text-[11px] uppercase font-bold text-[var(--text-muted)] block">
-                  Passengers
-                </span>
-                <div className="flex items-center justify-between mt-2">
+            <div className="grid grid-cols-2 gap-3 pt-0.5">
+              <div className="bg-white rounded-[18px] p-3.5 border border-[#E8E8EC] shadow-xs">
+                <div className="flex items-center gap-1.5 mb-2.5">
+                  <Users className="w-3.5 h-3.5 text-[#6B7075]" />
+                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#6B7075] block">
+                    Passengers
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ passengers: Math.max(1, bookingDraft.passengers - 1) })}
-                    className="w-10 h-10 rounded-[12px] bg-[var(--surface-muted)] flex items-center justify-center text-[var(--ink)] hover:bg-[var(--border)] font-bold cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    aria-label="Decrease passengers"
                   >
-                    -
+                    <Minus className="w-4 h-4 stroke-[2.5]" />
                   </button>
-                  <span className="text-[18px] font-bold text-[var(--ink)]">
+                  <span className="text-[20px] font-bold text-[#101417] font-mono">
                     {bookingDraft.passengers}
                   </span>
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ passengers: Math.min(56, bookingDraft.passengers + 1) })}
-                    className="w-10 h-10 rounded-[12px] bg-[var(--surface-muted)] flex items-center justify-center text-[var(--ink)] hover:bg-[var(--border)] font-bold cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    aria-label="Increase passengers"
                   >
-                    +
+                    <Plus className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 </div>
               </div>
 
-              <div className="bg-[var(--surface)] rounded-[16px] p-3 border border-[var(--border)] shadow-xs">
-                <span className="text-[11px] uppercase font-bold text-[var(--text-muted)] block">
-                  Luggage Bags
-                </span>
-                <div className="flex items-center justify-between mt-2">
+              <div className="bg-white rounded-[18px] p-3.5 border border-[#E8E8EC] shadow-xs">
+                <div className="flex items-center gap-1.5 mb-2.5">
+                  <Briefcase className="w-3.5 h-3.5 text-[#6B7075]" />
+                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#6B7075] block">
+                    Luggage Bags
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ luggage: Math.max(0, bookingDraft.luggage - 1) })}
-                    className="w-10 h-10 rounded-[12px] bg-[var(--surface-muted)] flex items-center justify-center text-[var(--ink)] hover:bg-[var(--border)] font-bold cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    aria-label="Decrease luggage"
                   >
-                    -
+                    <Minus className="w-4 h-4 stroke-[2.5]" />
                   </button>
-                  <span className="text-[18px] font-bold text-[var(--ink)]">
+                  <span className="text-[20px] font-bold text-[#101417] font-mono">
                     {bookingDraft.luggage}
                   </span>
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ luggage: Math.min(56, bookingDraft.luggage + 1) })}
-                    className="w-10 h-10 rounded-[12px] bg-[var(--surface-muted)] flex items-center justify-center text-[var(--ink)] hover:bg-[var(--border)] font-bold cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    aria-label="Increase luggage"
                   >
-                    +
+                    <Plus className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Child seat & accessibility */}
-            <div className="space-y-2 pt-1">
-              <label className="flex items-center justify-between p-3.5 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] shadow-xs cursor-pointer">
+            <div className="space-y-2.5 pt-0.5">
+              <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <Baby className="w-4 h-4 text-[var(--accent)]" />
-                  <span className="text-[13px] font-semibold text-[var(--ink)]">Child Booster Seat (+$15)</span>
+                  <div className="w-8 h-8 rounded-[10px] bg-rose-50 text-[#F43F43] flex items-center justify-center shrink-0">
+                    <Baby className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[13px] font-bold text-[#101417] block">
+                      Child Booster Seat
+                    </span>
+                    <span className="text-[11px] text-[#6B7075] font-medium">
+                      Forward-facing premium seat
+                    </span>
+                  </div>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={bookingDraft.childSeat}
-                  onChange={(e) => updateBookingDraft({ childSeat: e.target.checked })}
-                  className="w-5 h-5 accent-[var(--accent)] rounded cursor-pointer"
-                />
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[11px] font-bold text-[#F43F43] bg-rose-50 px-2 py-0.5 rounded-full">
+                    +$15
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={bookingDraft.childSeat}
+                    onChange={(e) => updateBookingDraft({ childSeat: e.target.checked })}
+                    className="w-5 h-5 accent-[#F43F43] rounded cursor-pointer"
+                  />
+                </div>
               </label>
 
-              <label className="flex items-center justify-between p-3.5 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] shadow-xs cursor-pointer">
+              <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <Accessibility className="w-4 h-4 text-[var(--success)]" />
-                  <span className="text-[13px] font-semibold text-[var(--ink)]">Wheelchair Accessible Required</span>
+                  <div className="w-8 h-8 rounded-[10px] bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                    <Accessibility className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[13px] font-bold text-[#101417] block">
+                      Wheelchair Accessible Required
+                    </span>
+                    <span className="text-[11px] text-[#6B7075] font-medium">
+                      Hydraulic ramp & certified driver
+                    </span>
+                  </div>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={bookingDraft.accessible}
-                  onChange={(e) => updateBookingDraft({ accessible: e.target.checked })}
-                  className="w-5 h-5 accent-[var(--accent)] rounded cursor-pointer"
-                />
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                    Complimentary
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={bookingDraft.accessible}
+                    onChange={(e) => updateBookingDraft({ accessible: e.target.checked })}
+                    className="w-5 h-5 accent-[#F43F43] rounded cursor-pointer"
+                  />
+                </div>
               </label>
             </div>
           </motion.div>
@@ -630,7 +717,7 @@ export default function BookingPage() {
         <button
           type="button"
           onClick={handleNext}
-          className="btn-primary h-12 px-6 rounded-[14px] text-[15px] font-semibold text-white flex items-center gap-2 cursor-pointer shadow-xs shrink-0"
+          className="bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-[0.98] transition-all h-12 px-6 rounded-[14px] text-[15px] font-bold text-white flex items-center gap-2 cursor-pointer shadow-md shadow-rose-500/25 shrink-0"
         >
           <span>{currentStep === 5 ? 'Confirm Booking' : currentStep === 4 ? 'Pay & Book' : 'Continue'}</span>
           <ArrowRight className="w-4 h-4 stroke-[2.5]" />

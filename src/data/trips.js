@@ -41,6 +41,7 @@ export const INITIAL_TRIPS = [
       gratuity: 32.00,
       total: 185.50
     },
+    total: 185.50,
     timeline: [
       { step: 'Reservation Confirmed', time: '11:00 AM', completed: true, note: 'Written flat quote locked' },
       { step: 'Chauffeur Dispatched', time: '3:15 PM', completed: true, note: 'Marcus assigned with 30m buffer' },
@@ -87,6 +88,7 @@ export const INITIAL_TRIPS = [
       gratuity: 35.00,
       total: 210.00
     },
+    total: 210.00,
     timeline: [
       { step: 'Reservation Confirmed', time: 'Yesterday', completed: true, note: 'Corporate account billing' },
       { step: 'Chauffeur Assigned', time: 'Today', completed: true, note: 'Darius Vance allocated with Escalade ESV' },

@@ -303,6 +303,7 @@ export function AppProvider({ children }) {
   const finalizeBooking = (calculatedQuote) => {
     const newId = `PCS-${Math.floor(10000 + Math.random() * 90000)}`;
     const selectedVehicle = FLEET.find(v => v.id === bookingDraft.selectedVehicleId) || FLEET[0];
+    const totalAmount = calculatedQuote?.total ? calculatedQuote.total : 198.50;
     
     const newTrip = {
       id: newId,
@@ -310,12 +311,12 @@ export function AppProvider({ children }) {
       statusLabel: 'Confirmed & Flight-Tracked',
       type: 'upcoming',
       service: bookingDraft.serviceType === 'airport-transportation' ? 'Airport Transportation' : 'Corporate Chauffeur',
-      pickup: bookingDraft.pickup,
-      dropoff: bookingDraft.dropoff,
-      date: bookingDraft.date,
-      time: bookingDraft.time,
-      passengers: bookingDraft.passengers,
-      luggage: bookingDraft.luggage,
+      pickup: (bookingDraft.pickup && bookingDraft.pickup.trim()) ? bookingDraft.pickup : 'The Langham Chicago (330 N Wabash Ave)',
+      dropoff: (bookingDraft.dropoff && bookingDraft.dropoff.trim()) ? bookingDraft.dropoff : "O'Hare International Airport (ORD) Terminal 5",
+      date: bookingDraft.date || 'Tomorrow',
+      time: bookingDraft.time || '10:30 AM',
+      passengers: bookingDraft.passengers || 2,
+      luggage: bookingDraft.luggage || 3,
       flightNumber: bookingDraft.flightNumber || null,
       vehicleId: selectedVehicle.id,
       vehicleName: selectedVehicle.name,
@@ -327,8 +328,8 @@ export function AppProvider({ children }) {
         rating: 4.99,
         badge: 'Executive Chauffeur'
       },
-      quote: calculatedQuote,
-      total: 'Fixed all-in quote',
+      quote: calculatedQuote || { total: totalAmount },
+      total: totalAmount,
       timeline: [
         { step: 'Reservation Confirmed', time: 'Just Now', completed: true, note: 'Written flat quote locked' },
         { step: 'Chauffeur Dispatched', time: 'Pending', completed: false, note: 'Dispatched with 30m buffer' },

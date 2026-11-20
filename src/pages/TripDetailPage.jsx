@@ -22,11 +22,13 @@ import Button from '../components/common/Button.jsx';
 import Avatar from '../components/common/Avatar.jsx';
 import BottomSheet from '../components/common/BottomSheet.jsx';
 import { useApp } from '../context/AppContext.jsx';
+import { useAgentStore } from '../store/agentStore.js';
 
 export default function TripDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trips, showToast } = useApp();
+  const { openAgent } = useAgentStore();
   const [receiptOpen, setReceiptOpen] = useState(false);
 
   const trip = trips.find(t => t.id === id) || trips[0];
@@ -179,7 +181,10 @@ export default function TripDetailPage() {
 
               <button
                 type="button"
-                onClick={() => navigate('/ai')}
+                onClick={() => openAgent({
+                  prefill: `Where is my chauffeur for trip #${trip.id}?`,
+                  context: { route: `/trips/${trip.id}`, item: trip }
+                })}
                 className="bg-slate-100 hover:bg-slate-200 h-11 rounded-2xl flex items-center justify-center gap-2 text-[13px] font-bold text-slate-800 transition-colors cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />

@@ -5,24 +5,27 @@ import {
   ArrowLeft, 
   X, 
   Plus, 
-  Check, 
   Sparkles, 
   Scale, 
   ArrowRight,
   ShieldCheck,
+  Check,
   Users,
-  Briefcase
+  Briefcase,
+  Navigation
 } from 'lucide-react';
 import Screen from '../components/common/Screen.jsx';
 import StickyCta from '../components/common/StickyCta.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { FLEET } from '../data/fleet.js';
 import { SERVICES } from '../data/services.js';
+import { useAgentStore } from '../store/agentStore.js';
 
 export default function ComparePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { compareList, removeFromCompare, clearCompare, toggleSave, isSaved, updateBookingDraft, showToast } = useApp();
+  const { openAgent } = useAgentStore();
 
   const [showDiffOnly, setShowDiffOnly] = useState(false);
 
@@ -40,36 +43,37 @@ export default function ComparePage() {
   // If fewer than 2 items
   if (items.length < 2) {
     return (
-      <Screen withTabBar className="pt-3 pb-8">
-        <header className="sticky top-0 z-30 w-full h-[52px] bg-[var(--page)]/95 backdrop-blur-md border-b border-[var(--border)] -mx-4 px-4 flex items-center justify-between">
+      <Screen withTabBar className="pb-8">
+        {/* Header with safe breathing room */}
+        <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] px-4 pt-3 pb-2.5 flex items-center justify-between">
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="w-10 h-10 rounded-full bg-white border border-[var(--border)] flex items-center justify-center text-[var(--ink)] shadow-xs"
+            className="w-9 h-9 rounded-full bg-[#F5F5F7] hover:bg-[#E8E8EC] active:scale-95 border border-[#E8E8EC] flex items-center justify-center text-[#101417] shadow-xs cursor-pointer transition-all"
             aria-label="Back"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
           </button>
-          <h2 className="text-[16px] font-bold text-[var(--ink)]">
+          <h2 className="text-[16px] font-bold text-[#101417]">
             Compare {isVehicle ? 'Vehicles' : 'Services'}
           </h2>
-          <div className="w-10" />
+          <div className="w-9" />
         </header>
 
-        <div className="bg-white rounded-[20px] p-8 text-center border border-[var(--border)] shadow-[var(--shadow-card)] my-12">
-          <div className="w-16 h-16 rounded-full bg-[var(--surface-muted)] text-[var(--ink)] flex items-center justify-center mx-auto mb-4">
+        <div className="bg-white rounded-[24px] p-8 text-center border border-[#E8E8EC] shadow-sm my-12 mx-4">
+          <div className="w-16 h-16 rounded-full bg-rose-50 text-[#F43F43] flex items-center justify-center mx-auto mb-4">
             <Scale className="w-8 h-8 stroke-[1.75]" />
           </div>
-          <h3 className="text-[18px] font-bold text-[var(--ink)] mb-1">
+          <h3 className="text-[18px] font-bold text-[#101417] mb-1">
             Pick at least 2 {isVehicle ? 'vehicles' : 'services'} to compare
           </h3>
-          <p className="text-[13px] text-[var(--text-muted)] max-w-xs mx-auto mb-5">
+          <p className="text-[13px] text-[#6B7075] max-w-xs mx-auto mb-5 leading-relaxed">
             Compare passenger seating, luggage capacities, airport specs and inclusions side-by-side.
           </p>
           <button
             type="button"
             onClick={() => navigate(isVehicle ? '/fleet' : '/services')}
-            className="btn-primary"
+            className="h-11 px-6 rounded-[14px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white font-bold text-[14px] shadow-md shadow-rose-500/25 cursor-pointer active:scale-95 transition-all"
           >
             Browse {isVehicle ? 'fleet' : 'services'}
           </button>
@@ -78,91 +82,20 @@ export default function ComparePage() {
     );
   }
 
-  // Calculate best values for vehicles
-  const maxPax = isVehicle ? Math.max(...items.map(i => i.passengers || 0)) : 0;
-  const maxBags = isVehicle ? Math.max(...items.map(i => i.luggage || 0)) : 0;
+  // Calculate best values strictly (Only highlight if ONE vehicle has strictly more than others)
+  const isStrictlyBestPax = (item) => {
+    if (!isVehicle) return false;
+    const itemPax = item.passengers || 0;
+    const others = items.filter(i => i.id !== item.id).map(i => i.passengers || 0);
+    return itemPax > Math.max(...others, 0);
+  };
 
-  // Attributes definition
-  const vehicleAttributes = [
-    {
-      id: 'category',
-      label: 'Category',
-      getValue: (v) => v.categoryLabel || v.category,
-      isNumeric: false
-    },
-    {
-      id: 'passengers',
-      label: 'Passengers',
-      getValue: (v) => `${v.passengers} pax`,
-      isNumeric: true,
-      checkBest: (v) => v.passengers === maxPax && maxPax > 0,
-      bestBadge: 'Most seats'
-    },
-    {
-      id: 'luggage',
-      label: 'Luggage Capacity',
-      getValue: (v) => `${v.luggage} bags`,
-      isNumeric: true,
-      checkBest: (v) => v.luggage === maxBags && maxBags > 0,
-      bestBadge: 'Most luggage'
-    },
-    {
-      id: 'bestFor',
-      label: 'Best For',
-      getValue: (v) => v.bestFor || 'Airport & corporate transfers',
-      isNumeric: false
-    },
-    {
-      id: 'features',
-      label: 'Highlights',
-      getValue: (v) => (v.features || []).slice(0, 3).join(', ') || 'Chauffeur included, 60m wait',
-      isNumeric: false
-    },
-    {
-      id: 'pricing',
-      label: 'Pricing Policy',
-      getValue: () => 'Fixed written quote, 0 surge',
-      isNumeric: false
-    }
-  ];
-
-  const serviceAttributes = [
-    {
-      id: 'category',
-      label: 'Category',
-      getValue: (s) => s.category
-    },
-    {
-      id: 'pricing',
-      label: 'Pricing Note',
-      getValue: (s) => s.pricing
-    },
-    {
-      id: 'vehicles',
-      label: 'Suggested Vehicles',
-      getValue: (s) => s.vehicles
-    },
-    {
-      id: 'highlights',
-      label: "What's Included",
-      getValue: (s) => (s.highlights || []).slice(0, 3).join(' • ')
-    },
-    {
-      id: 'badge',
-      label: 'Standard Guarantee',
-      getValue: (s) => s.badge || 'Flight tracked & buffer dispatch'
-    }
-  ];
-
-  const attributes = isVehicle ? vehicleAttributes : serviceAttributes;
-
-  // Filter differences only if toggled
-  const displayedAttributes = showDiffOnly
-    ? attributes.filter(attr => {
-        const values = items.map(attr.getValue);
-        return new Set(values).size > 1;
-      })
-    : attributes;
+  const isStrictlyBestLuggage = (item) => {
+    if (!isVehicle) return false;
+    const itemBags = item.luggage || 0;
+    const others = items.filter(i => i.id !== item.id).map(i => i.luggage || 0);
+    return itemBags > Math.max(...others, 0);
+  };
 
   const handleSaveAll = () => {
     items.forEach(item => {
@@ -171,229 +104,332 @@ export default function ComparePage() {
         toggleSave(type, id, item.name || item.title);
       }
     });
-    showToast('All compared items saved', 'success');
+    showToast('All compared items saved to your favorites', 'success');
   };
 
-  const handleRequestQuote = () => {
-    const names = items.map(i => i.name || i.title).join(', ');
-    navigate(`/support/request?type=quote&details=${encodeURIComponent(`Comparing ${names} for upcoming luxury itinerary.`)}`);
+  const handleBookPrimary = () => {
+    if (isVehicle) {
+      updateBookingDraft({ selectedVehicleId: items[0].id });
+      navigate('/book');
+    } else {
+      updateBookingDraft({ serviceType: items[0].slug || items[0].id });
+      navigate('/book');
+    }
   };
 
   const handleAskAi = () => {
     const names = items.map(i => i.name || i.title).join(' and ');
-    navigate(`/ai?q=${encodeURIComponent(`Compare ${names} and recommend which vehicle best suits my group.`)}`);
+    openAgent({
+      prefill: `Which option fits best between ${names}?`,
+      context: { route: '/compare', item: items[0] }
+    });
   };
 
   return (
-    <Screen withCta className="pt-0 pb-16">
-      {/* Header */}
-      <header className="sticky top-0 z-30 w-full h-[52px] bg-[var(--page)]/95 backdrop-blur-md border-b border-[var(--border)] -mx-4 px-4 flex items-center justify-between">
+    <Screen withCta className="pb-24 bg-[#FAFAFC]">
+      {/* 1. Header with safe inset from device curved edges */}
+      <header className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] px-4 pt-3.5 pb-2.5 flex items-center justify-between shadow-xs">
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white border border-[var(--border)] flex items-center justify-center text-[var(--ink)] shadow-xs"
+          className="w-9 h-9 rounded-full bg-[#F5F5F7] hover:bg-[#E8E8EC] active:scale-95 border border-[#E8E8EC] flex items-center justify-center text-[#101417] shadow-xs cursor-pointer transition-all shrink-0"
           aria-label="Back"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4 stroke-[2.2]" />
         </button>
 
-        <h1 className="text-[16px] font-bold text-[var(--ink)] truncate">
+        <h1 className="text-[16px] font-bold text-[#101417] truncate px-2">
           Compare {isVehicle ? 'Vehicles' : 'Services'}
         </h1>
 
         <button
           type="button"
           onClick={clearCompare}
-          className="text-[13px] font-semibold text-[var(--accent)] hover:underline cursor-pointer"
+          className="text-[12.5px] font-bold text-[#F43F43] hover:underline cursor-pointer px-1 py-0.5"
         >
           Clear
         </button>
       </header>
 
-      {/* Differences toggle bar */}
-      <div className="py-2.5 flex items-center justify-between border-b border-[var(--border)]">
-        <span className="text-[13px] font-semibold text-[var(--text-muted)]">
-          {items.length} items side-by-side
+      {/* 2. Sub-bar with Differences Only Toggle */}
+      <div className="px-4 py-2 flex items-center justify-between border-b border-[#E8E8EC] bg-white">
+        <span className="text-[12px] font-bold text-[#6B7075]">
+          {items.length} {isVehicle ? 'vehicles' : 'services'} side-by-side
         </span>
 
-        <label className="flex items-center gap-2 cursor-pointer select-none">
+        <label className="flex items-center gap-1.5 cursor-pointer select-none">
           <input
             type="checkbox"
             checked={showDiffOnly}
             onChange={(e) => setShowDiffOnly(e.target.checked)}
-            className="w-4 h-4 accent-[var(--accent)] rounded cursor-pointer"
+            className="w-4 h-4 accent-[#F43F43] rounded cursor-pointer"
           />
-          <span className="text-[13px] font-semibold text-[var(--ink)]">
+          <span className="text-[12px] font-bold text-[#101417]">
             Differences only
           </span>
         </label>
       </div>
 
-      {/* Comparison Matrix Table */}
-      <div className="mt-3 overflow-x-auto no-scrollbar -mx-4 px-4">
-        <div className="min-w-full inline-block align-middle">
-          {/* Header Row with Items */}
-          <div className="flex border-b border-[var(--border)] pb-3 items-end">
-            {/* Sticky Label Column Placeholder */}
-            <div className="w-[92px] shrink-0 pr-2 pb-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] block">
-                Specifications
+      {/* 3. Hero Cards: Side-by-Side 50/50 Grid (No cramped 84px left column!) */}
+      <div className="px-4 pt-3.5 pb-2">
+        <div className={`grid ${items.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2.5`}>
+          {items.map((item) => {
+            const itemId = item.id || item.slug;
+            const title = item.name || item.title;
+            const img = item.image || item.photo;
+            const code = isVehicle ? (item.code || 'PCS-VEH') : (item.code || 'PCS-SRV');
+            const category = item.categoryLabel || item.category || 'Executive';
+
+            return (
+              <div 
+                key={itemId}
+                className="p-3 rounded-[18px] bg-white border border-[#E8E8EC] shadow-xs flex flex-col justify-between relative group"
+              >
+                <div>
+                  {/* Vehicle / Service Image */}
+                  <div className="relative aspect-[16/10] w-full rounded-[12px] overflow-hidden bg-slate-900 mb-2">
+                    <img 
+                      src={img} 
+                      alt={title}
+                      className="w-full h-full object-cover" 
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeFromCompare(itemId)}
+                      className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#101417]/80 hover:bg-[#F43F43] text-white flex items-center justify-center cursor-pointer shadow-xs transition-colors"
+                      aria-label={`Remove ${title}`}
+                    >
+                      <X className="w-3 h-3 stroke-[2.5]" />
+                    </button>
+                  </div>
+
+                  {/* Micro Category Code */}
+                  <div className="flex items-center justify-between mb-0.5">
+                    <span className="text-[9.5px] font-bold text-[#F43F43] uppercase tracking-wider font-mono">
+                      {code}
+                    </span>
+                    <span className="text-[9.5px] font-medium text-[#6B7075] truncate max-w-[80px]">
+                      {category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-[13px] font-bold text-[#101417] leading-tight line-clamp-2 min-h-[34px]">
+                    {title}
+                  </h3>
+                </div>
+
+                {/* RED BOOK BUTTON */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (isVehicle) {
+                      updateBookingDraft({ selectedVehicleId: item.id });
+                      navigate('/book');
+                    } else {
+                      navigate(`/services/${item.slug}`);
+                    }
+                  }}
+                  className="mt-2.5 h-8.5 px-2 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-95 text-white text-[12px] font-bold shadow-sm shadow-rose-500/25 flex items-center justify-center gap-1 w-full cursor-pointer transition-all"
+                >
+                  <span>Book Now</span>
+                  <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Add 3rd item chip if only 2 selected */}
+        {items.length === 2 && (
+          <div className="mt-2.5 flex justify-center">
+            <button
+              type="button"
+              onClick={() => navigate(isVehicle ? '/fleet' : '/services')}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-dashed border-[#D1D1D6] hover:border-[#F43F43] text-[11.5px] font-bold text-[#6B7075] hover:text-[#F43F43] cursor-pointer transition-all shadow-2xs"
+            >
+              <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>Add a 3rd {isVehicle ? 'car' : 'service'} to compare</span>
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* 4. Structured Specification Sections */}
+      <div className="px-4 space-y-3 pt-2">
+        {/* SECTION A: CAPACITY & SEATING (Vehicle Only) */}
+        {isVehicle && (
+          <div className="bg-white rounded-[20px] p-3.5 border border-[#E8E8EC] shadow-xs">
+            <div className="flex items-center gap-2 mb-2.5 pb-2 border-b border-[#F0F0F2]">
+              <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center text-[#F43F43]">
+                <Users className="w-3.5 h-3.5" />
+              </div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7075]">
+                Passenger & Luggage Capacity
               </span>
             </div>
 
-            {/* Compared Item Columns */}
-            {items.map((item) => {
-              const itemId = item.id || item.slug;
-              const title = item.name || item.title;
-              const img = item.image || item.photo;
-              const code = isVehicle ? (item.code || 'PCS-VEH') : (item.code || 'PCS-SRV');
+            <div className={`grid ${items.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2.5`}>
+              {items.map((v) => {
+                const bestPax = isStrictlyBestPax(v);
+                const bestLug = isStrictlyBestLuggage(v);
 
-              return (
-                <div 
-                  key={itemId}
-                  className="min-w-[132px] flex-1 px-1.5 shrink-0 relative flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Item Image with remove button */}
-                    <div className="relative aspect-[4/3] w-full rounded-[14px] overflow-hidden bg-slate-900 mb-1.5">
-                      <img 
-                        src={img} 
-                        alt={title}
-                        className="w-full h-full object-cover" 
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeFromCompare(itemId)}
-                        className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-[var(--ink)]/80 text-white flex items-center justify-center cursor-pointer shadow-xs hover:bg-[var(--accent)]"
-                        aria-label={`Remove ${title}`}
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    <span className="text-[11px] font-bold text-[var(--accent)] block uppercase tracking-wider">
-                      {code}
-                    </span>
-                    <h3 className="text-[13px] font-bold text-[var(--ink)] leading-snug line-clamp-2 min-h-[34px]">
-                      {title}
-                    </h3>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (isVehicle) {
-                        updateBookingDraft({ selectedVehicleId: item.id });
-                        navigate('/book');
-                      } else {
-                        navigate(`/services/${item.slug}`);
-                      }
-                    }}
-                    className="mt-2 h-8 px-2.5 rounded-full btn-primary text-[11px] font-bold w-full"
-                  >
-                    Get quote
-                  </button>
-                </div>
-              );
-            })}
-
-            {/* Add Item Slot if < 3 */}
-            {items.length < 3 && (
-              <div 
-                onClick={() => navigate(isVehicle ? '/fleet' : '/services')}
-                className="w-[120px] shrink-0 px-2 flex flex-col items-center justify-center text-center cursor-pointer group"
-              >
-                <div className="w-full aspect-[4/3] rounded-[14px] border-2 border-dashed border-[var(--border)] flex flex-col items-center justify-center text-[var(--text-subtle)] group-hover:border-[var(--accent)] group-hover:text-[var(--accent)] transition-colors mb-2">
-                  <Plus className="w-5 h-5 mb-1" />
-                  <span className="text-[11px] font-semibold">Add {isVehicle ? 'car' : 'service'}</span>
-                </div>
-                <span className="text-[11px] font-medium text-[var(--text-muted)]">
-                  Up to 3 items
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Matrix Rows */}
-          <div className="divide-y divide-[var(--border)]">
-            {displayedAttributes.map((attr, rowIdx) => (
-              <div 
-                key={attr.id}
-                className={`flex items-center py-3 ${
-                  rowIdx % 2 === 0 ? 'bg-transparent' : 'bg-white rounded-xl'
-                }`}
-              >
-                {/* Row Label (Sticky 92px) */}
-                <div className="w-[92px] shrink-0 pr-2">
-                  <span className="text-[12px] font-bold text-[var(--text-muted)] block leading-snug">
-                    {attr.label}
-                  </span>
-                </div>
-
-                {/* Values for each item */}
-                {items.map((item) => {
-                  const val = attr.getValue(item);
-                  const isBest = attr.checkBest?.(item);
-
-                  return (
-                    <div 
-                      key={item.id || item.slug}
-                      className="min-w-[132px] flex-1 px-1.5 shrink-0"
-                    >
-                      <div className={`p-1.5 rounded-[10px] ${isBest ? 'bg-[var(--accent-tint)]' : ''}`}>
-                        <span className={`text-[13px] font-bold leading-snug block ${isBest ? 'text-[var(--accent)]' : 'text-[var(--ink)]'}`}>
-                          {val}
+                return (
+                  <div key={v.id} className="p-2.5 rounded-[14px] bg-[#F9F9FB] border border-[#E8E8EC] space-y-2">
+                    {/* Passengers */}
+                    <div>
+                      <span className="text-[10px] font-bold uppercase text-[#6B7075] block leading-none">
+                        Passengers
+                      </span>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <span className="text-[15px] font-bold text-[#101417]">
+                          {v.passengers} pax
                         </span>
-                        {isBest && attr.bestBadge && (
-                          <span className="inline-block mt-0.5 px-1.5 py-0.2 rounded-full bg-[var(--accent)] text-white text-[10px] font-bold">
-                            {attr.bestBadge}
+                        {bestPax && (
+                          <span className="px-1.5 py-0.2 rounded-full bg-emerald-600 text-white text-[9px] font-bold">
+                            Most seats
                           </span>
                         )}
                       </div>
                     </div>
-                  );
-                })}
 
-                {items.length < 3 && <div className="w-[120px] shrink-0" />}
+                    {/* Luggage */}
+                    <div className="pt-1.5 border-t border-[#E8E8EC]">
+                      <span className="text-[10px] font-bold uppercase text-[#6B7075] block leading-none">
+                        Luggage
+                      </span>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <span className="text-[15px] font-bold text-[#101417]">
+                          {v.luggage} bags
+                        </span>
+                        {bestLug && (
+                          <span className="px-1.5 py-0.2 rounded-full bg-emerald-600 text-white text-[9px] font-bold">
+                            Most luggage
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* SECTION B: BEST SUITED FOR */}
+        <div className="bg-white rounded-[20px] p-3.5 border border-[#E8E8EC] shadow-xs">
+          <div className="flex items-center gap-2 mb-2.5 pb-2 border-b border-[#F0F0F2]">
+            <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center text-[#F43F43]">
+              <Navigation className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7075]">
+              Best Suited For
+            </span>
+          </div>
+
+          <div className={`grid ${items.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2.5`}>
+            {items.map((item) => (
+              <div key={item.id || item.slug} className="p-2.5 rounded-[14px] bg-[#F9F9FB] border border-[#E8E8EC]">
+                <p className="text-[12px] font-medium text-[#101417] leading-relaxed">
+                  {item.bestFor || item.highlights?.slice(0, 2).join(' · ') || 'Airport & corporate transfers'}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* SECTION C: KEY INCLUSIONS & AMENITIES */}
+        <div className="bg-white rounded-[20px] p-3.5 border border-[#E8E8EC] shadow-xs">
+          <div className="flex items-center gap-2 mb-2.5 pb-2 border-b border-[#F0F0F2]">
+            <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center text-[#F43F43]">
+              <Sparkles className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7075]">
+              Key Inclusions & Highlights
+            </span>
+          </div>
+
+          <div className={`grid ${items.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2.5`}>
+            {items.map((item) => {
+              const features = isVehicle 
+                ? (item.features || ['Chauffeur included', 'Flight tracked', '60m free wait'])
+                : (item.highlights || ['Real-time flight tracking', 'Fixed flat rate', '24/7 Lombard dispatch']);
+
+              return (
+                <div key={item.id || item.slug} className="p-2.5 rounded-[14px] bg-[#F9F9FB] border border-[#E8E8EC] space-y-1.5">
+                  {features.slice(0, 3).map((feat, idx) => (
+                    <div key={idx} className="flex items-start gap-1.5">
+                      <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                      <span className="text-[11.5px] font-medium text-[#101417] leading-tight">
+                        {feat}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* SECTION D: PRICING & STANDARDS */}
+        <div className="bg-white rounded-[20px] p-3.5 border border-[#E8E8EC] shadow-xs">
+          <div className="flex items-center gap-2 mb-2.5 pb-2 border-b border-[#F0F0F2]">
+            <div className="w-6 h-6 rounded-full bg-rose-50 flex items-center justify-center text-[#F43F43]">
+              <ShieldCheck className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7075]">
+              Zero Surge & Standards Guarantee
+            </span>
+          </div>
+
+          <div className={`grid ${items.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2.5`}>
+            {items.map((item) => (
+              <div key={item.id || item.slug} className="p-2.5 rounded-[14px] bg-[#F9F9FB] border border-[#E8E8EC] space-y-1">
+                <span className="text-[12px] font-bold text-[#101417] block">
+                  Fixed Written Quote
+                </span>
+                <p className="text-[10.5px] text-[#6B7075] leading-snug">
+                  Zero surge · Tolls, airport fees & 20% chauffeur gratuity 100% included.
+                </p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* AI Recommendation Card */}
-      <div className="mt-5 p-4 rounded-[20px] bg-white border border-[var(--border)] shadow-[var(--shadow-card)] flex items-center justify-between gap-3">
+      {/* 5. AI Concierge Consultation Card */}
+      <div className="mx-4 mt-3.5 p-3.5 rounded-[20px] bg-white border border-[#E8E8EC] shadow-xs flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5 text-[var(--accent)] mb-1">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-[12px] font-bold uppercase tracking-wider">Concierge Advice</span>
+          <div className="flex items-center gap-1.5 text-[#F43F43] mb-0.5">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span className="text-[10.5px] font-bold uppercase tracking-wider">AI Chauffeur Concierge</span>
           </div>
-          <h4 className="text-[14px] font-bold text-[var(--ink)] leading-snug">
-            Not sure which option fits best?
+          <h4 className="text-[13px] font-bold text-[#101417] leading-snug">
+            Need advice on which fits best?
           </h4>
-          <p className="text-[12px] text-[var(--text-muted)] mt-0.5">
-            Ask our AI dispatcher to compare your group size, bags and occasion.
+          <p className="text-[11px] text-[#6B7075] mt-0.5 leading-tight">
+            Ask our AI assistant to recommend based on your group & itinerary.
           </p>
         </div>
 
         <button
           type="button"
           onClick={handleAskAi}
-          className="h-10 px-3.5 rounded-full btn-secondary text-[12px] font-bold shrink-0"
+          className="h-8.5 px-3 rounded-full bg-[#F5F5F7] hover:bg-[#EAEAEA] active:scale-95 text-[#101417] text-[12px] font-bold shrink-0 border border-[#E8E8EC] cursor-pointer transition-all"
         >
           Ask AI
         </button>
       </div>
 
-      {/* Bottom Sticky CTA Bar */}
+      {/* 6. Bottom Sticky CTA Bar */}
       <StickyCta
         secondaryAction={{
           label: 'Save all',
           onClick: handleSaveAll
         }}
         primaryAction={{
-          label: 'Request quote',
-          onClick: handleRequestQuote,
+          label: isVehicle ? 'Book Selected Car' : 'Book Selected Service',
+          onClick: handleBookPrimary,
           icon: <ArrowRight className="w-4 h-4 stroke-[2.2]" />
         }}
       />

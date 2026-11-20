@@ -8,7 +8,9 @@ import {
   Clock, 
   ArrowRight,
   CheckCircle2,
-  Check
+  Check,
+  Sparkles,
+  Phone
 } from 'lucide-react';
 import Screen from '../components/common/Screen.jsx';
 import HeroHeader from '../components/common/HeroHeader.jsx';
@@ -16,11 +18,13 @@ import StickyCta from '../components/common/StickyCta.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import { FLEET, getVehicleById } from '../data/fleet.js';
 import { useApp } from '../context/AppContext.jsx';
+import { useAgentStore } from '../store/agentStore.js';
 
 export default function VehicleDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { updateBookingDraft } = useApp();
+  const { openAgent } = useAgentStore();
 
   const vehicle = getVehicleById(id) || FLEET[0];
 
@@ -149,7 +153,28 @@ export default function VehicleDetailPage() {
           </ul>
         </div>
 
-        {/* Similar Vehicles Horizontal Scroller */}
+        {/* Quick Action Bar: Ask AI Concierge / Call */}
+        <div className="flex items-center gap-2 pt-1">
+          <button
+            type="button"
+            onClick={() => openAgent({
+              prefill: `Is the ${vehicle.name} right for 5 people and 6 bags?`,
+              context: { route: `/fleet/${id}`, item: vehicle }
+            })}
+            className="flex-1 h-11 px-3 rounded-full bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)]/40 shadow-xs text-[13px] font-semibold text-[var(--ink)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>Ask AI about {vehicle.name.split(' ')[0]}</span>
+          </button>
+
+          <a
+            href="tel:+18472682323"
+            className="h-11 px-4 rounded-full bg-[var(--surface)] border border-[var(--border)] hover:border-slate-300 shadow-xs text-[13px] font-semibold text-[var(--ink)] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <Phone className="w-3.5 h-3.5 text-[var(--ink)]" />
+            <span>Call</span>
+          </a>
+        </div>
         <div className="pt-2 pb-6">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-[16px] font-bold text-[var(--ink)]">
@@ -196,7 +221,7 @@ export default function VehicleDetailPage() {
           onClick={handleGetFixedQuote}
           className="btn-primary h-12 px-6 rounded-[14px] text-[15px] font-semibold text-white flex items-center gap-2 cursor-pointer shadow-xs shrink-0"
         >
-          <span>Get fixed quote</span>
+          <span>Book Now</span>
           <ArrowRight className="w-4 h-4 stroke-[2.2]" />
         </button>
       </StickyCta>
