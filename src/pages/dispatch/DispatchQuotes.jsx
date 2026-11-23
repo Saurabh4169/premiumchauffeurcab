@@ -41,7 +41,7 @@ export default function DispatchQuotes() {
     <div className="space-y-6">
       {/* Top Header */}
       <div>
-        <span className="text-[11px] font-sans tracking-wider uppercase text-[#F43F43] font-bold">
+        <span className="text-[11px] font-sans tracking-wider uppercase text-[#BE8A44] font-bold">
           Quote Dispatch Studio
         </span>
         <h2 className="font-sans text-2xl font-bold text-white">
@@ -73,7 +73,7 @@ export default function DispatchQuotes() {
                   }}
                   className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                     isSelected
-                      ? 'glass-panel-gold border-[#F43F43] ring-1 ring-[#F43F43]'
+                      ? 'glass-panel-gold border-[#BE8A44] ring-1 ring-[#BE8A44]'
                       : 'glass-panel border-white/10 hover:border-white/20'
                   }`}
                 >
@@ -85,7 +85,7 @@ export default function DispatchQuotes() {
                   <h4 className="font-sans font-bold text-[15px] text-white">
                     {q.customerName}
                   </h4>
-                  <p className="text-[11px] text-[#FDEEEA] font-medium mt-0.5">
+                  <p className="text-[11px] text-[#FAF5ED] font-medium mt-0.5">
                     {q.serviceType}
                   </p>
                   <p className="text-[12px] text-white/60 line-clamp-1 mt-1">
@@ -96,7 +96,7 @@ export default function DispatchQuotes() {
                     <span className="text-emerald-400 font-sans">
                       AI Confidence: {q.aiDraft.aiConfidence}
                     </span>
-                    <span className="font-sans font-bold text-[#FDEEEA]">
+                    <span className="font-sans font-bold text-[#FAF5ED]">
                       ${q.aiDraft.totalAllIn.toFixed(2)}
                     </span>
                   </div>
@@ -106,11 +106,11 @@ export default function DispatchQuotes() {
           </div>
 
           {/* Right Column: Split Workspace (8 cols) */}
-          <div className="lg:col-span-8 glass-panel-elevated rounded-3xl p-6 border border-[#F43F43]/40 shadow-2xl space-y-5">
+          <div className="lg:col-span-8 glass-panel-elevated rounded-3xl p-6 border border-[#BE8A44]/40 shadow-2xl space-y-5">
             {/* Split Header */}
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
-                <span className="text-[10px] font-sans uppercase tracking-wider text-[#F43F43] font-bold block">
+                <span className="text-[10px] font-sans uppercase tracking-wider text-[#BE8A44] font-bold block">
                   Quote Workspace • {activeQuote.id}
                 </span>
                 <h3 className="font-sans text-xl font-bold text-white">
@@ -154,10 +154,10 @@ export default function DispatchQuotes() {
             </div>
 
             {/* AI Calculation & Pricing Breakdown */}
-            <div className="p-4 rounded-2xl bg-[#101417]/40 border border-[#F43F43]/30 space-y-3">
+            <div className="p-4 rounded-2xl bg-[#120F11]/40 border border-[#BE8A44]/30 space-y-3">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[12px] font-semibold text-[#FDEEEA]">
-                  <Sparkles className="w-4 h-4 text-[#F43F43]" />
+                <div className="flex items-center gap-2 text-[12px] font-semibold text-[#FAF5ED]">
+                  <Sparkles className="w-4 h-4 text-[#BE8A44]" />
                   <span>AI All-In Pricing Engine Analysis</span>
                 </div>
                 <Badge variant="success" size="sm">Confidence {activeQuote.aiDraft.aiConfidence}</Badge>
@@ -186,17 +186,17 @@ export default function DispatchQuotes() {
                     ${activeQuote.aiDraft.gratuity.toFixed(2)}
                   </span>
                 </div>
-                <div className="p-2 rounded-xl bg-[#F43F43]/20 border border-[#F43F43]/40">
-                  <span className="text-[10px] text-[#FDEEEA] block uppercase font-bold">Total Quote</span>
+                <div className="p-2 rounded-xl bg-[#BE8A44]/20 border border-[#BE8A44]/40">
+                  <span className="text-[10px] text-[#FAF5ED] block uppercase font-bold">Total Quote</span>
                   {isEditing ? (
                     <input
                       type="number"
                       value={editedTotal}
                       onChange={(e) => setEditedTotal(parseFloat(e.target.value) || 0)}
-                      className="font-sans text-[14px] font-bold text-[#FDEEEA] bg-transparent text-center outline-none w-full"
+                      className="font-sans text-[14px] font-bold text-[#FAF5ED] bg-transparent text-center outline-none w-full"
                     />
                   ) : (
-                    <span className="font-sans text-[15px] font-bold text-[#FDEEEA]">
+                    <span className="font-sans text-[15px] font-bold text-[#FAF5ED]">
                       ${editedTotal.toFixed(2)}
                     </span>
                   )}
@@ -206,14 +206,14 @@ export default function DispatchQuotes() {
 
             {/* Proposed Client Response Email Preview */}
             <div className="space-y-2">
-              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FDEEEA]">
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FAF5ED]">
                 Drafted Client Written Guarantee Response
               </label>
               <textarea
                 rows={5}
                 value={editedResponse}
                 onChange={(e) => setEditedResponse(e.target.value)}
-                className="w-full p-4 rounded-2xl bg-white/5 border border-white/15 text-[13px] text-white font-sans leading-relaxed outline-none focus:border-[#F43F43]"
+                className="w-full p-4 rounded-2xl bg-white/5 border border-white/15 text-[13px] text-white font-sans leading-relaxed outline-none focus:border-[#BE8A44]"
               />
             </div>
           </div>

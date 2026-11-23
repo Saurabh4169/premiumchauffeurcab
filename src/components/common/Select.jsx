@@ -30,7 +30,7 @@ export default function Select({
   return (
     <div className={`w-full relative ${className}`} ref={containerRef}>
       {label && (
-        <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FDEEEA] mb-1.5 ml-1">
+        <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FAF5ED] mb-1.5 ml-1">
           {label}
         </label>
       )}
@@ -41,12 +41,12 @@ export default function Select({
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full h-14 rounded-2xl px-4 flex items-center justify-between transition-all duration-200 border bg-white/5 backdrop-blur-md text-left cursor-pointer ${
           isOpen
-            ? 'border-[#F43F43] ring-2 ring-[#F43F43]/25 bg-white/8'
+            ? 'border-[#BE8A44] ring-2 ring-[#BE8A44]/25 bg-white/8'
             : 'border-white/12 hover:border-white/25'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         <div className="flex items-center gap-3 truncate">
-          {Icon && <Icon className="w-5 h-5 text-[#F43F43] shrink-0" />}
+          {Icon && <Icon className="w-5 h-5 text-[#BE8A44] shrink-0" />}
           <div className="truncate">
             {selectedOption ? (
               <div>
@@ -65,12 +65,12 @@ export default function Select({
           </div>
         </div>
 
-        <ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 text-[#F43F43]' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 text-[#BE8A44]' : ''}`} />
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl p-1.5 glass-panel-elevated border border-[#F43F43]/30 shadow-2xl max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl p-1.5 glass-panel-elevated border border-[#BE8A44]/30 shadow-2xl max-h-60 overflow-y-auto">
           {options.map((opt) => {
             const isSelected = opt.value === value;
             return (
@@ -83,18 +83,18 @@ export default function Select({
                 }}
                 className={`w-full px-3.5 py-2.5 rounded-xl text-left flex items-center justify-between text-[13px] transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-[#F43F43]/20 text-[#FDEEEA] font-semibold'
+                    ? 'bg-[#BE8A44]/20 text-[#FAF5ED] font-semibold'
                     : 'text-white/80 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <div className="flex items-center gap-2.5 truncate">
-                  {opt.icon && <opt.icon className="w-4 h-4 text-[#F43F43] shrink-0" />}
+                  {opt.icon && <opt.icon className="w-4 h-4 text-[#BE8A44] shrink-0" />}
                   <div>
                     <p className="font-medium truncate">{opt.label}</p>
                     {opt.sublabel && <p className="text-[11px] text-white/45 truncate">{opt.sublabel}</p>}
                   </div>
                 </div>
-                {isSelected && <Check className="w-4 h-4 text-[#F43F43] shrink-0" />}
+                {isSelected && <Check className="w-4 h-4 text-[#BE8A44] shrink-0" />}
               </button>
             );
           })}

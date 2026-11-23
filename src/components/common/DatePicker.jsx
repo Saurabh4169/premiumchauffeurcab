@@ -55,7 +55,7 @@ export default function DatePicker({
   return (
     <div className={`w-full relative ${className}`} ref={containerRef}>
       {label && (
-        <label className="block text-[12px] font-semibold text-[#101417] mb-1.5 ml-0.5">
+        <label className="block text-[12px] font-semibold text-[#120F11] mb-1.5 ml-0.5">
           {label}
         </label>
       )}
@@ -63,12 +63,12 @@ export default function DatePicker({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full h-12 rounded-[14px] px-3.5 flex items-center justify-between border border-[#E8E8EC] bg-white shadow-xs hover:border-[#F43F43] transition-all duration-200 text-left cursor-pointer"
+        className="w-full h-12 rounded-[14px] px-3.5 flex items-center justify-between border border-[#E2E2E2] bg-white shadow-xs hover:border-[#BE8A44] transition-all duration-200 text-left cursor-pointer"
       >
         <div className="flex items-center gap-2.5 min-w-0">
-          <CalendarIcon className="w-4.5 h-4.5 text-[#F43F43] shrink-0" />
+          <CalendarIcon className="w-4.5 h-4.5 text-[#BE8A44] shrink-0" />
           <div className="min-w-0">
-            <span className="text-[14px] text-[#101417] font-semibold block truncate leading-tight">
+            <span className="text-[14px] text-[#120F11] font-semibold block truncate leading-tight">
               {formatDisplay()}
             </span>
             <span className="text-[11px] text-emerald-600 block font-medium truncate mt-0.5">
@@ -81,9 +81,9 @@ export default function DatePicker({
 
       {/* Popover */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-[16px] p-3.5 bg-white border border-[#E8E8EC] shadow-2xl">
+        <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-[16px] p-3.5 bg-white border border-[#E2E2E2] shadow-2xl">
           {/* Quick Presets */}
-          <div className="flex items-center gap-1.5 mb-3 pb-2.5 border-b border-[#E8E8EC] overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-1.5 mb-3 pb-2.5 border-b border-[#E2E2E2] overflow-x-auto no-scrollbar">
             {['Today', 'Tomorrow', 'In 2 Days', 'Next Week'].map((lbl, idx) => (
               <button
                 key={lbl}
@@ -98,22 +98,22 @@ export default function DatePicker({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div>
-              <span className="block text-[11px] font-semibold text-[#6B7075] uppercase mb-1">Select Date</span>
+              <span className="block text-[11px] font-semibold text-[#555555] uppercase mb-1">Select Date</span>
               <input
                 type="date"
                 value={date}
                 min={new Date().toISOString().split('T')[0]}
                 onChange={(e) => onDateChange(e.target.value)}
-                className="w-full h-10 px-3 rounded-[10px] bg-slate-50 border border-[#E8E8EC] text-[#101417] text-[13px] outline-none font-medium focus:border-[#F43F43]"
+                className="w-full h-10 px-3 rounded-[10px] bg-slate-50 border border-[#E2E2E2] text-[#120F11] text-[13px] outline-none font-medium focus:border-[#BE8A44]"
               />
             </div>
 
             <div>
-              <span className="block text-[11px] font-semibold text-[#6B7075] uppercase mb-1">Select Time</span>
+              <span className="block text-[11px] font-semibold text-[#555555] uppercase mb-1">Select Time</span>
               <select
                 value={time}
                 onChange={(e) => onTimeChange(e.target.value)}
-                className="w-full h-10 px-3 rounded-[10px] bg-slate-50 border border-[#E8E8EC] text-[#101417] text-[13px] outline-none font-medium focus:border-[#F43F43]"
+                className="w-full h-10 px-3 rounded-[10px] bg-slate-50 border border-[#E2E2E2] text-[#120F11] text-[13px] outline-none font-medium focus:border-[#BE8A44]"
               >
                 {timeOptions.map((t) => (
                   <option key={t} value={t}>
@@ -128,7 +128,7 @@ export default function DatePicker({
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="btn-primary h-9 px-4 rounded-[10px] text-[13px] font-semibold text-[#101417] cursor-pointer"
+              className="btn-primary h-9 px-4 rounded-[10px] text-[13px] font-semibold text-[#120F11] cursor-pointer"
             >
               Set Date & Time
             </button>

@@ -131,7 +131,7 @@ export default function AgentSheet() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeAgent}
-            className="absolute inset-0 bg-[#101417]/40 backdrop-blur-xs cursor-pointer"
+            className="absolute inset-0 bg-[#120F11]/40 backdrop-blur-xs cursor-pointer"
           />
 
           {/* Bottom Sheet Container (92% height) */}
@@ -148,18 +148,18 @@ export default function AgentSheet() {
             </div>
 
             {/* Header (52px) */}
-            <div className="h-[52px] px-4 border-b border-[#E8E8EC] flex items-center justify-between shrink-0 bg-white">
+            <div className="h-[52px] px-4 border-b border-[#E2E2E2] flex items-center justify-between shrink-0 bg-white">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#F43F43] to-[#DC2626] flex items-center justify-center text-white shadow-xs">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#BE8A44] to-[#A97633] flex items-center justify-center text-white shadow-xs">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-[15px] font-bold text-[#101417] leading-tight">
+                  <h3 className="text-[15px] font-bold text-[#120F11] leading-tight">
                     AI Concierge
                   </h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[11px] text-[#6B7075] font-medium">Online 24/7</span>
+                    <span className="text-[11px] text-[#555555] font-medium">Online 24/7</span>
                   </div>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function AgentSheet() {
                   }}
                   aria-label="New chat / Main menu"
                   title="New chat / Main menu"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B7075] hover:text-[#101417] hover:bg-[#F5F5F7] transition-colors cursor-pointer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#555555] hover:text-[#120F11] hover:bg-[#FAF5ED] transition-colors cursor-pointer"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </button>
@@ -185,7 +185,7 @@ export default function AgentSheet() {
                   type="button"
                   onClick={handleExpandToFullScreen}
                   aria-label="Expand to full screen"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B7075] hover:text-[#101417] hover:bg-[#F5F5F7] transition-colors cursor-pointer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#555555] hover:text-[#120F11] hover:bg-[#FAF5ED] transition-colors cursor-pointer"
                 >
                   <Maximize2 className="w-4 h-4" />
                 </button>
@@ -196,23 +196,23 @@ export default function AgentSheet() {
                     type="button"
                     onClick={() => setShowMenu(m => !m)}
                     aria-label="More options"
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B7075] hover:text-[#101417] hover:bg-[#F5F5F7] transition-colors cursor-pointer"
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-[#555555] hover:text-[#120F11] hover:bg-[#FAF5ED] transition-colors cursor-pointer"
                   >
                     <MoreVertical className="w-4 h-4" />
                   </button>
 
                   {/* Dropdown Menu */}
                   {showMenu && (
-                    <div className="absolute right-0 top-10 w-48 bg-white rounded-[14px] shadow-xl border border-[#E8E8EC] py-1 z-30">
+                    <div className="absolute right-0 top-10 w-48 bg-white rounded-[14px] shadow-xl border border-[#E2E2E2] py-1 z-30">
                       <button
                         type="button"
                         onClick={() => {
                           resetChat();
                           setShowMenu(false);
                         }}
-                        className="w-full px-3 py-2 text-left text-[12px] font-medium text-[#101417] hover:bg-[#F5F5F7] flex items-center gap-2 cursor-pointer"
+                        className="w-full px-3 py-2 text-left text-[12px] font-medium text-[#120F11] hover:bg-[#FAF5ED] flex items-center gap-2 cursor-pointer"
                       >
-                        <ResetIcon className="w-3.5 h-3.5 text-[#6B7075]" />
+                        <ResetIcon className="w-3.5 h-3.5 text-[#555555]" />
                         <span>New chat</span>
                       </button>
 
@@ -222,9 +222,9 @@ export default function AgentSheet() {
                           handleSend('Talk to a dispatcher');
                           setShowMenu(false);
                         }}
-                        className="w-full px-3 py-2 text-left text-[12px] font-medium text-[#101417] hover:bg-[#F5F5F7] flex items-center gap-2 cursor-pointer"
+                        className="w-full px-3 py-2 text-left text-[12px] font-medium text-[#120F11] hover:bg-[#FAF5ED] flex items-center gap-2 cursor-pointer"
                       >
-                        <Phone className="w-3.5 h-3.5 text-[#6B7075]" />
+                        <Phone className="w-3.5 h-3.5 text-[#555555]" />
                         <span>Talk to a dispatcher</span>
                       </button>
 
@@ -235,9 +235,9 @@ export default function AgentSheet() {
                           setShowMenu(false);
                           showToast('Assistant button position reset', 'info');
                         }}
-                        className="w-full px-3 py-2 text-left text-[12px] font-medium text-[#101417] hover:bg-[#F5F5F7] flex items-center gap-2 cursor-pointer"
+                        className="w-full px-3 py-2 text-left text-[12px] font-medium text-[#120F11] hover:bg-[#FAF5ED] flex items-center gap-2 cursor-pointer"
                       >
-                        <Sparkles className="w-3.5 h-3.5 text-[#6B7075]" />
+                        <Sparkles className="w-3.5 h-3.5 text-[#555555]" />
                         <span>Reset assistant position</span>
                       </button>
                     </div>
@@ -249,7 +249,7 @@ export default function AgentSheet() {
                   type="button"
                   onClick={closeAgent}
                   aria-label="Close assistant"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B7075] hover:text-[#101417] hover:bg-[#F5F5F7] transition-colors cursor-pointer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#555555] hover:text-[#120F11] hover:bg-[#FAF5ED] transition-colors cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -260,7 +260,7 @@ export default function AgentSheet() {
             <div
               ref={scrollContainerRef}
               onScroll={handleScroll}
-              className="flex-1 px-4 py-3 overflow-y-auto space-y-3.5 bg-[#FAFAFC]"
+              className="flex-1 px-4 py-3 overflow-y-auto space-y-3.5 bg-[#FAF5ED]"
             >
               {messages.map((msg) => {
                 const isBot = msg.sender === 'bot';
@@ -269,8 +269,8 @@ export default function AgentSheet() {
                     <div className={`flex gap-2 max-w-[90%] ${isBot ? 'flex-row' : 'flex-row-reverse'}`}>
                       {/* Bot Avatar */}
                       {isBot && (
-                        <div className="w-7 h-7 rounded-full bg-[#101417] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
-                          <Sparkles className="w-3.5 h-3.5 text-[#F43F43]" />
+                        <div className="w-7 h-7 rounded-full bg-[#120F11] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                          <Sparkles className="w-3.5 h-3.5 text-[#BE8A44]" />
                         </div>
                       )}
 
@@ -279,8 +279,8 @@ export default function AgentSheet() {
                         <div
                           className={`p-3 rounded-[16px] text-[13px] leading-[19px] shadow-xs ${
                             isBot
-                              ? 'bg-white text-[#101417] border border-[#E8E8EC] rounded-tl-xs'
-                              : 'bg-[#101417] text-white rounded-tr-xs'
+                              ? 'bg-white text-[#120F11] border border-[#E2E2E2] rounded-tl-xs'
+                              : 'bg-[#120F11] text-white rounded-tr-xs'
                           }`}
                         >
                           <p className="whitespace-pre-line">{msg.text}</p>
@@ -288,12 +288,12 @@ export default function AgentSheet() {
 
                         {/* Bot Message Action Bar (Copy, Thumbs, Timestamp) */}
                         {isBot && (
-                          <div className="flex items-center gap-2 mt-1 px-1 text-[11px] text-[#9EA3A8]">
+                          <div className="flex items-center gap-2 mt-1 px-1 text-[11px] text-[#555555]">
                             <span>{msg.time}</span>
                             <button
                               type="button"
                               onClick={() => handleCopy(msg.id, msg.text)}
-                              className="hover:text-[#101417] transition-colors cursor-pointer"
+                              className="hover:text-[#120F11] transition-colors cursor-pointer"
                               title="Copy response"
                             >
                               {copiedId === msg.id ? (
@@ -305,14 +305,14 @@ export default function AgentSheet() {
                             <button
                               type="button"
                               onClick={() => handleFeedback(msg.id, 'up')}
-                              className={`hover:text-[#101417] cursor-pointer ${feedback[msg.id] === 'up' ? 'text-emerald-600' : ''}`}
+                              className={`hover:text-[#120F11] cursor-pointer ${feedback[msg.id] === 'up' ? 'text-emerald-600' : ''}`}
                             >
                               <ThumbsUp className="w-3 h-3" />
                             </button>
                             <button
                               type="button"
                               onClick={() => handleFeedback(msg.id, 'down')}
-                              className={`hover:text-[#101417] cursor-pointer ${feedback[msg.id] === 'down' ? 'text-rose-600' : ''}`}
+                              className={`hover:text-[#120F11] cursor-pointer ${feedback[msg.id] === 'down' ? 'text-rose-600' : ''}`}
                             >
                               <ThumbsDown className="w-3 h-3" />
                             </button>
@@ -425,11 +425,11 @@ export default function AgentSheet() {
 
               {/* Thinking Indicator */}
               {isThinking && (
-                <div className="flex items-center gap-2 text-[#6B7075] text-[12px] p-2.5 bg-white border border-[#E8E8EC] rounded-[14px] w-fit shadow-xs ml-9">
+                <div className="flex items-center gap-2 text-[#555555] text-[12px] p-2.5 bg-white border border-[#E2E2E2] rounded-[14px] w-fit shadow-xs ml-9">
                   <div className="flex gap-1 items-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.4s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.4s]" />
                   </div>
                   <span className="text-[11px] font-medium italic">Concierge is verifying fleet & rates...</span>
                 </div>
@@ -443,21 +443,21 @@ export default function AgentSheet() {
               <button
                 type="button"
                 onClick={() => scrollToBottom(true)}
-                className="absolute right-4 bottom-28 w-8 h-8 rounded-full bg-white border border-[#E8E8EC] shadow-md flex items-center justify-center text-[#101417] hover:bg-[#F5F5F7] transition-all cursor-pointer z-20"
+                className="absolute right-4 bottom-28 w-8 h-8 rounded-full bg-white border border-[#E2E2E2] shadow-md flex items-center justify-center text-[#120F11] hover:bg-[#FAF5ED] transition-all cursor-pointer z-20"
               >
                 <ArrowDown className="w-4 h-4" />
               </button>
             )}
 
             {/* Context-Aware Suggested Chips Bar */}
-            <div className="px-3 py-1.5 bg-white border-t border-[#E8E8EC] shrink-0">
+            <div className="px-3 py-1.5 bg-white border-t border-[#E2E2E2] shrink-0">
               <div className="flex gap-1.5 overflow-x-auto pb-0.5 no-scrollbar">
                 {suggestedChips.map((chip, idx) => (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => handleSend(chip)}
-                    className="px-2.5 py-1 rounded-[10px] bg-[#F5F5F7] hover:bg-[#101417] hover:text-white text-[#101417] text-[11px] font-semibold whitespace-nowrap transition-colors cursor-pointer border border-[#E8E8EC]"
+                    className="px-2.5 py-1 rounded-[10px] bg-[#FAF5ED] hover:bg-[#120F11] hover:text-white text-[#120F11] text-[11px] font-semibold whitespace-nowrap transition-colors cursor-pointer border border-[#E2E2E2]"
                   >
                     {chip}
                   </button>
@@ -466,7 +466,7 @@ export default function AgentSheet() {
             </div>
 
             {/* Input Composer Area */}
-            <div className="p-3 bg-white border-t border-[#E8E8EC] shrink-0">
+            <div className="p-3 bg-white border-t border-[#E2E2E2] shrink-0">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -479,19 +479,19 @@ export default function AgentSheet() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything or enter ride details..."
-                  className="flex-1 h-10 px-3.5 bg-[#F5F5F7] rounded-[12px] text-[13px] text-[#101417] placeholder:text-[#9EA3A8] focus:outline-none focus:ring-1 focus:ring-[#F43F43] border border-transparent focus:border-[#F43F43]"
+                  className="flex-1 h-10 px-3.5 bg-[#FAF5ED] rounded-[12px] text-[13px] text-[#120F11] placeholder:text-[#555555] focus:outline-none focus:ring-1 focus:ring-[#BE8A44] border border-transparent focus:border-[#BE8A44]"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim()}
-                  className="w-10 h-10 rounded-[12px] bg-[#101417] hover:bg-[#F43F43] disabled:opacity-40 disabled:hover:bg-[#101417] text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-xs"
+                  className="w-10 h-10 rounded-[12px] bg-[#120F11] hover:bg-[#BE8A44] disabled:opacity-40 disabled:hover:bg-[#120F11] text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-xs"
                 >
                   <Send className="w-4 h-4" />
                 </button>
               </form>
 
               {/* Composer Helper Disclaimer */}
-              <p className="text-[10px] text-[#9EA3A8] text-center mt-1.5 leading-tight">
+              <p className="text-[10px] text-[#555555] text-center mt-1.5 leading-tight">
                 AI can make mistakes. Quotes are confirmed in writing by dispatch.
               </p>
             </div>

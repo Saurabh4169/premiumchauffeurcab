@@ -15,7 +15,7 @@ export default function GlassCard({
     flat: 'bg-white/5 border border-white/10'
   }[variant] || 'glass-panel';
 
-  const interactiveClass = onClick ? 'cursor-pointer hover:border-[#F43F43]/40 hover:bg-white/10 transition-all duration-200' : '';
+  const interactiveClass = onClick ? 'cursor-pointer hover:border-[#BE8A44]/40 hover:bg-white/10 transition-all duration-200' : '';
 
   return (
     <div

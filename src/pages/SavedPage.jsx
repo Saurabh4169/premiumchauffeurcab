@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Heart, Car, ConciergeBell, ArrowRight } from 'lucide-react';
 import Screen from '../components/common/Screen.jsx';
 import LargeTitleHeader from '../components/common/LargeTitleHeader.jsx';
+import AppHeader from '../components/AppHeader.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { FLEET } from '../data/fleet.js';
@@ -21,16 +22,20 @@ export default function SavedPage() {
   const totalCount = vehiclesList.length + servicesList.length;
 
   return (
-    <Screen withTabBar className="pt-3 pb-8">
-      {/* Header */}
-      <LargeTitleHeader
-        title="Saved"
-        subtitle={`${totalCount} ${totalCount === 1 ? 'item' : 'items'} saved in your collection`}
-      />
+    <Screen withTabBar className="px-5 pt-0 pb-[152px]">
+      {/* App Header with single title */}
+      <AppHeader title="Saved Collection" showBack />
+
+      {/* Item Counter Subtitle (No duplicate title) */}
+      <div className="pt-2.5 pb-1">
+        <p className="text-[13px] text-[var(--text-muted)] font-medium">
+          {totalCount} {totalCount === 1 ? 'item' : 'items'} saved in your collection
+        </p>
+      </div>
 
       {/* Segmented Control */}
       <div className="my-3">
-        <div className="h-11 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-xs grid grid-cols-2 gap-1">
+        <div className="h-11 p-1 rounded-full bg-[var(--surface)] border border-[var(--border)] shadow-xs grid grid-cols-2 gap-1.5">
           <button
             type="button"
             onClick={() => setActiveSegment('vehicles')}
@@ -62,7 +67,7 @@ export default function SavedPage() {
       {/* Content Stream */}
       {activeSegment === 'vehicles' ? (
         vehiclesList.length > 0 ? (
-          <div className="grid grid-cols-2 gap-3 mt-3">
+          <div className="grid grid-cols-2 gap-3.5 mt-3">
             {vehiclesList.map(vehicle => (
               <ProductCard
                 key={vehicle.id}
@@ -73,14 +78,14 @@ export default function SavedPage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-[20px] p-8 text-center border border-[var(--border)] shadow-[var(--shadow-card)] my-6">
-            <div className="w-14 h-14 rounded-full bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center mx-auto mb-3">
-              <Heart className="w-6 h-6 stroke-[1.75]" />
+          <div className="bg-white rounded-[20px] p-6 text-center border border-[var(--border)] shadow-xs my-6">
+            <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center mx-auto mb-3">
+              <Heart className="w-5 h-5 stroke-[2]" />
             </div>
-            <h3 className="text-[17px] font-bold text-[var(--ink)] mb-1">
+            <h3 className="text-[16px] font-bold text-[var(--ink)] mb-1">
               No saved vehicles yet
             </h3>
-            <p className="text-[13px] text-[var(--text-muted)] max-w-xs mx-auto mb-4">
+            <p className="text-[13px] text-[var(--text-muted)] max-w-xs mx-auto mb-4 leading-snug">
               Tap the heart on any vehicle card in our fleet to save it for quick access.
             </p>
             <button
@@ -94,7 +99,7 @@ export default function SavedPage() {
         )
       ) : (
         servicesList.length > 0 ? (
-          <div className="grid grid-cols-2 gap-3 mt-3">
+          <div className="grid grid-cols-2 gap-3.5 mt-3">
             {servicesList.map(service => (
               <ProductCard
                 key={service.id}
@@ -105,14 +110,14 @@ export default function SavedPage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-[20px] p-8 text-center border border-[var(--border)] shadow-[var(--shadow-card)] my-6">
-            <div className="w-14 h-14 rounded-full bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center mx-auto mb-3">
-              <Heart className="w-6 h-6 stroke-[1.75]" />
+          <div className="bg-white rounded-[20px] p-6 text-center border border-[var(--border)] shadow-xs my-6">
+            <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center mx-auto mb-3">
+              <Heart className="w-5 h-5 stroke-[2]" />
             </div>
-            <h3 className="text-[17px] font-bold text-[var(--ink)] mb-1">
+            <h3 className="text-[16px] font-bold text-[var(--ink)] mb-1">
               No saved services yet
             </h3>
-            <p className="text-[13px] text-[var(--text-muted)] max-w-xs mx-auto mb-4">
+            <p className="text-[13px] text-[var(--text-muted)] max-w-xs mx-auto mb-4 leading-snug">
               Save airport, wedding, corporate or group transportation packages to your list.
             </p>
             <button

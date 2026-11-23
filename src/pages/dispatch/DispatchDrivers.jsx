@@ -30,7 +30,7 @@ export default function DispatchDrivers() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span className="text-[11px] font-sans tracking-wider uppercase text-[#F43F43] font-bold">
+          <span className="text-[11px] font-sans tracking-wider uppercase text-[#BE8A44] font-bold">
             Chauffeur Roster & Logistics
           </span>
           <h2 className="font-sans text-2xl font-bold text-white">
@@ -90,7 +90,7 @@ export default function DispatchDrivers() {
               <p className="truncate">
                 <span className="text-white/40">Vehicle:</span> {driver.assignedVehicle}
               </p>
-              <p className="text-[11px] text-[#FDEEEA]">
+              <p className="text-[11px] text-[#FAF5ED]">
                 <span className="text-white/40">License:</span> {driver.licenseType}
               </p>
             </div>
@@ -103,7 +103,7 @@ export default function DispatchDrivers() {
                 href={`tel:${driver.phone}`}
                 className="btn-glass-secondary px-3 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 text-white"
               >
-                <Phone className="w-3 h-3 text-[#F43F43]" />
+                <Phone className="w-3 h-3 text-[#BE8A44]" />
                 <span>Call Dispatch Line</span>
               </a>
             </div>

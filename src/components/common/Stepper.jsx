@@ -13,11 +13,11 @@ export default function Stepper({
       {/* Step Numbers & Connectors */}
       <div className="flex items-center justify-between relative px-2">
         {/* Background track line */}
-        <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#E8E8EC] z-0" />
+        <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#E2E2E2] z-0" />
         
         {/* Active progress fill */}
         <div
-          className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#F43F43] transition-all duration-300 z-0"
+          className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#BE8A44] transition-all duration-300 z-0"
           style={{
             width: `${((currentStep - 1) / (steps.length - 1)) * 88}%`
           }}
@@ -39,8 +39,8 @@ export default function Stepper({
                   isCompleted
                     ? 'bg-emerald-600 text-white cursor-pointer shadow-xs hover:scale-105'
                     : isCurrent
-                    ? 'bg-[#F43F43] text-white ring-4 ring-rose-100 shadow-md shadow-rose-500/25 scale-105'
-                    : 'bg-[#F5F5F7] border border-[#E8E8EC] text-[#6B7075] cursor-default'
+                    ? 'bg-[#BE8A44] text-white ring-4 ring-[#BE8A44]/20 shadow-md shadow-[#BE8A44]/25 scale-105'
+                    : 'bg-[#FAF5ED] border border-[#E2E2E2] text-[#555555] cursor-default'
                 }`}
               >
                 {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : stepNumber}
@@ -52,10 +52,10 @@ export default function Stepper({
 
       {/* Step Label Display (High Contrast & Visible) */}
       <div className="text-center mt-2.5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#F43F43] block">
+        <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#BE8A44] block">
           STEP {currentStep} OF {steps.length}
         </span>
-        <h4 className="text-[15px] font-bold text-[#101417] leading-tight mt-0.5">
+        <h4 className="text-[15px] font-bold text-[#120F11] leading-tight mt-0.5">
           {steps[currentStep - 1]}
         </h4>
       </div>

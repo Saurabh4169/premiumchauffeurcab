@@ -26,7 +26,7 @@ export default function DispatchDashboard() {
       {/* Top Welcome & Summary */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span className="text-[11px] font-sans tracking-wider uppercase text-[#F43F43] font-bold">
+          <span className="text-[11px] font-sans tracking-wider uppercase text-[#BE8A44] font-bold">
             Live Dispatch Telemetry
           </span>
           <h2 className="font-sans text-2xl font-bold text-white">
@@ -55,7 +55,7 @@ export default function DispatchDashboard() {
         <div className="glass-panel rounded-2xl p-4 border border-white/10 flex flex-col justify-between">
           <div className="flex items-center justify-between text-white/50 mb-2">
             <span className="text-[12px] uppercase font-semibold">Today's Jobs</span>
-            <Briefcase className="w-4 h-4 text-[#F43F43]" />
+            <Briefcase className="w-4 h-4 text-[#BE8A44]" />
           </div>
           <div>
             <span className="font-sans text-2xl font-bold text-white">
@@ -87,7 +87,7 @@ export default function DispatchDashboard() {
         <div className="glass-panel rounded-2xl p-4 border border-white/10 flex flex-col justify-between">
           <div className="flex items-center justify-between text-white/50 mb-2">
             <span className="text-[12px] uppercase font-semibold">Active Chauffeurs</span>
-            <Users className="w-4 h-4 text-[#FDEEEA]" />
+            <Users className="w-4 h-4 text-[#FAF5ED]" />
           </div>
           <div>
             <span className="font-sans text-2xl font-bold text-white">
@@ -100,16 +100,16 @@ export default function DispatchDashboard() {
         </div>
 
         {/* KPI 4 */}
-        <div className="glass-panel rounded-2xl p-4 border border-[#c8102e]/30 flex flex-col justify-between bg-[#101417]/30">
+        <div className="glass-panel rounded-2xl p-4 border border-[#BE8A44]/30 flex flex-col justify-between bg-[#120F11]/30">
           <div className="flex items-center justify-between text-white/50 mb-2">
             <span className="text-[12px] uppercase font-semibold">Pending Quotes</span>
-            <FileText className="w-4 h-4 text-[#F43F43]" />
+            <FileText className="w-4 h-4 text-[#BE8A44]" />
           </div>
           <div>
-            <span className="font-sans text-2xl font-bold text-[#FDEEEA]">
+            <span className="font-sans text-2xl font-bold text-[#FAF5ED]">
               {DISPATCH_KPIS.pendingQuotes}
             </span>
-            <span className="text-[11px] text-[#f87171] block mt-1">
+            <span className="text-[11px] text-[#D19C52] block mt-1">
               AI drafts waiting review
             </span>
           </div>
@@ -159,7 +159,7 @@ export default function DispatchDashboard() {
                 <p><span className="text-white/40">Assigned Chauffeur:</span> {alert.chauffeur}</p>
               </div>
 
-              <div className="p-2 rounded-xl bg-black/40 text-[11px] text-[#FDEEEA] font-sans flex items-center gap-1.5 border border-white/5">
+              <div className="p-2 rounded-xl bg-black/40 text-[11px] text-[#FAF5ED] font-sans flex items-center gap-1.5 border border-white/5">
                 <Clock className="w-3.5 h-3.5 text-[#3fa37a] shrink-0" />
                 <span>{alert.actionTaken}</span>
               </div>
@@ -174,14 +174,14 @@ export default function DispatchDashboard() {
         <div className="lg:col-span-2 glass-panel rounded-3xl p-5 border border-white/10 space-y-4">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <h3 className="font-sans font-bold text-[17px] text-white flex items-center gap-2">
-              <Car className="w-4 h-4 text-[#F43F43]" />
+              <Car className="w-4 h-4 text-[#BE8A44]" />
               <span>Active Job Manifest</span>
             </h3>
 
             <button
               type="button"
               onClick={() => navigate('/dispatch/jobs')}
-              className="text-[12px] text-[#FDEEEA] hover:underline flex items-center gap-1"
+              className="text-[12px] text-[#FAF5ED] hover:underline flex items-center gap-1"
             >
               <span>View Full Kanban</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -192,7 +192,7 @@ export default function DispatchDashboard() {
             {DISPATCH_JOBS.slice(0, 4).map((job) => (
               <div
                 key={job.id}
-                className="p-4 rounded-2xl bg-white/5 border border-white/8 hover:border-[#F43F43]/40 transition-all flex flex-col md:flex-row md:items-center justify-between gap-3"
+                className="p-4 rounded-2xl bg-white/5 border border-white/8 hover:border-[#BE8A44]/40 transition-all flex flex-col md:flex-row md:items-center justify-between gap-3"
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
@@ -200,7 +200,7 @@ export default function DispatchDashboard() {
                     <Badge variant={job.status === 'en_route' ? 'gold' : job.status === 'assigned' ? 'warning' : 'glass'} size="sm">
                       {job.status === 'en_route' ? 'En Route' : job.status === 'assigned' ? 'Assigned' : 'Unassigned'}
                     </Badge>
-                    <span className="text-[11px] text-[#F43F43] font-medium">{job.time}</span>
+                    <span className="text-[11px] text-[#BE8A44] font-medium">{job.time}</span>
                   </div>
 
                   <h4 className="font-sans font-bold text-[15px] text-white">
@@ -215,7 +215,7 @@ export default function DispatchDashboard() {
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="font-sans text-lg font-bold text-[#FDEEEA] block">
+                  <span className="font-sans text-lg font-bold text-[#FAF5ED] block">
                     ${job.quoteTotal.toFixed(2)}
                   </span>
                   <span className="text-[10px] text-white/40 uppercase block">Fixed Quote</span>
@@ -235,15 +235,15 @@ export default function DispatchDashboard() {
               Real-time vehicle telemetry across Lombard HQ, O'Hare, Midway & Downtown Chicago.
             </p>
 
-            <div className="h-60 w-full rounded-2xl bg-[#120a10] border border-white/10 relative overflow-hidden flex items-center justify-center p-4 text-center">
+            <div className="h-60 w-full rounded-2xl bg-[#270B14] border border-white/10 relative overflow-hidden flex items-center justify-center p-4 text-center">
               <div className="absolute inset-0 opacity-20" style={{
-                backgroundImage: 'radial-gradient(circle, #F43F43 1px, transparent 1px)',
+                backgroundImage: 'radial-gradient(circle, #BE8A44 1px, transparent 1px)',
                 backgroundSize: '20px 20px'
               }} />
 
               {/* Pulsing radar rings */}
-              <div className="w-32 h-32 rounded-full border border-[#F43F43]/20 absolute animate-ping" />
-              <div className="w-48 h-48 rounded-full border border-[#F43F43]/10 absolute" />
+              <div className="w-32 h-32 rounded-full border border-[#BE8A44]/20 absolute animate-ping" />
+              <div className="w-48 h-48 rounded-full border border-[#BE8A44]/10 absolute" />
 
               <div className="relative z-10 space-y-2">
                 <span className="w-3 h-3 rounded-full bg-[#3fa37a] inline-block animate-pulse" />

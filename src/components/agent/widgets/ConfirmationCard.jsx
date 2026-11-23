@@ -45,35 +45,35 @@ export default function ConfirmationCardWidget({ widget }) {
           <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 block">
             Booking Confirmed · 24/7 Staging Locked
           </span>
-          <h4 className="font-bold text-[17px] text-[#101417]">
+          <h4 className="font-bold text-[17px] text-[#120F11]">
             Reference #{bookingRef}
           </h4>
         </div>
       </div>
 
       {/* Trip Details Grid */}
-      <div className="bg-[#F5F5F7] rounded-[14px] p-3 text-[12px] space-y-1.5 border border-[#E8E8EC]">
+      <div className="bg-[#FAF5ED] rounded-[14px] p-3 text-[12px] space-y-1.5 border border-[#E2E2E2]">
         <div className="flex justify-between">
-          <span className="text-[#6B7075]">Vehicle Staging</span>
-          <span className="font-semibold text-[#101417]">{trip.vehicleName}</span>
+          <span className="text-[#555555]">Vehicle Staging</span>
+          <span className="font-semibold text-[#120F11]">{trip.vehicleName}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-[#6B7075]">Route</span>
-          <span className="font-semibold text-[#101417] truncate max-w-[200px]">
+          <span className="text-[#555555]">Route</span>
+          <span className="font-semibold text-[#120F11] truncate max-w-[200px]">
             {trip.pickup?.split(',')[0]} → {trip.dropoff?.split(',')[0]}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-[#6B7075]">Schedule</span>
-          <span className="font-semibold text-[#101417]">{trip.date} · {trip.time}</span>
+          <span className="text-[#555555]">Schedule</span>
+          <span className="font-semibold text-[#120F11]">{trip.date} · {trip.time}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-[#6B7075]">Total Fixed Rate</span>
+          <span className="text-[#555555]">Total Fixed Rate</span>
           <span className="font-bold text-emerald-700">${totalAmount} all-in (Zero Surge)</span>
         </div>
-        <div className="flex justify-between pt-1 border-t border-[#E8E8EC]">
-          <span className="text-[#6B7075]">Chauffeur</span>
-          <span className="font-semibold text-[#101417]">Assigned with 30m Buffer (Lombard HQ)</span>
+        <div className="flex justify-between pt-1 border-t border-[#E2E2E2]">
+          <span className="text-[#555555]">Chauffeur</span>
+          <span className="font-semibold text-[#120F11]">Assigned with 30m Buffer (Lombard HQ)</span>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default function ConfirmationCardWidget({ widget }) {
         <button
           type="button"
           onClick={handleReturnToMainMenu}
-          className="w-full h-10 rounded-[12px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:opacity-95 text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-98"
+          className="w-full h-10 rounded-[12px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:opacity-95 text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-98"
         >
           <RotateCcw className="w-4 h-4" />
           <span>Return to Main Menu (Fresh Chat)</span>
@@ -92,7 +92,7 @@ export default function ConfirmationCardWidget({ widget }) {
         <button
           type="button"
           onClick={handleViewTrip}
-          className="w-full h-9 rounded-[10px] bg-[#101417] text-white hover:bg-[#F43F43] font-semibold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+          className="w-full h-9 rounded-[10px] bg-[#120F11] text-white hover:bg-[#BE8A44] font-semibold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
         >
           <span>View in My Trips</span>
           <ArrowRight className="w-4 h-4" />
@@ -102,18 +102,18 @@ export default function ConfirmationCardWidget({ widget }) {
           <button
             type="button"
             onClick={handleCalendar}
-            className="h-8.5 px-2 rounded-[8px] bg-[#F5F5F7] hover:bg-slate-200 border border-[#E8E8EC] text-[#101417] font-semibold text-[12px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+            className="h-8.5 px-2 rounded-[8px] bg-[#FAF5ED] hover:bg-slate-200 border border-[#E2E2E2] text-[#120F11] font-semibold text-[12px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
           >
-            <Calendar className="w-3.5 h-3.5 text-[#6B7075]" />
+            <Calendar className="w-3.5 h-3.5 text-[#555555]" />
             <span>Add to Calendar</span>
           </button>
 
           <button
             type="button"
             onClick={handleBookReturn}
-            className="h-8.5 px-2 rounded-[8px] bg-[#F5F5F7] hover:bg-slate-200 border border-[#E8E8EC] text-[#101417] font-semibold text-[12px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+            className="h-8.5 px-2 rounded-[8px] bg-[#FAF5ED] hover:bg-slate-200 border border-[#E2E2E2] text-[#120F11] font-semibold text-[12px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#6B7075]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#555555]" />
             <span>Book Return</span>
           </button>
         </div>

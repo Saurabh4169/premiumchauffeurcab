@@ -33,17 +33,17 @@ export default function DispatcherLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#08080a] text-[#faf6f0] flex flex-col xl:flex-row antialiased">
+    <div className="min-h-screen bg-[#120F11] text-[#faf6f0] flex flex-col xl:flex-row antialiased">
       <ToastContainer />
 
       {/* Sidebar */}
-      <aside className="w-full xl:w-72 bg-[#101417] border-b xl:border-b-0 xl:border-r border-white/10 flex flex-col shrink-0 z-30">
+      <aside className="w-full xl:w-72 bg-[#120F11] border-b xl:border-b-0 xl:border-r border-white/10 flex flex-col shrink-0 z-30">
         {/* Brand Header */}
         <div className="p-5 border-b border-white/10 flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#3fa37a] animate-pulse" />
-              <span className="text-[11px] font-sans tracking-widest text-[#F43F43] uppercase font-bold">
+              <span className="text-[11px] font-sans tracking-widest text-[#BE8A44] uppercase font-bold">
                 24/7 Lombard Dispatch
               </span>
             </div>
@@ -56,7 +56,7 @@ export default function DispatcherLayout() {
           <button
             type="button"
             onClick={() => navigate('/home')}
-            className="xl:hidden px-3 py-1.5 rounded-xl bg-white/10 text-[12px] text-[#FDEEEA] flex items-center gap-1.5"
+            className="xl:hidden px-3 py-1.5 rounded-xl bg-white/10 text-[12px] text-[#FAF5ED] flex items-center gap-1.5"
           >
             <Smartphone className="w-3.5 h-3.5" />
             <span>App</span>
@@ -93,12 +93,12 @@ export default function DispatcherLayout() {
                 end={item.exact}
                 className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[14px] font-medium transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#101417] to-[#4a1624] text-[#FDEEEA] border border-[#F43F43]/40 shadow-lg'
+                    ? 'bg-gradient-to-r from-[#120F11] to-[#270B14] text-[#FAF5ED] border border-[#BE8A44]/40 shadow-lg'
                     : 'text-white/70 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#F43F43]' : 'text-white/40'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#BE8A44]' : 'text-white/40'}`} />
                   <span>{item.label}</span>
                 </div>
 
@@ -106,7 +106,7 @@ export default function DispatcherLayout() {
                   <span
                     className={`px-2 py-0.5 rounded-full text-[11px] font-sans font-bold ${
                       item.alert
-                        ? 'bg-[#c8102e] text-white'
+                        ? 'bg-[#BE8A44] text-white'
                         : 'bg-white/10 text-white/70'
                     }`}
                   >
@@ -121,12 +121,12 @@ export default function DispatcherLayout() {
         {/* Footer Dispatch Hotline */}
         <div className="p-4 border-t border-white/10 mt-auto bg-black/30">
           <div className="flex items-center gap-2 text-[12px] text-white/70 mb-2">
-            <Phone className="w-3.5 h-3.5 text-[#F43F43]" />
+            <Phone className="w-3.5 h-3.5 text-[#BE8A44]" />
             <span>Emergency Dispatch Wire:</span>
           </div>
           <a
             href="tel:+18472682323"
-            className="font-sans text-[14px] text-[#FDEEEA] font-bold hover:underline block"
+            className="font-sans text-[14px] text-[#FAF5ED] font-bold hover:underline block"
           >
             +1 (847) 268-2323
           </a>
@@ -137,13 +137,13 @@ export default function DispatcherLayout() {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         {/* Top Control Bar */}
-        <header className="h-16 border-b border-white/10 px-6 flex items-center justify-between bg-[#101417]/50 backdrop-blur-md shrink-0">
+        <header className="h-16 border-b border-white/10 px-6 flex items-center justify-between bg-[#120F11]/50 backdrop-blur-md shrink-0">
           <div className="flex items-center gap-3">
             <span className="text-[12px] font-semibold uppercase tracking-wider text-white/50">
               Operations Control
             </span>
             <span className="text-white/20">•</span>
-            <span className="text-[13px] text-[#FDEEEA] font-medium">
+            <span className="text-[13px] text-[#FAF5ED] font-medium">
               Chicago • New York • Miami • Atlanta • Los Angeles
             </span>
           </div>

@@ -31,7 +31,7 @@ export default function DispatchJobs() {
   const columns = [
     { id: 'unassigned', label: 'Unassigned', count: jobs.filter(j => j.status === 'unassigned').length, color: 'text-amber-400' },
     { id: 'assigned', label: 'Assigned', count: jobs.filter(j => j.status === 'assigned').length, color: 'text-blue-400' },
-    { id: 'en_route', label: 'En Route', count: jobs.filter(j => j.status === 'en_route').length, color: 'text-[#F43F43]' },
+    { id: 'en_route', label: 'En Route', count: jobs.filter(j => j.status === 'en_route').length, color: 'text-[#BE8A44]' },
     { id: 'completed', label: 'Completed', count: jobs.filter(j => j.status === 'completed').length, color: 'text-emerald-400' }
   ];
 
@@ -75,7 +75,7 @@ export default function DispatchJobs() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span className="text-[11px] font-sans tracking-wider uppercase text-[#F43F43] font-bold">
+          <span className="text-[11px] font-sans tracking-wider uppercase text-[#BE8A44] font-bold">
             Job Scheduling & Allocation
           </span>
           <h2 className="font-sans text-2xl font-bold text-white">
@@ -93,7 +93,7 @@ export default function DispatchJobs() {
               type="button"
               onClick={() => setViewMode('kanban')}
               className={`px-3 py-1.5 rounded-lg text-[12px] font-semibold flex items-center gap-1.5 cursor-pointer ${
-                viewMode === 'kanban' ? 'bg-[#F43F43] text-[#101417]' : 'text-white/60 hover:text-white'
+                viewMode === 'kanban' ? 'bg-[#BE8A44] text-[#120F11]' : 'text-white/60 hover:text-white'
               }`}
             >
               <Kanban className="w-3.5 h-3.5" />
@@ -103,7 +103,7 @@ export default function DispatchJobs() {
               type="button"
               onClick={() => setViewMode('table')}
               className={`px-3 py-1.5 rounded-lg text-[12px] font-semibold flex items-center gap-1.5 cursor-pointer ${
-                viewMode === 'table' ? 'bg-[#F43F43] text-[#101417]' : 'text-white/60 hover:text-white'
+                viewMode === 'table' ? 'bg-[#BE8A44] text-[#120F11]' : 'text-white/60 hover:text-white'
               }`}
             >
               <Table className="w-3.5 h-3.5" />
@@ -135,14 +135,14 @@ export default function DispatchJobs() {
                     <div
                       key={job.id}
                       onClick={() => handleOpenAssign(job)}
-                      className="p-3.5 rounded-xl bg-white/5 border border-white/8 hover:border-[#F43F43]/50 hover:bg-white/10 transition-all cursor-pointer space-y-2 group"
+                      className="p-3.5 rounded-xl bg-white/5 border border-white/8 hover:border-[#BE8A44]/50 hover:bg-white/10 transition-all cursor-pointer space-y-2 group"
                     >
                       <div className="flex items-center justify-between text-[11px]">
                         <span className="font-sans text-white/40">{job.id}</span>
-                        <span className="text-[#FDEEEA] font-sans font-semibold">{job.time}</span>
+                        <span className="text-[#FAF5ED] font-sans font-semibold">{job.time}</span>
                       </div>
 
-                      <h4 className="font-sans font-bold text-[14px] text-white leading-snug group-hover:text-[#FDEEEA] transition-colors">
+                      <h4 className="font-sans font-bold text-[14px] text-white leading-snug group-hover:text-[#FAF5ED] transition-colors">
                         {job.customer}
                       </h4>
 
@@ -193,7 +193,7 @@ export default function DispatchJobs() {
                 <tr key={job.id} className="hover:bg-white/5 transition-colors">
                   <td className="p-4 font-sans font-bold text-white/70">{job.id}</td>
                   <td className="p-4 font-semibold text-white">{job.customer}</td>
-                  <td className="p-4 font-sans text-[#FDEEEA]">{job.time}</td>
+                  <td className="p-4 font-sans text-[#FAF5ED]">{job.time}</td>
                   <td className="p-4 text-white/60 max-w-[220px] truncate">{job.pickup} &rarr; {job.dropoff}</td>
                   <td className="p-4 text-white/80">{job.chauffeurName}</td>
                   <td className="p-4">
@@ -201,12 +201,12 @@ export default function DispatchJobs() {
                       {job.status}
                     </Badge>
                   </td>
-                  <td className="p-4 font-sans font-bold text-[#FDEEEA]">${job.quoteTotal.toFixed(2)}</td>
+                  <td className="p-4 font-sans font-bold text-[#FAF5ED]">${job.quoteTotal.toFixed(2)}</td>
                   <td className="p-4 text-right">
                     <button
                       type="button"
                       onClick={() => handleOpenAssign(job)}
-                      className="px-3 py-1 rounded-lg bg-white/10 hover:bg-[#F43F43] hover:text-[#101417] text-[12px] font-semibold transition-all cursor-pointer"
+                      className="px-3 py-1 rounded-lg bg-white/10 hover:bg-[#BE8A44] hover:text-[#120F11] text-[12px] font-semibold transition-all cursor-pointer"
                     >
                       Assign
                     </button>
@@ -221,10 +221,10 @@ export default function DispatchJobs() {
       {/* Assignment Drawer / Modal with Conflict Warnings */}
       {assignDrawerOpen && selectedJob && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-lg glass-panel-elevated rounded-3xl p-6 border border-[#F43F43]/40 shadow-2xl space-y-4">
+          <div className="w-full max-w-lg glass-panel-elevated rounded-3xl p-6 border border-[#BE8A44]/40 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div>
-                <span className="text-[10px] uppercase font-sans tracking-wider text-[#F43F43] font-bold">
+                <span className="text-[10px] uppercase font-sans tracking-wider text-[#BE8A44] font-bold">
                   Chauffeur Allocation
                 </span>
                 <h3 className="font-sans text-lg font-bold text-white">
@@ -260,13 +260,13 @@ export default function DispatchJobs() {
 
             {/* Chauffeur Selector */}
             <div>
-              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FDEEEA] mb-1.5">
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FAF5ED] mb-1.5">
                 Select Available Chauffeur
               </label>
               <select
                 value={selectedDriverId}
                 onChange={(e) => setSelectedDriverId(e.target.value)}
-                className="w-full h-12 rounded-xl px-3 bg-[#180a11] border border-white/20 text-white text-[13px] outline-none focus:border-[#F43F43]"
+                className="w-full h-12 rounded-xl px-3 bg-[#270B14] border border-white/20 text-white text-[13px] outline-none focus:border-[#BE8A44]"
               >
                 <option value="">-- Choose Chauffeur --</option>
                 {DISPATCH_DRIVERS.map((d) => (
@@ -279,13 +279,13 @@ export default function DispatchJobs() {
 
             {/* Vehicle Selector */}
             <div>
-              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FDEEEA] mb-1.5">
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#FAF5ED] mb-1.5">
                 Select Fleet Vehicle
               </label>
               <select
                 value={selectedVehicleId}
                 onChange={(e) => setSelectedVehicleId(e.target.value)}
-                className="w-full h-12 rounded-xl px-3 bg-[#180a11] border border-white/20 text-white text-[13px] outline-none focus:border-[#F43F43]"
+                className="w-full h-12 rounded-xl px-3 bg-[#270B14] border border-white/20 text-white text-[13px] outline-none focus:border-[#BE8A44]"
               >
                 <option value="">-- Choose Vehicle --</option>
                 {DISPATCH_FLEET_STATUS.map((v) => (

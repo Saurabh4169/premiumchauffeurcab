@@ -8,9 +8,9 @@ import {
   FileText, 
   ChevronDown, 
   Sparkles, 
-  ArrowRight,
-  ArrowLeft
+  ArrowRight
 } from 'lucide-react';
+import AppHeader from '../components/AppHeader.jsx';
 import { FAQS } from '../data/faqs.js';
 import { useApp } from '../context/AppContext.jsx';
 import { useAgentStore } from '../store/agentStore.js';
@@ -26,172 +26,177 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="min-h-full pb-24 bg-[#F5F5F7]">
-      {/* Top Header (52px sticky) */}
-      <div className="sticky top-0 z-30 h-[52px] px-4 bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => navigate('/profile')}
-          className="w-9 h-9 rounded-full bg-white hover:bg-slate-50 flex items-center justify-center text-[#101417] border border-[#E8E8EC] transition-all cursor-pointer shadow-xs"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
+    <div className="min-h-full pb-[152px] bg-white">
+      <AppHeader title="Help and Support" showBack />
 
-        <h1 className="text-[16px] font-semibold text-[#101417] truncate">
-          Help and Support
-        </h1>
-
-        <div className="w-9" />
-      </div>
-
-      <div className="px-4 pt-3.5 space-y-4">
-        {/* Title Header */}
-        <div>
-          <span className="text-[11px] uppercase tracking-wider text-[#F43F43] font-semibold block mb-1">
-            24/7 Lombard Dispatch
+      <div className="px-5 pt-4 space-y-4">
+        {/* Header Eyebrow & Subtitle (No duplicate title) */}
+        <div className="space-y-1">
+          <span className="text-[11px] uppercase tracking-wider text-[#BE8A44] font-semibold block">
+            24/7 Lombard Dispatch Desk
           </span>
-          <h2 className="text-[28px] leading-[32px] font-display font-semibold text-[#101417]">
-            Help and support
-          </h2>
-          <p className="text-[13px] text-[#6B7075] mt-1 leading-[18px]">
-            We're here 24/7. Every inquiry is answered by a real logistics coordinator.
+          <p className="text-[13px] text-[#555555] leading-[18px]">
+            We're here 24 hours a day, 7 days a week. Every inquiry is handled directly by an active logistics coordinator.
           </p>
         </div>
 
-        {/* Contact Cards in a 2x2 Grid (12px gap) */}
-        <div className="grid grid-cols-2 gap-3">
-          {/* 1. Live Chat */}
-          <div
-            onClick={() => navigate('/support/chat')}
-            className="p-3.5 rounded-[16px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#F43F43]/50 transition-all cursor-pointer flex flex-col justify-between h-28 group"
-          >
-            <div className="w-8 h-8 rounded-xl bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center group-hover:scale-105 transition-transform">
-              <MessagesSquare className="w-4 h-4" />
-            </div>
-            <div>
-              <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wider flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Online 24/7
-              </span>
-              <h3 className="font-semibold text-[14px] text-[#101417] group-hover:text-[var(--accent)] transition-colors mt-0.5 leading-tight">
-                Live Chat
-              </h3>
-            </div>
+        {/* 1. Featured "Live Chat with Dispatch" Card */}
+        <div className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs space-y-3">
+          <div className="flex items-center justify-between gap-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Online 24/7
+            </span>
+            <span className="text-[11.5px] font-semibold text-[#BE8A44]">
+              Immediate Response
+            </span>
           </div>
 
-          {/* 2. Call Dispatcher */}
+          <div className="space-y-1">
+            <h3 className="text-[16px] font-bold text-[#120F11]">
+              Live Chat with Dispatch
+            </h3>
+            <p className="text-[13px] text-[#555555] leading-[18px]">
+              Direct real-person desk in Lombard, IL for live flight tracking, airport gate updates, and instant bookings.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => navigate('/support/chat')}
+            className="w-full h-11 rounded-[14px] bg-[#120F11] hover:bg-slate-800 text-white font-bold text-[13.5px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-[0.99]"
+          >
+            <MessagesSquare className="w-4 h-4 stroke-[2]" />
+            <span>Start live chat</span>
+          </button>
+        </div>
+
+        {/* 2. Structured Contact Channels (Equal 44px Icon Tiles) */}
+        <div className="space-y-3">
+          {/* Direct Hotline */}
           <a
             href={`tel:${companyInfo.phone}`}
-            className="p-3.5 rounded-[16px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#F43F43]/50 transition-all cursor-pointer flex flex-col justify-between h-28 group"
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center group-hover:scale-105 transition-transform">
-              <Phone className="w-4 h-4" />
+            <div className="flex items-center gap-3.5 min-w-0">
+              <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <Phone className="w-5 h-5 stroke-[2]" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[10.5px] uppercase tracking-wider text-[#555555] font-semibold block">
+                  Direct Dispatch Hotline
+                </span>
+                <h4 className="text-[14.5px] font-bold text-[#120F11] group-hover:text-[var(--accent)] transition-colors mt-0.5">
+                  +1 847-268-2323
+                </h4>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] text-[#6B7075] font-semibold uppercase tracking-wider block">
-                Direct Hotline
-              </span>
-              <h3 className="font-semibold text-[13px] text-[#101417] group-hover:text-[var(--accent)] transition-colors mt-0.5 leading-tight">
-                +1 847-268-2323
-              </h3>
-            </div>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
           </a>
 
-          {/* 3. Direct Email */}
+          {/* Dispatch Email - Full text, never truncated */}
           <a
-            href={`mailto:${companyInfo.email}`}
-            className="p-3.5 rounded-[16px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#F43F43]/50 transition-all cursor-pointer flex flex-col justify-between h-28 group"
+            href={`mailto:${companyInfo.email || 'info@premiumchauffeurservices.com'}`}
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-slate-100 text-[#101417] flex items-center justify-center group-hover:scale-105 transition-transform">
-              <Mail className="w-4 h-4" />
+            <div className="flex items-center gap-3.5 min-w-0">
+              <div className="w-11 h-11 rounded-[12px] bg-slate-100 text-[#120F11] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <Mail className="w-5 h-5 stroke-[2]" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[10.5px] uppercase tracking-wider text-[#555555] font-semibold block">
+                  Dispatch Email Desk
+                </span>
+                <h4 className="text-[13px] font-bold text-[#120F11] group-hover:text-[var(--accent)] transition-colors mt-0.5 break-all">
+                  {companyInfo.email || 'info@premiumchauffeurservices.com'}
+                </h4>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] text-[#6B7075] font-semibold uppercase tracking-wider block">
-                Dispatch Email
-              </span>
-              <h3 className="font-semibold text-[13px] text-[#101417] truncate group-hover:text-[var(--accent)] transition-colors mt-0.5 leading-tight">
-                info@premium...
-              </h3>
-            </div>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
           </a>
 
-          {/* 4. Request a quote */}
+          {/* Request Custom Quote */}
           <div
             onClick={() => navigate('/support/request')}
-            className="p-3.5 rounded-[16px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#F43F43]/50 transition-all cursor-pointer flex flex-col justify-between h-28 group"
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-xl bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center group-hover:scale-105 transition-transform">
-              <FileText className="w-4 h-4" />
+            <div className="flex items-center gap-3.5 min-w-0">
+              <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <FileText className="w-5 h-5 stroke-[2]" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[10.5px] uppercase tracking-wider text-[#555555] font-semibold block">
+                  Written Guarantees
+                </span>
+                <h4 className="text-[14.5px] font-bold text-[#120F11] group-hover:text-[var(--accent)] transition-colors mt-0.5">
+                  Request a Custom Quote
+                </h4>
+                <p className="text-[12px] text-[#555555] mt-0.5 leading-snug">
+                  Fixed all-inclusive quotes for weddings, wine tours & roadshows
+                </p>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] text-[#6B7075] font-semibold uppercase tracking-wider block">
-                Fixed Quotes
-              </span>
-              <h3 className="font-semibold text-[14px] text-[#101417] group-hover:text-[var(--accent)] transition-colors mt-0.5 leading-tight">
-                Request a quote
-              </h3>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+          </div>
+
+          {/* Ask AI Concierge Card */}
+          <div
+            onClick={() => openAgent({ context: { route: '/support' } })}
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
+          >
+            <div className="flex items-center gap-3.5 min-w-0">
+              <div className="w-11 h-11 rounded-[12px] bg-[#120F11] text-[#BE8A44] flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                <Sparkles className="w-5 h-5 stroke-[2]" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-[14.5px] font-bold text-[#120F11] group-hover:text-[var(--accent)] transition-colors leading-tight">
+                  Ask AI Concierge
+                </h4>
+                <p className="text-[12px] text-[#555555] font-normal mt-0.5 leading-snug">
+                  Instant vehicle recommendations, luggage fit & route guidance
+                </p>
+              </div>
             </div>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
           </div>
         </div>
 
-        {/* "Ask AI Concierge" Card */}
-        <div
-          onClick={() => openAgent({ context: { route: '/support' } })}
-          className="p-3.5 rounded-[16px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#F43F43]/50 flex items-center justify-between cursor-pointer group transition-all"
-        >
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-[#101417] flex items-center justify-center text-[#F43F43] shadow-xs shrink-0">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div className="min-w-0">
-              <h3 className="font-semibold text-[15px] text-[#101417] group-hover:text-[var(--accent)] transition-colors leading-tight truncate">
-                Ask AI Concierge
-              </h3>
-              <p className="text-[12px] text-[#6B7075] font-normal truncate mt-0.5">
-                Instant vehicle recommendations, luggage fit & route guidance
-              </p>
-            </div>
-          </div>
-          <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
-        </div>
-
-        {/* FAQ Accordion Section */}
-        <div className="space-y-2.5 pt-1">
+        {/* 3. FAQ Accordion Section */}
+        <div className="space-y-3 pt-2">
           <div>
-            <span className="text-[11px] uppercase tracking-wider text-[#F43F43] font-semibold block">
+            <span className="text-[11px] uppercase tracking-wider text-[#BE8A44] font-semibold block">
               Policies & Answers
             </span>
-            <h3 className="text-[18px] font-bold text-[#101417]">
+            <h3 className="text-[17px] font-bold text-[#120F11]">
               Frequently Asked Questions
             </h3>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {FAQS.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
                 <div
                   key={faq.id || index}
-                  className="rounded-[14px] bg-white border border-[#E8E8EC] overflow-hidden shadow-xs transition-all"
+                  className="rounded-[20px] bg-white border border-[#E2E2E2] overflow-hidden shadow-xs transition-all"
                 >
                   <button
                     type="button"
                     onClick={() => toggleAccordion(index)}
-                    className="w-full p-3.5 text-left flex items-center justify-between gap-2.5 cursor-pointer"
+                    className="w-full p-4 text-left flex items-center justify-between gap-3 cursor-pointer"
                   >
-                    <span className="text-[14px] font-semibold text-[#101417] leading-snug">
+                    <span className="text-[14px] font-semibold text-[#120F11] leading-snug">
                       {faq.question}
                     </span>
                     <ChevronDown
                       className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-[#F43F43]' : ''
+                        isOpen ? 'rotate-180 text-[#BE8A44]' : ''
                       }`}
                     />
                   </button>
 
                   {isOpen && (
-                    <div className="px-3.5 pb-3.5 pt-1 text-[13px] text-[#6B7075] leading-[18px] border-t border-[#E8E8EC] bg-[#F5F5F7]/40">
+                    <div className="px-4 pb-4 pt-1 text-[13px] text-[#555555] leading-[19px] border-t border-[#E2E2E2] bg-[#FAF5ED]/40">
                       {faq.answer}
                     </div>
                   )}

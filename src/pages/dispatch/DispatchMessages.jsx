@@ -56,7 +56,7 @@ export default function DispatchMessages() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <span className="text-[11px] font-sans tracking-wider uppercase text-[#F43F43] font-bold">
+        <span className="text-[11px] font-sans tracking-wider uppercase text-[#BE8A44] font-bold">
           Unified Client Communications
         </span>
         <h2 className="font-sans text-2xl font-bold text-white">
@@ -86,7 +86,7 @@ export default function DispatchMessages() {
                   }}
                   className={`p-3.5 rounded-2xl border transition-all cursor-pointer ${
                     isSelected
-                      ? 'glass-panel-gold border-[#F43F43] ring-1 ring-[#F43F43]'
+                      ? 'glass-panel-gold border-[#BE8A44] ring-1 ring-[#BE8A44]'
                       : 'bg-white/5 border-white/8 hover:bg-white/10'
                   }`}
                 >
@@ -104,7 +104,7 @@ export default function DispatchMessages() {
                   <div className="pt-2 border-t border-white/8 mt-2 flex items-center justify-between text-[11px]">
                     <span className="font-sans text-white/40">{thread.tripId}</span>
                     {thread.unread && (
-                      <span className="px-2 py-0.5 rounded-full bg-[#c8102e] text-white text-[10px] font-bold">
+                      <span className="px-2 py-0.5 rounded-full bg-[#BE8A44] text-white text-[10px] font-bold">
                         Unread
                       </span>
                     )}
@@ -116,7 +116,7 @@ export default function DispatchMessages() {
         </div>
 
         {/* Right: Active Chat Conversation & AI Quick Replies (8 cols) */}
-        <div className="lg:col-span-8 glass-panel-elevated rounded-3xl p-5 border border-[#F43F43]/40 shadow-2xl flex flex-col justify-between overflow-hidden">
+        <div className="lg:col-span-8 glass-panel-elevated rounded-3xl p-5 border border-[#BE8A44]/40 shadow-2xl flex flex-col justify-between overflow-hidden">
           {/* Thread Header */}
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div>
@@ -133,7 +133,7 @@ export default function DispatchMessages() {
               href={`tel:${activeThread.clientPhone}`}
               className="btn-glass-secondary px-3 py-1.5 rounded-xl text-[12px] font-semibold flex items-center gap-1.5 text-white"
             >
-              <Phone className="w-3.5 h-3.5 text-[#F43F43]" />
+              <Phone className="w-3.5 h-3.5 text-[#BE8A44]" />
               <span>Call Client</span>
             </a>
           </div>
@@ -146,7 +146,7 @@ export default function DispatchMessages() {
                 <div key={idx} className={`flex ${isDispatch ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[75%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-lg ${
                     isDispatch
-                      ? 'bg-gradient-to-r from-[#4a1624] to-[#101417] text-white border border-[#F43F43]/40 rounded-tr-sm'
+                      ? 'bg-gradient-to-r from-[#270B14] to-[#120F11] text-white border border-[#BE8A44]/40 rounded-tr-sm'
                       : 'bg-white/10 text-[#faf6f0] border border-white/10 rounded-tl-sm'
                   }`}>
                     <p>{msg.text}</p>
@@ -162,7 +162,7 @@ export default function DispatchMessages() {
           {/* AI-Suggested Quick Reply Chips */}
           {activeThread.suggestedAiReplies && activeThread.suggestedAiReplies.length > 0 && (
             <div className="pt-2 border-t border-white/10">
-              <div className="flex items-center gap-1.5 text-[11px] font-sans text-[#F43F43] mb-1.5 px-1 font-semibold">
+              <div className="flex items-center gap-1.5 text-[11px] font-sans text-[#BE8A44] mb-1.5 px-1 font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>AI Dispatch Suggested Responses (One-Click)</span>
               </div>
@@ -172,7 +172,7 @@ export default function DispatchMessages() {
                     key={idx}
                     type="button"
                     onClick={() => handleSendMessage(reply)}
-                    className="px-3 py-1.5 rounded-xl bg-[#F43F43]/15 hover:bg-[#F43F43]/25 border border-[#F43F43]/30 text-[11px] text-[#FDEEEA] text-left transition-all cursor-pointer shrink-0 max-w-[280px] truncate"
+                    className="px-3 py-1.5 rounded-xl bg-[#BE8A44]/15 hover:bg-[#BE8A44]/25 border border-[#BE8A44]/30 text-[11px] text-[#FAF5ED] text-left transition-all cursor-pointer shrink-0 max-w-[280px] truncate"
                     title={reply}
                   >
                     "{reply}"
@@ -195,7 +195,7 @@ export default function DispatchMessages() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Type dispatcher reply or instructions..."
-              className="flex-1 h-12 rounded-2xl px-4 bg-white/5 border border-white/15 text-[13px] text-white placeholder:text-white/35 outline-none focus:border-[#F43F43]"
+              className="flex-1 h-12 rounded-2xl px-4 bg-white/5 border border-white/15 text-[13px] text-white placeholder:text-white/35 outline-none focus:border-[#BE8A44]"
             />
             <button
               type="submit"

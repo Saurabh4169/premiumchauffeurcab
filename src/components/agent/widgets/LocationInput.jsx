@@ -40,10 +40,10 @@ export default function LocationInput({ widget, answered, answeredValue, onSelec
   };
 
   return (
-    <div className="bg-white rounded-[16px] p-3 border border-[#E8E8EC] shadow-xs my-2 space-y-2">
+    <div className="bg-white rounded-[16px] p-3 border border-[#E2E2E2] shadow-xs my-2 space-y-2">
       {/* Quick Airport / Landmark Chips */}
       <div>
-        <span className="text-[10px] uppercase font-bold tracking-wider text-[#6B7075] block mb-1.5">
+        <span className="text-[10px] uppercase font-bold tracking-wider text-[#555555] block mb-1.5">
           Quick Select Airport / Hub
         </span>
         <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
@@ -52,7 +52,7 @@ export default function LocationInput({ widget, answered, answeredValue, onSelec
               key={air.code}
               type="button"
               onClick={() => handleQuickSelect(air.name)}
-              className="px-2.5 py-1 rounded-[8px] bg-[#F5F5F7] hover:bg-[#101417] hover:text-white text-[#101417] text-[11px] font-semibold transition-colors shrink-0 cursor-pointer"
+              className="px-2.5 py-1 rounded-[8px] bg-[#FAF5ED] hover:bg-[#120F11] hover:text-white text-[#120F11] text-[11px] font-semibold transition-colors shrink-0 cursor-pointer"
             >
               {air.code}
             </button>
@@ -63,19 +63,19 @@ export default function LocationInput({ widget, answered, answeredValue, onSelec
       {/* Manual text input */}
       <form onSubmit={handleSubmit} className="flex gap-2">
         <div className="relative flex-1">
-          <MapPin className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#F43F43]" />
+          <MapPin className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#BE8A44]" />
           <input
             type="text"
             value={val}
             onChange={(e) => setVal(e.target.value)}
             placeholder={widget.placeholder || "Enter street address, hotel, or code..."}
-            className="w-full h-9.5 pl-8 pr-3 bg-[#F5F5F7] rounded-[10px] text-[13px] text-[#101417] placeholder:text-[#9EA3A8] focus:outline-none focus:ring-1 focus:ring-[#F43F43] border border-transparent focus:border-[#F43F43]"
+            className="w-full h-9.5 pl-8 pr-3 bg-[#FAF5ED] rounded-[10px] text-[13px] text-[#120F11] placeholder:text-[#555555] focus:outline-none focus:ring-1 focus:ring-[#BE8A44] border border-transparent focus:border-[#BE8A44]"
           />
         </div>
         <button
           type="submit"
           disabled={!val.trim()}
-          className="h-9.5 px-3 rounded-[10px] bg-[#101417] text-white hover:bg-[#F43F43] disabled:opacity-40 disabled:hover:bg-[#101417] text-[13px] font-semibold flex items-center justify-center transition-colors cursor-pointer"
+          className="h-9.5 px-3 rounded-[10px] bg-[#120F11] text-white hover:bg-[#BE8A44] disabled:opacity-40 disabled:hover:bg-[#120F11] text-[13px] font-semibold flex items-center justify-center transition-colors cursor-pointer"
         >
           <ArrowRight className="w-4 h-4" />
         </button>

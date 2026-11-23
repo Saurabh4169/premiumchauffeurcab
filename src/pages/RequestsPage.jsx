@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import BottomSheet from '../components/common/BottomSheet.jsx';
 import EmptyState from '../components/common/EmptyState.jsx';
+import AppHeader from '../components/AppHeader.jsx';
 import { useApp } from '../context/AppContext.jsx';
 
 export default function RequestsPage() {
@@ -40,31 +41,21 @@ export default function RequestsPage() {
   };
 
   return (
-    <div className="min-h-full pb-28 bg-[#f8f9fb]">
-      {/* Top Header */}
-      <div className="sticky top-0 z-30 h-[52px] px-4 bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => navigate('/profile')}
-          className="w-10 h-10 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-sm"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
-
-        <h1 className="font-sans font-bold text-[16px] text-slate-900 truncate">
-          My Requests & Quotes
-        </h1>
-
-        <button
-          type="button"
-          onClick={() => navigate('/support/request')}
-          className="w-10 h-10 rounded-full bg-[#111114] text-white flex items-center justify-center transition-all cursor-pointer shadow-sm"
-          title="New Request"
-        >
-          <Plus className="w-4 h-4" />
-        </button>
-      </div>
+    <div className="min-h-full pb-28 bg-white">
+      <AppHeader
+        title="My Requests"
+        showBack
+        rightAction={
+          <button
+            type="button"
+            onClick={() => navigate('/support/request')}
+            className="w-7.5 h-7.5 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+            title="New Request"
+          >
+            <Plus className="w-4 h-4 stroke-[2.5]" />
+          </button>
+        }
+      />
 
       <div className="px-4 pt-4 space-y-3">
         {requests.length > 0 ? (
@@ -76,7 +67,7 @@ export default function RequestsPage() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="font-sans text-[11px] font-bold text-[#F43F43] uppercase bg-slate-100 px-2 py-0.5 rounded-md">
+                  <span className="font-sans text-[11px] font-bold text-[#BE8A44] uppercase bg-slate-100 px-2 py-0.5 rounded-md">
                     {req.id}
                   </span>
                   <span className="text-[11px] text-slate-400 font-medium">
@@ -175,13 +166,13 @@ export default function RequestsPage() {
               </span>
               <div className="relative pl-5 space-y-3 border-l-2 border-slate-200">
                 <div className="relative">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F43F43] absolute -left-[25px] top-1" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#BE8A44] absolute -left-[25px] top-1" />
                   <p className="font-bold text-slate-900 text-[12px]">Request Received & Logged</p>
                   <p className="text-[11px] text-slate-400">Transmitted to Lombard dispatch center</p>
                 </div>
                 <div className="relative">
                   <span className={`w-2.5 h-2.5 rounded-full absolute -left-[25px] top-1 ${
-                    selectedRequest.status !== 'Received' ? 'bg-[#F43F43]' : 'bg-slate-300'
+                    selectedRequest.status !== 'Received' ? 'bg-[#BE8A44]' : 'bg-slate-300'
                   }`} />
                   <p className="font-bold text-slate-900 text-[12px]">Dispatcher Review & Route Staging</p>
                   <p className="text-[11px] text-slate-400">Reviewing traffic corridors and vehicle buffer</p>
@@ -202,9 +193,9 @@ export default function RequestsPage() {
               onClick={() => {
                 navigate(`/support/chat?ref=${selectedRequest.id}`);
               }}
-              className="w-full py-3.5 rounded-full bg-[#111114] text-white font-bold text-[13px] flex items-center justify-center gap-2 shadow-md cursor-pointer hover:bg-black transition-colors"
+              className="w-full py-3.5 rounded-full bg-[#120F11] text-white font-bold text-[13px] flex items-center justify-center gap-2 shadow-md cursor-pointer hover:bg-black transition-colors"
             >
-              <MessagesSquare className="w-4 h-4 text-[#F43F43]" />
+              <MessagesSquare className="w-4 h-4 text-[#BE8A44]" />
               <span>Chat with Dispatcher about this request</span>
             </button>
           </div>

@@ -23,6 +23,7 @@ import Screen from '../components/common/Screen.jsx';
 import StickyCta from '../components/common/StickyCta.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import Stepper from '../components/common/Stepper.jsx';
+import AppHeader from '../components/AppHeader.jsx';
 import Input from '../components/common/Input.jsx';
 import DatePicker from '../components/common/DatePicker.jsx';
 import { useApp } from '../context/AppContext.jsx';
@@ -137,25 +138,17 @@ export default function BookingPage() {
 
   return (
     <Screen withCta className="bg-[var(--page)] px-0">
-      {/* Top Header (52px sticky) */}
-      <div className="sticky top-0 z-30 h-[52px] px-4 bg-[var(--surface)]/95 backdrop-blur-md border-b border-[var(--border)] flex items-center justify-between">
-        <button
-          type="button"
-          onClick={handleBack}
-          className="w-9 h-9 rounded-full bg-[var(--surface-muted)] hover:bg-[var(--border)] flex items-center justify-center text-[var(--ink)] transition-all cursor-pointer shadow-xs"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
-
-        <span className="font-bold text-[15px] text-[var(--ink)]">
-          Reserve Chauffeur
-        </span>
-
-        <span className="text-[12px] font-sans text-[var(--accent)] font-bold">
-          Step {currentStep}/5
-        </span>
-      </div>
+      {/* Top Universal App Header */}
+      <AppHeader
+        title="Reserve Chauffeur"
+        showBack
+        onBack={handleBack}
+        rightAction={
+          <span className="text-[11px] font-bold text-[#F43F43] bg-red-50 px-2 py-0.5 rounded-full border border-red-100">
+            {currentStep}/5
+          </span>
+        }
+      />
 
       {/* Stepper Navigation */}
       <div className="px-4 pt-3 pb-2 bg-[var(--surface)] border-b border-[var(--border)]">
@@ -177,7 +170,7 @@ export default function BookingPage() {
           >
             {/* Service Category */}
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B7075] mb-2 ml-0.5">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-[#555555] mb-2 ml-0.5">
                 Service Category
               </label>
               <div className="grid grid-cols-2 gap-2.5">
@@ -191,25 +184,25 @@ export default function BookingPage() {
                       onClick={() => updateBookingDraft({ serviceType: s.id })}
                       className={`relative p-3.5 rounded-[18px] border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[82px] ${
                         isSelected
-                          ? 'bg-rose-50/60 border-[#F43F43] ring-1.5 ring-[#F43F43]/30 shadow-sm'
-                          : 'bg-white border-[#E8E8EC] hover:border-[#D1D1D6] hover:bg-[#FAFAFA] shadow-xs'
+                          ? 'bg-[#FAF5ED]/60 border-[#BE8A44] ring-1.5 ring-[#BE8A44]/30 shadow-sm'
+                          : 'bg-white border-[#E2E2E2] hover:border-[#D1D1D6] hover:bg-[#FAFAFA] shadow-xs'
                       }`}
                     >
                       <div className="flex items-center justify-between w-full mb-1">
                         <div className={`w-7 h-7 rounded-[10px] flex items-center justify-center transition-colors ${
-                          isSelected ? 'bg-[#F43F43] text-white shadow-xs' : 'bg-[#F5F5F7] text-[#6B7075]'
+                          isSelected ? 'bg-[#BE8A44] text-white shadow-xs' : 'bg-[#FAF5ED] text-[#555555]'
                         }`}>
                           <Icon className="w-3.5 h-3.5" />
                         </div>
                         {isSelected && (
-                          <div className="w-2 h-2 rounded-full bg-[#F43F43] shadow-xs" />
+                          <div className="w-2 h-2 rounded-full bg-[#BE8A44] shadow-xs" />
                         )}
                       </div>
                       <div>
-                        <span className="text-[13px] font-bold text-[#101417] block leading-tight">
+                        <span className="text-[13px] font-bold text-[#120F11] block leading-tight">
                           {s.shortTitle}
                         </span>
-                        <span className="text-[10px] text-[#6B7075] block truncate font-medium mt-0.5">
+                        <span className="text-[10px] text-[#555555] block truncate font-medium mt-0.5">
                           {s.tagline}
                         </span>
                       </div>
@@ -220,24 +213,24 @@ export default function BookingPage() {
             </div>
 
             {/* Route Section */}
-            <div className="bg-white rounded-[20px] p-4 border border-[#E8E8EC] shadow-xs space-y-3">
+            <div className="bg-white rounded-[20px] p-4 border border-[#E2E2E2] shadow-xs space-y-3">
               {/* Pickup Location */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#F43F43] ring-4 ring-rose-100 shrink-0" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7075]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#BE8A44] ring-4 ring-[#BE8A44]/20 shrink-0" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#555555]">
                       Pickup Location
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#F9F9FB] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all">
+                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#FAF5ED] border border-[#E2E2E2] focus-within:border-[#BE8A44] focus-within:bg-white transition-all">
                   <input
                     type="text"
                     value={bookingDraft.pickup}
                     onChange={(e) => updateBookingDraft({ pickup: e.target.value })}
                     placeholder="Address, airport or hotel..."
-                    className="w-full bg-transparent text-[13.5px] text-[#101417] placeholder:text-[#9E9EA7] outline-none font-medium"
+                    className="w-full bg-transparent text-[13.5px] text-[#120F11] placeholder:text-[#555555] outline-none font-medium"
                   />
                 </div>
 
@@ -248,7 +241,7 @@ export default function BookingPage() {
                       key={i}
                       type="button"
                       onClick={() => updateBookingDraft({ pickup: loc.name })}
-                      className="px-2.5 py-1 rounded-[10px] bg-[#F5F5F7] hover:bg-[#EAEAEA] active:scale-95 border border-[#E8E8EC] text-[11px] text-[#101417] font-semibold whitespace-nowrap cursor-pointer transition-all"
+                      className="px-2.5 py-1 rounded-[10px] bg-[#FAF5ED] hover:bg-[#E2E2E2] active:scale-95 border border-[#E2E2E2] text-[11px] text-[#120F11] font-semibold whitespace-nowrap cursor-pointer transition-all"
                     >
                       {loc.name.split('(')[0].trim()}
                     </button>
@@ -258,30 +251,30 @@ export default function BookingPage() {
 
               {/* Intermediate Stops */}
               {stops.map((stop, index) => (
-                <div key={index} className="pt-1 border-t border-[#F0F0F2]">
+                <div key={index} className="pt-1 border-t border-[#FAF5ED]">
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-500 ring-4 ring-amber-100 shrink-0" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7075]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#555555]">
                         Intermediate Stop #{index + 1}
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={() => removeStop(index)}
-                      className="text-[11px] text-[#F43F43] hover:underline flex items-center gap-1 cursor-pointer font-bold"
+                      className="text-[11px] text-[#BE8A44] hover:underline flex items-center gap-1 cursor-pointer font-bold"
                     >
                       <Trash2 className="w-3 h-3" />
                       <span>Remove</span>
                     </button>
                   </div>
-                  <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#F9F9FB] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all">
+                  <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#FAF5ED] border border-[#E2E2E2] focus-within:border-[#BE8A44] focus-within:bg-white transition-all">
                     <input
                       type="text"
                       value={stop}
                       onChange={(e) => updateStop(index, e.target.value)}
                       placeholder="Stop address or venue..."
-                      className="w-full bg-transparent text-[13.5px] text-[#101417] placeholder:text-[#9E9EA7] outline-none font-medium"
+                      className="w-full bg-transparent text-[13.5px] text-[#120F11] placeholder:text-[#555555] outline-none font-medium"
                     />
                   </div>
                 </div>
@@ -293,7 +286,7 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={addStop}
-                    className="inline-flex items-center gap-1 text-[11.5px] font-bold text-[#F43F43] hover:text-[#DC2626] active:scale-95 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11.5px] font-bold text-[#BE8A44] hover:text-[#A97633] active:scale-95 transition-all cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Add intermediate stop (+$35)</span>
@@ -302,22 +295,22 @@ export default function BookingPage() {
               )}
 
               {/* Drop-off Location */}
-              <div className="pt-1 border-t border-[#F0F0F2]">
+              <div className="pt-1 border-t border-[#FAF5ED]">
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 shrink-0" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7075]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#555555]">
                       Drop-off Destination
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#F9F9FB] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all">
+                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#FAF5ED] border border-[#E2E2E2] focus-within:border-[#BE8A44] focus-within:bg-white transition-all">
                   <input
                     type="text"
                     value={bookingDraft.dropoff}
                     onChange={(e) => updateBookingDraft({ dropoff: e.target.value })}
                     placeholder="Destination address, airport, or hotel..."
-                    className="w-full bg-transparent text-[13.5px] text-[#101417] placeholder:text-[#9E9EA7] outline-none font-medium"
+                    className="w-full bg-transparent text-[13.5px] text-[#120F11] placeholder:text-[#555555] outline-none font-medium"
                   />
                 </div>
               </div>
@@ -333,10 +326,10 @@ export default function BookingPage() {
 
             {/* Stepper counts */}
             <div className="grid grid-cols-2 gap-3 pt-0.5">
-              <div className="bg-white rounded-[18px] p-3.5 border border-[#E8E8EC] shadow-xs">
+              <div className="bg-white rounded-[18px] p-3.5 border border-[#E2E2E2] shadow-xs">
                 <div className="flex items-center gap-1.5 mb-2.5">
-                  <Users className="w-3.5 h-3.5 text-[#6B7075]" />
-                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#6B7075] block">
+                  <Users className="w-3.5 h-3.5 text-[#555555]" />
+                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#555555] block">
                     Passengers
                   </span>
                 </div>
@@ -344,18 +337,18 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ passengers: Math.max(1, bookingDraft.passengers - 1) })}
-                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#FAF5ED] border border-[#E2E2E2] flex items-center justify-center text-[#120F11] hover:bg-[#E2E2E2] active:scale-95 transition-all cursor-pointer"
                     aria-label="Decrease passengers"
                   >
                     <Minus className="w-4 h-4 stroke-[2.5]" />
                   </button>
-                  <span className="text-[20px] font-bold text-[#101417] font-mono">
+                  <span className="text-[20px] font-bold text-[#120F11] font-mono">
                     {bookingDraft.passengers}
                   </span>
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ passengers: Math.min(56, bookingDraft.passengers + 1) })}
-                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#FAF5ED] border border-[#E2E2E2] flex items-center justify-center text-[#120F11] hover:bg-[#E2E2E2] active:scale-95 transition-all cursor-pointer"
                     aria-label="Increase passengers"
                   >
                     <Plus className="w-4 h-4 stroke-[2.5]" />
@@ -363,10 +356,10 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-[18px] p-3.5 border border-[#E8E8EC] shadow-xs">
+              <div className="bg-white rounded-[18px] p-3.5 border border-[#E2E2E2] shadow-xs">
                 <div className="flex items-center gap-1.5 mb-2.5">
-                  <Briefcase className="w-3.5 h-3.5 text-[#6B7075]" />
-                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#6B7075] block">
+                  <Briefcase className="w-3.5 h-3.5 text-[#555555]" />
+                  <span className="text-[11px] uppercase font-bold tracking-wider text-[#555555] block">
                     Luggage Bags
                   </span>
                 </div>
@@ -374,18 +367,18 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ luggage: Math.max(0, bookingDraft.luggage - 1) })}
-                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#FAF5ED] border border-[#E2E2E2] flex items-center justify-center text-[#120F11] hover:bg-[#E2E2E2] active:scale-95 transition-all cursor-pointer"
                     aria-label="Decrease luggage"
                   >
                     <Minus className="w-4 h-4 stroke-[2.5]" />
                   </button>
-                  <span className="text-[20px] font-bold text-[#101417] font-mono">
+                  <span className="text-[20px] font-bold text-[#120F11] font-mono">
                     {bookingDraft.luggage}
                   </span>
                   <button
                     type="button"
                     onClick={() => updateBookingDraft({ luggage: Math.min(56, bookingDraft.luggage + 1) })}
-                    className="w-9 h-9 rounded-full bg-[#F5F5F7] border border-[#E8E8EC] flex items-center justify-center text-[#101417] hover:bg-[#E8E8EC] active:scale-95 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-[#FAF5ED] border border-[#E2E2E2] flex items-center justify-center text-[#120F11] hover:bg-[#E2E2E2] active:scale-95 transition-all cursor-pointer"
                     aria-label="Increase luggage"
                   >
                     <Plus className="w-4 h-4 stroke-[2.5]" />
@@ -396,43 +389,43 @@ export default function BookingPage() {
 
             {/* Child seat & accessibility */}
             <div className="space-y-2.5 pt-0.5">
-              <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
+              <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-[10px] bg-rose-50 text-[#F43F43] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-[10px] bg-[#FAF5ED] text-[#BE8A44] flex items-center justify-center shrink-0">
                     <Baby className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[13px] font-bold text-[#101417] block">
+                    <span className="text-[13px] font-bold text-[#120F11] block">
                       Child Booster Seat
                     </span>
-                    <span className="text-[11px] text-[#6B7075] font-medium">
+                    <span className="text-[11px] text-[#555555] font-medium">
                       Forward-facing premium seat
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <span className="text-[11px] font-bold text-[#F43F43] bg-rose-50 px-2 py-0.5 rounded-full">
+                  <span className="text-[11px] font-bold text-[#BE8A44] bg-[#FAF5ED] px-2 py-0.5 rounded-full">
                     +$15
                   </span>
                   <input
                     type="checkbox"
                     checked={bookingDraft.childSeat}
                     onChange={(e) => updateBookingDraft({ childSeat: e.target.checked })}
-                    className="w-5 h-5 accent-[#F43F43] rounded cursor-pointer"
+                    className="w-5 h-5 accent-[#BE8A44] rounded cursor-pointer"
                   />
                 </div>
               </label>
 
-              <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E8E8EC] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
+              <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-[10px] bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                     <Accessibility className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[13px] font-bold text-[#101417] block">
+                    <span className="text-[13px] font-bold text-[#120F11] block">
                       Wheelchair Accessible Required
                     </span>
-                    <span className="text-[11px] text-[#6B7075] font-medium">
+                    <span className="text-[11px] text-[#555555] font-medium">
                       Hydraulic ramp & certified driver
                     </span>
                   </div>
@@ -445,7 +438,7 @@ export default function BookingPage() {
                     type="checkbox"
                     checked={bookingDraft.accessible}
                     onChange={(e) => updateBookingDraft({ accessible: e.target.checked })}
-                    className="w-5 h-5 accent-[#F43F43] rounded cursor-pointer"
+                    className="w-5 h-5 accent-[#BE8A44] rounded cursor-pointer"
                   />
                 </div>
               </label>
@@ -717,7 +710,7 @@ export default function BookingPage() {
         <button
           type="button"
           onClick={handleNext}
-          className="bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-[0.98] transition-all h-12 px-6 rounded-[14px] text-[15px] font-bold text-white flex items-center gap-2 cursor-pointer shadow-md shadow-rose-500/25 shrink-0"
+          className="bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] transition-all h-12 px-6 rounded-[14px] text-[15px] font-bold text-white flex items-center gap-2 cursor-pointer shadow-md shadow-[#BE8A44]/25 shrink-0"
         >
           <span>{currentStep === 5 ? 'Confirm Booking' : currentStep === 4 ? 'Pay & Book' : 'Continue'}</span>
           <ArrowRight className="w-4 h-4 stroke-[2.5]" />

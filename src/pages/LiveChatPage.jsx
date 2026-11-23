@@ -18,7 +18,8 @@ import {
   FileText,
   AlertCircle,
   Image as ImageIcon,
-  X
+  X,
+  Bell
 } from 'lucide-react';
 import { sendLiveChatMessage, getRandomDispatcher } from '../services/liveChat.js';
 import { useApp } from '../context/AppContext.jsx';
@@ -39,7 +40,7 @@ export default function LiveChatPage() {
   const [searchParams] = useSearchParams();
   const refParam = searchParams.get('ref');
 
-  const { companyInfo, showToast } = useApp();
+  const { companyInfo, showToast, unreadNotificationsCount } = useApp();
   const { openAgent } = useAgentStore();
   const portalContainer = usePortalContainer();
 
@@ -147,21 +148,21 @@ export default function LiveChatPage() {
   };
 
   return (
-    <div className="min-h-full flex flex-col justify-between bg-[#f8f9fb] relative">
-      {/* HEADER (Sticky 52px high) */}
-      <div className="sticky top-0 z-30 h-[52px] px-4 bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] flex items-center justify-between">
+    <div className="min-h-full flex flex-col justify-between bg-white relative">
+      {/* HEADER (Sticky 64px high) */}
+      <div className="sticky top-0 z-30 h-[64px] px-4 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs flex items-center justify-between">
         <div className="flex items-center gap-2.5 min-w-0">
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="w-9 h-9 rounded-full bg-white hover:bg-slate-50 border border-[#E8E8EC] flex items-center justify-center text-[#101417] transition-colors cursor-pointer shadow-xs"
+            className="w-9 h-9 rounded-full bg-white hover:bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-800 transition-colors cursor-pointer shadow-xs active:scale-95"
             aria-label="Back"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
 
           {/* Team avatar with green online dot */}
-          <div className="relative w-9 h-9 rounded-full overflow-hidden bg-slate-900 shrink-0 border border-[#E8E8EC]">
+          <div className="relative w-9 h-9 rounded-full overflow-hidden bg-slate-900 shrink-0 border border-slate-200">
             <img
               src={activeDispatcher.avatar}
               alt="Dispatch Team"
@@ -171,30 +172,42 @@ export default function LiveChatPage() {
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-[14px] font-semibold text-[#101417] leading-tight truncate">
+            <h2 className="text-[14px] font-semibold text-slate-900 leading-tight truncate">
               Dispatch team
             </h2>
-            <p className="text-[11px] text-[#6B7075] truncate leading-tight">
+            <p className="text-[11px] text-slate-500 truncate leading-tight">
               Online 24/7 · Lombard, IL
             </p>
           </div>
         </div>
 
-        {/* Right Icons: Call and More Menu */}
+        {/* Right Icons: Call, Notification, and More Menu */}
         <div className="flex items-center gap-1.5 shrink-0 relative">
           <a
             href={`tel:${companyInfo.phone}`}
-            className="w-9 h-9 rounded-full bg-white hover:bg-slate-50 border border-[#E8E8EC] text-[#F43F43] flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+            className="w-8 h-8 rounded-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer shadow-2xs active:scale-95"
             title="Call Dispatch"
           >
-            <Phone className="w-4 h-4" />
+            <Phone className="w-3.5 h-3.5" />
           </a>
+
+          <button
+            type="button"
+            onClick={() => navigate('/notifications')}
+            className="w-8 h-8 rounded-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer shadow-2xs relative active:scale-95"
+            title="Dispatch Alerts"
+          >
+            <Bell className="w-3.5 h-3.5" />
+            {unreadNotificationsCount > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#F43F43] ring-1.5 ring-white" />
+            )}
+          </button>
 
           <div className="relative">
             <button
               type="button"
               onClick={() => setShowMenu(!showMenu)}
-              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer"
+              className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 cursor-pointer active:scale-95"
               aria-label="More options"
             >
               <MoreVertical className="w-4 h-4" />
@@ -206,7 +219,7 @@ export default function LiveChatPage() {
                   type="button"
                   onClick={() => {
                     setShowMenu(false);
-                    showToast('Transcript will be emailed upon session close', 'gold');
+                    showToast('Transcript will be emailed upon session close', 'success');
                   }}
                   className="w-full p-2.5 rounded-xl text-left hover:bg-slate-50 text-slate-700 font-medium cursor-pointer"
                 >
@@ -226,23 +239,23 @@ export default function LiveChatPage() {
       </div>
 
       {/* Slim Info Bar */}
-      <div className="px-4 py-2 bg-slate-900 text-white text-[11px] flex items-center justify-between">
+      <div className="px-4 py-2 bg-[#101417] text-white text-[11px] flex items-center justify-between">
         <span>Urgent pickup in next 2 hours?</span>
         <div className="flex items-center gap-3">
           <a
             href="tel:+18472682323"
-            className="text-[#FDEEEA] font-bold hover:underline flex items-center gap-1"
+            className="text-white font-bold hover:underline flex items-center gap-1"
           >
-            <Phone className="w-3 h-3 fill-current" />
+            <Phone className="w-3 h-3 fill-current text-white" />
             <span>Call dispatch</span>
           </a>
           <span className="text-white/30">|</span>
           <button
             type="button"
             onClick={() => openAgent({ context: { route: '/support/chat' } })}
-            className="text-white/70 hover:text-white flex items-center gap-1 cursor-pointer"
+            className="text-white/80 hover:text-white flex items-center gap-1 cursor-pointer"
           >
-            <Sparkles className="w-3 h-3 text-[#FDEEEA]" />
+            <Sparkles className="w-3 h-3 text-[#F43F43]" />
             <span>AI Butler</span>
           </button>
         </div>
@@ -251,7 +264,7 @@ export default function LiveChatPage() {
       {/* Pre-chat Topic Picker (if not started) */}
       {!hasStarted && (
         <div className="p-5 my-auto text-center space-y-4">
-          <div className="w-12 h-12 rounded-full bg-red-50 text-[#F43F43] flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-12 h-12 rounded-full bg-red-50 text-[#F43F43] flex items-center justify-center mx-auto shadow-xs">
             <Bot className="w-6 h-6" />
           </div>
           <div>
@@ -269,7 +282,7 @@ export default function LiveChatPage() {
                 key={chip}
                 type="button"
                 onClick={() => handleSelectTopic(chip)}
-                className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-[#F43F43] text-[12px] font-bold text-slate-800 shadow-sm transition-all cursor-pointer text-center"
+                className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-[#F43F43] hover:text-[#F43F43] text-[12px] font-bold text-slate-800 shadow-xs transition-all cursor-pointer text-center"
               >
                 {chip}
               </button>
@@ -339,7 +352,7 @@ export default function LiveChatPage() {
             // User message
             return (
               <div key={msg.id} className="flex flex-col items-end max-w-[85%] ml-auto">
-                <div className="p-3.5 rounded-2xl rounded-tr-sm bg-[#111114] text-white shadow-sm text-[13px] leading-relaxed">
+                <div className="p-3.5 rounded-2xl rounded-tr-sm bg-[#120F11] text-white shadow-sm text-[13px] leading-relaxed">
                   <p>{msg.text}</p>
                 </div>
                 <div className="flex items-center gap-1.5 mt-0.5 mr-1 text-[10px] text-slate-400 font-sans">
@@ -359,9 +372,9 @@ export default function LiveChatPage() {
           {/* Typing Indicator */}
           {isTyping && (
             <div className="flex items-center gap-2 text-slate-400 text-[12px] p-2 bg-white rounded-2xl border border-slate-200 w-fit shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-[#F43F43] animate-bounce" />
-              <span className="w-2 h-2 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.2s]" />
-              <span className="w-2 h-2 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.4s]" />
+              <span className="w-2 h-2 rounded-full bg-[#BE8A44] animate-bounce" />
+              <span className="w-2 h-2 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.2s]" />
+              <span className="w-2 h-2 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.4s]" />
               <span className="text-[11px] font-medium ml-1">Dispatch is typing...</span>
             </div>
           )}
@@ -379,7 +392,7 @@ export default function LiveChatPage() {
                 key={i}
                 type="button"
                 onClick={() => handleUserSend(reply)}
-                className="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-[#F43F43]/20 border border-slate-200 text-[11px] font-bold text-slate-800 transition-colors whitespace-nowrap cursor-pointer shrink-0"
+                className="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-[#BE8A44]/20 border border-slate-200 text-[11px] font-bold text-slate-800 transition-colors whitespace-nowrap cursor-pointer shrink-0"
               >
                 {reply}
               </button>
@@ -389,7 +402,7 @@ export default function LiveChatPage() {
       )}
 
       {/* COMPOSER (48px input, 40px send button) - Tab bar hidden */}
-      <div className="p-3 bg-white border-t border-[#E8E8EC]">
+      <div className="p-3 bg-white border-t border-[#E2E2E2]">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -399,8 +412,8 @@ export default function LiveChatPage() {
         >
           <button
             type="button"
-            onClick={() => showToast('Image attachment tool opened', 'gold')}
-            className="w-10 h-10 rounded-[12px] bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-[#101417] transition-colors cursor-pointer shrink-0"
+            onClick={() => showToast('Image attachment tool opened', 'success')}
+            className="w-10 h-10 rounded-[12px] bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition-colors cursor-pointer shrink-0"
             aria-label="Attach file"
           >
             <Paperclip className="w-4 h-4" />
@@ -411,16 +424,16 @@ export default function LiveChatPage() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Type message to Lombard dispatch..."
-            className="flex-1 h-12 rounded-[14px] bg-[#F5F5F7] border border-[#E8E8EC] px-3.5 text-[14px] text-[#101417] outline-none focus:border-[#F43F43] focus:bg-white transition-all font-medium"
+            className="flex-1 h-12 rounded-[14px] bg-slate-50 border border-slate-200 px-3.5 text-[14px] text-slate-900 outline-none focus:border-[#F43F43] focus:bg-white transition-all font-medium"
           />
 
           <button
             type="submit"
             disabled={!inputValue.trim()}
-            className="w-10 h-10 rounded-[12px] bg-[#101417] text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-xs"
+            className="w-10 h-10 rounded-[12px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-xs active:scale-95"
             aria-label="Send"
           >
-            <Send className="w-4 h-4 text-[#F43F43]" />
+            <Send className="w-4 h-4 text-white" />
           </button>
         </form>
       </div>
@@ -462,7 +475,7 @@ export default function LiveChatPage() {
                       setRatingChips(prev => isSelected ? prev.filter(c => c !== chip) : [...prev, chip]);
                     }}
                     className={`px-3 py-1 rounded-full text-[11px] font-bold border transition-colors cursor-pointer ${
-                      isSelected ? 'bg-[#111114] text-white border-[#111114]' : 'bg-slate-50 text-slate-600 border-slate-200'
+                      isSelected ? 'bg-[#120F11] text-white border-[#120F11]' : 'bg-slate-50 text-slate-600 border-slate-200'
                     }`}
                   >
                     {chip}
@@ -479,7 +492,7 @@ export default function LiveChatPage() {
                   showToast('Thank you! Dispatch transcript has been emailed to you.', 'gold');
                   navigate('/profile');
                 }}
-                className="w-full py-3 rounded-full bg-gradient-to-r from-[#F84146] via-[#F43F43] to-[#EC3A40] text-slate-950 font-bold text-[13px] shadow-md shadow-[#F43F43]/20 cursor-pointer"
+                className="w-full py-3 rounded-full bg-gradient-to-r from-[#BE8A44] via-[#BE8A44] to-[#A97633] text-slate-950 font-bold text-[13px] shadow-md shadow-[#BE8A44]/20 cursor-pointer"
               >
                 Submit & Email Transcript
               </button>

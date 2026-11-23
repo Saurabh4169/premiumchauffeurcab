@@ -21,6 +21,7 @@ import Badge from '../components/common/Badge.jsx';
 import Button from '../components/common/Button.jsx';
 import Avatar from '../components/common/Avatar.jsx';
 import BottomSheet from '../components/common/BottomSheet.jsx';
+import AppHeader from '../components/AppHeader.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { useAgentStore } from '../store/agentStore.js';
 
@@ -47,32 +48,24 @@ export default function TripDetailPage() {
   };
 
   return (
-    <div className="min-h-full pb-24 relative bg-[#f8f9fb]">
+    <div className="min-h-full pb-24 relative bg-white">
       {/* Top Header */}
-      <div className="sticky top-0 z-30 h-[52px] px-4 bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => navigate('/trips')}
-          className="w-10 h-10 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-sm"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
-
-        <div className="text-center">
-          <span className="font-sans text-[10px] text-slate-400 block uppercase font-bold">Tracking ID</span>
-          <span className="text-[14px] font-bold text-slate-900">{trip.id}</span>
-        </div>
-
-        <button
-          type="button"
-          onClick={handleShare}
-          className="w-10 h-10 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-sm"
-          aria-label="Share trip"
-        >
-          <Share2 className="w-4 h-4" />
-        </button>
-      </div>
+      <AppHeader
+        title={`Trip #${trip.id}`}
+        showBack
+        onBack={() => navigate('/trips')}
+        rightAction={
+          <button
+            type="button"
+            onClick={handleShare}
+            className="w-7.5 h-7.5 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-2xs active:scale-95"
+            aria-label="Share trip"
+            title="Share trip"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+          </button>
+        }
+      />
 
       {/* Stylized Interactive Map Placeholder (Light luxury theme) */}
       <div className="h-52 w-full bg-gradient-to-b from-slate-100 via-slate-50 to-white border-b border-slate-200/80 relative overflow-hidden flex items-center justify-center">
@@ -93,7 +86,7 @@ export default function TripDetailPage() {
           />
           <defs>
             <linearGradient id="routeGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#F43F43" />
+              <stop offset="0%" stopColor="#BE8A44" />
               <stop offset="50%" stopColor="#ff4d5a" />
               <stop offset="100%" stopColor="#3fa37a" />
             </linearGradient>
@@ -112,20 +105,20 @@ export default function TripDetailPage() {
         <div className="absolute left-[46%] top-[22%] -translate-x-1/2 flex flex-col items-center z-10 select-none">
           {/* Live GPS Radar Pulse Ring */}
           <div className="relative flex flex-col items-center">
-            <div className="absolute inset-0 -m-1 rounded-2xl bg-[#F43F43]/25 animate-ping pointer-events-none" />
+            <div className="absolute inset-0 -m-1 rounded-2xl bg-[#BE8A44]/25 animate-ping pointer-events-none" />
 
             {/* Luxury Vehicle Capsule with Real Car Image */}
-            <div className="relative px-2.5 py-1 rounded-2xl bg-white border border-[#E8E8EC] shadow-[0_8px_20px_rgba(16,20,23,0.14)] flex items-center gap-1.5 transition-transform hover:scale-105">
+            <div className="relative px-2.5 py-1 rounded-2xl bg-white border border-[#E2E2E2] shadow-[0_8px_20px_rgba(18, 15, 17,0.14)] flex items-center gap-1.5 transition-transform hover:scale-105">
               <img
                 src="/onboarding-car.png"
                 alt={trip.vehicleName || "Chauffeur Vehicle"}
                 className="w-12 h-auto max-h-7 object-contain drop-shadow-sm select-none"
               />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-pulse" />
             </div>
 
             {/* Live ETA Pill */}
-            <span className="text-[10px] font-bold bg-[#101417] text-white border border-white/20 px-2.5 py-0.5 rounded-full mt-1.5 shadow-md whitespace-nowrap tracking-wide">
+            <span className="text-[10px] font-bold bg-[#120F11] text-white border border-white/20 px-2.5 py-0.5 rounded-full mt-1.5 shadow-md whitespace-nowrap tracking-wide">
               {trip.chauffeur?.etaMinutes ? `ETA ${trip.chauffeur.etaMinutes}m` : 'Buffer Staged'}
             </span>
           </div>
@@ -186,7 +179,7 @@ export default function TripDetailPage() {
             <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
               <a
                 href={`tel:${trip.chauffeur.phone}`}
-                className="bg-gradient-to-r from-[#F43F43] to-[#DC2626] h-11 rounded-2xl flex items-center justify-center gap-2 text-[13px] font-bold text-white shadow-md shadow-red-500/25 hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
+                className="bg-gradient-to-r from-[#BE8A44] to-[#A97633] h-11 rounded-2xl flex items-center justify-center gap-2 text-[13px] font-bold text-white shadow-md shadow-[#BE8A44]/25 hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer"
               >
                 <Phone className="w-4 h-4 fill-current" />
                 <span>Call Chauffeur</span>
@@ -207,7 +200,7 @@ export default function TripDetailPage() {
           </div>
         ) : (
           <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3">
-            <Car className="w-6 h-6 text-[#F43F43]" />
+            <Car className="w-6 h-6 text-[#BE8A44]" />
             <div>
               <h4 className="text-[14px] font-bold text-slate-900">Chauffeur Allocation Pending</h4>
               <p className="text-[11px] text-slate-500">Dispatched with a 30-minute pre-arrival buffer.</p>
@@ -254,7 +247,7 @@ export default function TripDetailPage() {
                 <div
                   className={`absolute -left-6 top-1 w-3 h-3 rounded-full flex items-center justify-center ${
                     step.completed
-                      ? 'bg-[#F43F43] ring-4 ring-red-500/20'
+                      ? 'bg-[#BE8A44] ring-4 ring-[#BE8A44]/20'
                       : 'bg-slate-300 ring-4 ring-slate-100'
                   }`}
                 />
@@ -330,7 +323,7 @@ export default function TripDetailPage() {
             </div>
             <div className="flex justify-between text-[18px] font-black text-slate-900 pt-2 border-t border-slate-200">
               <span>Total Paid</span>
-              <span className="text-[#F43F43]">${trip.quote?.total?.toFixed(2) || '185.50'}</span>
+              <span className="text-[#BE8A44]">${trip.quote?.total?.toFixed(2) || '185.50'}</span>
             </div>
           </div>
 

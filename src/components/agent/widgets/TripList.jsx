@@ -25,7 +25,7 @@ export default function TripListWidget({ widget }) {
 
   if (!trips || trips.length === 0) {
     return (
-      <div className="bg-[#F5F5F7] rounded-[14px] p-3 text-center text-[12px] text-[#6B7075] my-2">
+      <div className="bg-[#FAF5ED] rounded-[14px] p-3 text-center text-[12px] text-[#555555] my-2">
         No active upcoming bookings found.
       </div>
     );
@@ -34,43 +34,43 @@ export default function TripListWidget({ widget }) {
   return (
     <div className="space-y-2.5 my-2">
       {trips.map(trip => (
-        <div key={trip.id} className="bg-white rounded-[16px] p-3.5 border border-[#E8E8EC] shadow-xs space-y-2 text-[12px]">
+        <div key={trip.id} className="bg-white rounded-[16px] p-3.5 border border-[#E2E2E2] shadow-xs space-y-2 text-[12px]">
           <div className="flex items-center justify-between">
-            <span className="font-bold text-[13px] text-[#101417]">Trip #{trip.id}</span>
-            <span className="px-2 py-0.5 rounded-full bg-slate-100 text-[#101417] text-[10px] font-bold uppercase tracking-wider">
+            <span className="font-bold text-[13px] text-[#120F11]">Trip #{trip.id}</span>
+            <span className="px-2 py-0.5 rounded-full bg-slate-100 text-[#120F11] text-[10px] font-bold uppercase tracking-wider">
               {trip.statusLabel}
             </span>
           </div>
 
-          <div className="space-y-1 text-[#6B7075]">
+          <div className="space-y-1 text-[#555555]">
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#F43F43] shrink-0" />
-              <span className="font-medium text-[#101417]">{trip.date} · {trip.time}</span>
+              <Calendar className="w-3.5 h-3.5 text-[#BE8A44] shrink-0" />
+              <span className="font-medium text-[#120F11]">{trip.date} · {trip.time}</span>
             </div>
             <div className="flex items-start gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#6B7075] shrink-0 mt-0.5" />
+              <MapPin className="w-3.5 h-3.5 text-[#555555] shrink-0 mt-0.5" />
               <span className="truncate">{trip.pickup} → {trip.dropoff}</span>
             </div>
             {trip.chauffeur && (
               <div className="flex items-center gap-1.5 pt-0.5">
                 <User className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Chauffeur: <strong className="text-[#101417]">{trip.chauffeur.name}</strong></span>
+                <span>Chauffeur: <strong className="text-[#120F11]">{trip.chauffeur.name}</strong></span>
               </div>
             )}
           </div>
 
-          <div className="pt-2 border-t border-[#E8E8EC] flex items-center justify-end gap-2">
+          <div className="pt-2 border-t border-[#E2E2E2] flex items-center justify-end gap-2">
             <button
               type="button"
               onClick={() => handleChangeTrip(trip.id)}
-              className="px-2.5 py-1 rounded-[8px] bg-[#F5F5F7] hover:bg-slate-200 text-[#101417] font-semibold text-[11px] cursor-pointer"
+              className="px-2.5 py-1 rounded-[8px] bg-[#FAF5ED] hover:bg-slate-200 text-[#120F11] font-semibold text-[11px] cursor-pointer"
             >
               Change Details
             </button>
             <button
               type="button"
               onClick={() => handleCancelTrip(trip.id)}
-              className="px-2.5 py-1 rounded-[8px] bg-rose-50 hover:bg-rose-100 text-[#F43F43] font-semibold text-[11px] cursor-pointer"
+              className="px-2.5 py-1 rounded-[8px] bg-[#FAF5ED] hover:bg-[#FAF5ED] text-[#BE8A44] font-semibold text-[11px] cursor-pointer"
             >
               Cancel Trip
             </button>

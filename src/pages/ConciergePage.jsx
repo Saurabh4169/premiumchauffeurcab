@@ -76,7 +76,7 @@ export default function ConciergePage() {
   };
 
   return (
-    <div className="min-h-full flex flex-col justify-between pb-8 bg-[#F8F9FB]">
+    <div className="min-h-full flex flex-col justify-between pb-8 bg-white">
       {/* Header */}
       <AppHeader
         title="AI Concierge Butler"
@@ -85,7 +85,7 @@ export default function ConciergePage() {
           <button
             type="button"
             onClick={resetChat}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#6B7075] hover:text-[#101417] hover:bg-[#F5F5F7] transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
             title="Reset conversation"
           >
             <RotateCcw className="w-4 h-4" />
@@ -94,17 +94,17 @@ export default function ConciergePage() {
       />
 
       {/* Brand Sub-header */}
-      <div className="px-4 py-2 bg-white border-b border-[#E8E8EC] flex items-center justify-between shadow-xs">
+      <div className="px-4 py-2 bg-white border-b border-[#E2E2E2] flex items-center justify-between shadow-xs">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[11px] uppercase tracking-wider text-[#6B7075] font-semibold">
+          <span className="text-[11px] uppercase tracking-wider text-[#555555] font-semibold">
             24/7 Intelligent Booking Butler
           </span>
         </div>
 
         <a
           href={`tel:${companyInfo.phone}`}
-          className="text-[11px] text-[#F43F43] font-semibold hover:underline flex items-center gap-1 transition-colors"
+          className="text-[11px] text-[#BE8A44] font-semibold hover:underline flex items-center gap-1 transition-colors"
         >
           <Phone className="w-3.5 h-3.5" />
           <span>Call Dispatch</span>
@@ -119,8 +119,8 @@ export default function ConciergePage() {
             <div key={msg.id} className={`flex flex-col ${isBot ? 'items-start' : 'items-end'}`}>
               <div className={`flex gap-2 max-w-[88%] ${isBot ? 'flex-row' : 'flex-row-reverse'}`}>
                 {isBot && (
-                  <div className="w-8 h-8 rounded-full bg-[#101417] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
-                    <Sparkles className="w-4 h-4 text-[#F43F43]" />
+                  <div className="w-8 h-8 rounded-full bg-[#120F11] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                    <Sparkles className="w-4 h-4 text-[#BE8A44]" />
                   </div>
                 )}
 
@@ -128,8 +128,8 @@ export default function ConciergePage() {
                   <div
                     className={`p-3.5 rounded-[16px] text-[13.5px] leading-[20px] shadow-xs ${
                       isBot
-                        ? 'bg-white text-[#101417] border border-[#E8E8EC] rounded-tl-xs'
-                        : 'bg-[#101417] text-white rounded-tr-xs'
+                        ? 'bg-white text-[#120F11] border border-[#E2E2E2] rounded-tl-xs'
+                        : 'bg-[#120F11] text-white rounded-tr-xs'
                     }`}
                   >
                     <p className="whitespace-pre-line">{msg.text}</p>
@@ -137,12 +137,12 @@ export default function ConciergePage() {
 
                   {/* Bot Message Action Bar */}
                   {isBot && (
-                    <div className="flex items-center gap-2 mt-1 px-1 text-[11px] text-[#9EA3A8]">
+                    <div className="flex items-center gap-2 mt-1 px-1 text-[11px] text-[#555555]">
                       <span>{msg.time}</span>
                       <button
                         type="button"
                         onClick={() => handleCopy(msg.id, msg.text)}
-                        className="hover:text-[#101417] transition-colors cursor-pointer"
+                        className="hover:text-[#120F11] transition-colors cursor-pointer"
                         title="Copy response"
                       >
                         {copiedId === msg.id ? (
@@ -154,14 +154,14 @@ export default function ConciergePage() {
                       <button
                         type="button"
                         onClick={() => handleFeedback(msg.id, 'up')}
-                        className={`hover:text-[#101417] cursor-pointer ${feedback[msg.id] === 'up' ? 'text-emerald-600' : ''}`}
+                        className={`hover:text-[#120F11] cursor-pointer ${feedback[msg.id] === 'up' ? 'text-emerald-600' : ''}`}
                       >
                         <ThumbsUp className="w-3 h-3" />
                       </button>
                       <button
                         type="button"
                         onClick={() => handleFeedback(msg.id, 'down')}
-                        className={`hover:text-[#101417] cursor-pointer ${feedback[msg.id] === 'down' ? 'text-rose-600' : ''}`}
+                        className={`hover:text-[#120F11] cursor-pointer ${feedback[msg.id] === 'down' ? 'text-rose-600' : ''}`}
                       >
                         <ThumbsDown className="w-3 h-3" />
                       </button>
@@ -272,11 +272,11 @@ export default function ConciergePage() {
 
         {/* Typing indicator */}
         {isThinking && (
-          <div className="flex items-center gap-2 text-[#6B7075] text-[12px] p-2.5 bg-white border border-[#E8E8EC] rounded-[14px] w-fit shadow-xs ml-10">
+          <div className="flex items-center gap-2 text-[#555555] text-[12px] p-2.5 bg-white border border-[#E2E2E2] rounded-[14px] w-fit shadow-xs ml-10">
             <div className="flex gap-1 items-center">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.2s]" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.4s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.2s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.4s]" />
             </div>
             <span className="text-[11px] font-medium italic">Butler is reviewing fleet schedules & rates...</span>
           </div>
@@ -286,14 +286,14 @@ export default function ConciergePage() {
       </div>
 
       {/* Quick Suggested Reply Chips */}
-      <div className="px-4 py-2 border-t border-[#E8E8EC] bg-white/95 backdrop-blur-md">
+      <div className="px-4 py-2 border-t border-slate-100 bg-white/95 backdrop-blur-md">
         <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
           {suggestedChips.map((chip, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => handleSend(chip)}
-              className="h-[34px] px-3.5 rounded-full bg-white hover:bg-rose-50 hover:border-[#F43F43] border border-[#E8E8EC] text-[13px] text-[#101417] transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 shrink-0 font-semibold shadow-xs"
+              className="h-[34px] px-3.5 rounded-full bg-white hover:bg-red-50 hover:border-red-200 border border-slate-200 text-[13px] text-slate-800 transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 shrink-0 font-semibold shadow-xs"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#F43F43]" />
               <span>{chip}</span>
@@ -303,32 +303,32 @@ export default function ConciergePage() {
       </div>
 
       {/* Message Input Box (48px high) */}
-      <div className="px-4 py-2 bg-white border-t border-[#E8E8EC]">
+      <div className="px-4 py-2 bg-white border-t border-slate-100">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSend();
           }}
-          className="relative flex items-center h-12 rounded-[14px] px-3.5 bg-[#F5F5F7] border border-[#E8E8EC] focus-within:border-[#F43F43] focus-within:bg-white transition-all"
+          className="relative flex items-center h-12 rounded-[14px] px-3.5 bg-slate-50 border border-slate-200 focus-within:border-[#F43F43] focus-within:bg-white transition-all"
         >
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about airport runs, luggage fit, or quotes..."
-            className="w-full bg-transparent text-[14px] text-[#101417] placeholder:text-[#6B7075] outline-none font-medium"
+            className="w-full bg-transparent text-[14px] text-slate-900 placeholder:text-slate-400 outline-none font-medium"
           />
 
           <button
             type="submit"
             disabled={!input.trim()}
-            className="w-9 h-9 rounded-[10px] bg-[#101417] hover:bg-[#F43F43] flex items-center justify-center text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer shrink-0 ml-2 shadow-xs"
+            className="w-9 h-9 rounded-[10px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center transition-all cursor-pointer shrink-0 ml-2 shadow-xs active:scale-95"
             aria-label="Send message"
           >
             <Send className="w-4 h-4" />
           </button>
         </form>
-        <p className="text-[10px] text-[#9EA3A8] text-center mt-1 leading-tight">
+        <p className="text-[10px] text-slate-400 text-center mt-1 leading-tight">
           AI can make mistakes. Quotes are confirmed in writing by dispatch.
         </p>
       </div>

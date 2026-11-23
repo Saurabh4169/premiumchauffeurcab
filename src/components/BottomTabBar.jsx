@@ -56,7 +56,7 @@ export default function BottomTabBar() {
           backgroundColor: 'rgba(60, 64, 68, 0.70)',
           backdropFilter: 'blur(24px) saturate(160%)',
           WebkitBackdropFilter: 'blur(24px) saturate(160%)',
-          boxShadow: '0 10px 30px rgba(16, 20, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.35)'
+          boxShadow: '0 10px 30px rgba(18, 15, 17, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.35)'
         }}
         role="navigation"
         aria-label="Main Navigation"
@@ -78,7 +78,7 @@ export default function BottomTabBar() {
                       ? { duration: 0 }
                       : { type: 'spring', stiffness: 500, damping: 38 }
                   }
-                  className="h-11 px-3.5 sm:px-4 rounded-[22px] flex items-center justify-center gap-1.5 text-white shadow-[0_6px_16px_rgba(244,63,67,0.30)]"
+                  className="h-11 px-3.5 sm:px-4 rounded-[22px] flex items-center justify-center gap-1.5 text-white shadow-[0_6px_16px_rgba(190, 138, 68,0.30)]"
                   style={{
                     background: 'linear-gradient(180deg, var(--accent-top), var(--accent-bottom))'
                   }}

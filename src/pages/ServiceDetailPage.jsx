@@ -9,6 +9,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import Screen from '../components/common/Screen.jsx';
+import AppHeader from '../components/AppHeader.jsx';
 import HeroHeader from '../components/common/HeroHeader.jsx';
 import StickyCta from '../components/common/StickyCta.jsx';
 import ProductCard from '../components/ProductCard.jsx';
@@ -44,7 +45,8 @@ export default function ServiceDetailPage() {
 
   return (
     <Screen withCta className="bg-[var(--page)] px-0">
-      {/* Hero Header with 40px glass circular buttons (Back, Share, Compare, Save) */}
+      <AppHeader title={service.title} showBack />
+      {/* Hero Header with 40px glass circular buttons */}
       <HeroHeader
         item={service}
         type="service"

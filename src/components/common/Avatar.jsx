@@ -18,7 +18,7 @@ export default function Avatar({
 
   const statusColors = {
     online: 'bg-[#3fa37a]',
-    busy: 'bg-[#d9a441]',
+    busy: 'bg-[#BE8A44]',
     offline: 'bg-white/40'
   };
 
@@ -34,7 +34,7 @@ export default function Avatar({
 
   return (
     <div className={`relative inline-block shrink-0 ${className}`}>
-      <div className={`${sizeMap} rounded-full overflow-hidden border border-[#F43F43]/40 bg-gradient-to-br from-[#101417] to-[#14090d] flex items-center justify-center font-semibold text-[#FDEEEA] shadow-inner`}>
+      <div className={`${sizeMap} rounded-full overflow-hidden border border-[#BE8A44]/40 bg-gradient-to-br from-[#120F11] to-[#270B14] flex items-center justify-center font-semibold text-[#FAF5ED] shadow-inner`}>
         {src ? (
           <img
             src={src}
@@ -51,7 +51,7 @@ export default function Avatar({
 
       {status && (
         <span
-          className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-[#101417] ${statusColors[status] || statusColors.online}`}
+          className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-[#120F11] ${statusColors[status] || statusColors.online}`}
         />
       )}
     </div>

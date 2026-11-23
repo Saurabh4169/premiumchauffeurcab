@@ -23,43 +23,34 @@ export default function TripsPage() {
     : quoteTrips;
 
   return (
-    <div className="min-h-full pb-28 bg-[#FAFAFC]">
-      {/* Clean Header */}
-      <AppHeader showBack={false} />
+    <div className="min-h-full pb-[152px] bg-[#F5F5F7]">
+      {/* Clean Header with single title & New Booking button */}
+      <AppHeader
+        title="My Trips"
+        showBack={false}
+        rightAction={
+          <button
+            type="button"
+            onClick={() => navigate('/book')}
+            className="w-9 h-9 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 flex items-center justify-center text-white shadow-md shadow-red-500/25 cursor-pointer shrink-0 transition-all active:scale-95"
+            title="New Booking"
+            aria-label="New booking"
+          >
+            <Plus className="w-4.5 h-4.5 stroke-[2.5]" />
+          </button>
+        }
+      />
 
-      {/* Page Title: "My trips" + New Booking RED Button */}
-      <div className="px-4 pt-3 pb-2 flex items-center justify-between">
-        <div>
-          <h1 className="text-[26px] leading-[30px] font-bold text-[#101417] tracking-tight">
-            My Trips
-          </h1>
-          <p className="text-[12.5px] text-[#6B7075] mt-0.5 font-medium leading-[16px]">
-            Chauffeur-driven journeys & written quotes
-          </p>
-        </div>
-
-        {/* RED NEW BOOKING BUTTON */}
-        <button
-          type="button"
-          onClick={() => navigate('/book')}
-          className="w-10 h-10 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] flex items-center justify-center text-white shadow-md shadow-rose-500/25 cursor-pointer shrink-0 transition-all active:scale-95"
-          title="New Booking"
-          aria-label="New booking"
-        >
-          <Plus className="w-5 h-5 stroke-[2.5]" />
-        </button>
-      </div>
-
-      {/* Luxury Segmented Tabs */}
-      <div className="px-4 my-3.5">
-        <div className="h-11 p-1 rounded-full bg-white border border-[#E8E8EC] shadow-xs grid grid-cols-3 gap-1">
+      {/* Luxury Segmented Tabs (20px screen padding) */}
+      <div className="px-5 pt-3 pb-2">
+        <div className="h-11 p-1 rounded-full bg-white border border-slate-200/80 shadow-xs grid grid-cols-3 gap-1.5">
           <button
             type="button"
             onClick={() => setActiveTab('upcoming')}
             className={`rounded-full text-[12.5px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'upcoming'
                 ? 'bg-[#101417] text-white shadow-sm'
-                : 'text-[#6B7075] hover:text-[#101417]'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <Calendar className="w-3.5 h-3.5" />
@@ -72,7 +63,7 @@ export default function TripsPage() {
             className={`rounded-full text-[12.5px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'past'
                 ? 'bg-[#101417] text-white shadow-sm'
-                : 'text-[#6B7075] hover:text-[#101417]'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <History className="w-3.5 h-3.5" />
@@ -85,7 +76,7 @@ export default function TripsPage() {
             className={`rounded-full text-[12.5px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'quotes'
                 ? 'bg-[#101417] text-white shadow-sm'
-                : 'text-[#6B7075] hover:text-[#101417]'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -94,8 +85,8 @@ export default function TripsPage() {
         </div>
       </div>
 
-      {/* Trips Stream */}
-      <div className="px-4">
+      {/* Trips Stream (20px screen padding) */}
+      <div className="px-5 pt-1">
         {displayedTrips.length > 0 ? (
           <div>
             {displayedTrips.map((trip) => (

@@ -18,6 +18,7 @@ import {
   ChevronDown,
   Sparkles
 } from 'lucide-react';
+import AppHeader from '../components/AppHeader.jsx';
 import { useApp } from '../context/AppContext.jsx';
 
 const REQUEST_TYPES = [
@@ -186,7 +187,7 @@ export default function RequestFormPage() {
   // SUCCESS SCREEN
   if (isSubmitted) {
     return (
-      <div className="min-h-full p-6 bg-[#f8f9fb] flex flex-col justify-between">
+      <div className="min-h-full p-6 bg-white flex flex-col justify-between">
         <div className="my-auto text-center space-y-4 py-8">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -210,7 +211,7 @@ export default function RequestFormPage() {
           </div>
 
           {/* What happens next */}
-          <div className="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-sm text-left space-y-3 my-6">
+          <div className="bg-slate-50/70 rounded-3xl p-5 border border-slate-200/90 shadow-sm text-left space-y-3 my-6">
             <h3 className="font-sans font-bold text-[15px] text-slate-900">
               What Happens Next
             </h3>
@@ -236,7 +237,7 @@ export default function RequestFormPage() {
           <button
             type="button"
             onClick={() => navigate('/support/requests')}
-            className="w-full h-12 rounded-[14px] bg-gradient-to-r from-[#F84146] via-[#F43F43] to-[#EC3A40] text-slate-950 font-bold text-[14px] flex items-center justify-center shadow-lg shadow-[#F43F43]/30 cursor-pointer"
+            className="w-full h-12 rounded-[14px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white font-bold text-[14px] flex items-center justify-center shadow-lg shadow-red-500/25 cursor-pointer active:scale-95 transition-all"
           >
             View my requests
           </button>
@@ -253,26 +254,10 @@ export default function RequestFormPage() {
   }
 
   return (
-    <div className="min-h-full pb-36 bg-[#f8f9fb]">
-      {/* Top Header */}
-      <div className="sticky top-0 z-30 h-[52px] px-4 bg-white/95 backdrop-blur-md border-b border-[#E8E8EC] flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-sm"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
+    <div className="min-h-full pb-[152px] bg-white">
+      <AppHeader title="Request a Quote" showBack />
 
-        <h1 className="font-sans font-bold text-[16px] text-slate-900 truncate max-w-[240px]">
-          Request a quote or query
-        </h1>
-
-        <div className="w-10" />
-      </div>
-
-      <form onSubmit={handleSubmit} className="px-4 pt-4 space-y-5">
+      <form onSubmit={handleSubmit} className="px-5 pt-4 space-y-4">
         {/* Step 1: "What do you need?" Segmented Chips */}
         <div>
           <label className="text-[11px] uppercase tracking-wider font-bold text-slate-400 block mb-2">
@@ -288,7 +273,7 @@ export default function RequestFormPage() {
                   onClick={() => setActiveType(type.id)}
                   className={`px-3.5 py-2 rounded-full text-[12px] font-bold whitespace-nowrap transition-all cursor-pointer border ${
                     isSelected
-                      ? 'bg-[#111114] text-white border-[#111114] shadow-sm'
+                      ? 'bg-[#120F11] text-white border-[#120F11] shadow-sm'
                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
                   }`}
                 >
@@ -320,7 +305,7 @@ export default function RequestFormPage() {
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 text-[14px] text-slate-900 font-medium outline-none appearance-none focus:border-[#F43F43] focus:ring-2 focus:ring-[#F43F43]/20"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 text-[14px] text-slate-900 font-medium outline-none appearance-none focus:border-[#BE8A44] focus:ring-2 focus:ring-[#BE8A44]/20"
                   >
                     <option value="airport-transportation">Airport Transportation (ORD / MDW / Regional)</option>
                     <option value="corporate-executive">Corporate and Executive Roadshow</option>
@@ -366,9 +351,9 @@ export default function RequestFormPage() {
                     value={formData.pickup}
                     onChange={(e) => setFormData(prev => ({ ...prev, pickup: e.target.value }))}
                     placeholder="Enter hotel, residence or airport gate"
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 pl-10 text-[13.5px] text-slate-900 font-medium outline-none focus:border-[#F43F43] focus:ring-2 focus:ring-[#F43F43]/20"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 pl-10 text-[13.5px] text-slate-900 font-medium outline-none focus:border-[#BE8A44] focus:ring-2 focus:ring-[#BE8A44]/20"
                   />
-                  <MapPin className="w-4 h-4 text-[#F43F43] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <MapPin className="w-4 h-4 text-[#BE8A44] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 </div>
                 {errors.pickup && <p className="text-[11px] text-red-500 mt-1">{errors.pickup}</p>}
               </div>
@@ -385,7 +370,7 @@ export default function RequestFormPage() {
                       value={stop}
                       onChange={(e) => handleStopChange(idx, e.target.value)}
                       placeholder="Intermediate stop address"
-                      className="w-full h-12 rounded-xl bg-white border border-slate-200 px-3 text-[13px] text-slate-900 font-medium outline-none focus:border-[#F43F43]"
+                      className="w-full h-12 rounded-xl bg-white border border-slate-200 px-3 text-[13px] text-slate-900 font-medium outline-none focus:border-[#BE8A44]"
                     />
                     <button
                       type="button"
@@ -402,7 +387,7 @@ export default function RequestFormPage() {
                 <button
                   type="button"
                   onClick={handleAddStop}
-                  className="text-[12px] text-[#F43F43] font-bold hover:underline inline-flex items-center gap-1"
+                  className="text-[12px] text-[#BE8A44] font-bold hover:underline inline-flex items-center gap-1"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add intermediate stop</span>
@@ -420,7 +405,7 @@ export default function RequestFormPage() {
                     value={formData.dropoff}
                     onChange={(e) => setFormData(prev => ({ ...prev, dropoff: e.target.value }))}
                     placeholder="Destination address or airport"
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 pl-10 text-[13.5px] text-slate-900 font-medium outline-none focus:border-[#F43F43] focus:ring-2 focus:ring-[#F43F43]/20"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 pl-10 text-[13.5px] text-slate-900 font-medium outline-none focus:border-[#BE8A44] focus:ring-2 focus:ring-[#BE8A44]/20"
                   />
                   <MapPin className="w-4 h-4 text-emerald-600 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 </div>
@@ -437,7 +422,7 @@ export default function RequestFormPage() {
                     type="date"
                     value={formData.date}
                     onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-3 text-[13px] text-slate-900 font-medium outline-none focus:border-[#F43F43]"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-3 text-[13px] text-slate-900 font-medium outline-none focus:border-[#BE8A44]"
                   />
                 </div>
                 <div>
@@ -448,55 +433,55 @@ export default function RequestFormPage() {
                     type="time"
                     value={formData.time}
                     onChange={(e) => setFormData(prev => ({ ...prev, time: e.target.value }))}
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-3 text-[13px] text-slate-900 font-medium outline-none focus:border-[#F43F43]"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-3 text-[13px] text-slate-900 font-medium outline-none focus:border-[#BE8A44]"
                   />
                 </div>
               </div>
 
-              {/* Passengers & Luggage Steppers (44px min height) */}
+              {/* Passengers & Luggage Steppers (44px touch targets, 20px card radius) */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-white rounded-2xl p-3 border border-slate-200 flex items-center justify-between">
+                <div className="bg-white rounded-[20px] p-4 border border-slate-200 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Guests</span>
+                    <span className="text-[10.5px] uppercase font-bold text-slate-400 block">Guests</span>
                     <span className="text-[15px] font-bold text-slate-900">{formData.passengers} Pax</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <button
                       type="button"
                       onClick={() => setFormData(p => ({ ...p, passengers: Math.max(1, p.passengers - 1) }))}
-                      className="w-10 h-10 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#101417] hover:bg-slate-200 cursor-pointer"
+                      className="w-9 h-9 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#120F11] hover:bg-slate-200 cursor-pointer active:scale-95 transition-all"
                     >
-                      <Minus className="w-3.5 h-3.5" />
+                      <Minus className="w-4 h-4 stroke-[2]" />
                     </button>
                     <button
                       type="button"
                       onClick={() => setFormData(p => ({ ...p, passengers: p.passengers + 1 }))}
-                      className="w-10 h-10 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#101417] hover:bg-slate-200 cursor-pointer"
+                      className="w-9 h-9 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#120F11] hover:bg-slate-200 cursor-pointer active:scale-95 transition-all"
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-4 h-4 stroke-[2]" />
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-3 border border-slate-200 flex items-center justify-between">
+                <div className="bg-white rounded-[20px] p-4 border border-slate-200 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Luggage</span>
+                    <span className="text-[10.5px] uppercase font-bold text-slate-400 block">Luggage</span>
                     <span className="text-[15px] font-bold text-slate-900">{formData.luggage} Bags</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <button
                       type="button"
                       onClick={() => setFormData(p => ({ ...p, luggage: Math.max(0, p.luggage - 1) }))}
-                      className="w-10 h-10 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#101417] hover:bg-slate-200 cursor-pointer"
+                      className="w-9 h-9 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#120F11] hover:bg-slate-200 cursor-pointer active:scale-95 transition-all"
                     >
-                      <Minus className="w-3.5 h-3.5" />
+                      <Minus className="w-4 h-4 stroke-[2]" />
                     </button>
                     <button
                       type="button"
                       onClick={() => setFormData(p => ({ ...p, luggage: p.luggage + 1 }))}
-                      className="w-10 h-10 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#101417] hover:bg-slate-200 cursor-pointer"
+                      className="w-9 h-9 rounded-[12px] bg-slate-100 flex items-center justify-center text-[#120F11] hover:bg-slate-200 cursor-pointer active:scale-95 transition-all"
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-4 h-4 stroke-[2]" />
                     </button>
                   </div>
                 </div>
@@ -507,32 +492,32 @@ export default function RequestFormPage() {
                 <label className="text-[12px] font-bold text-slate-700 block mb-2">
                   Vehicle Type *
                 </label>
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   {VEHICLE_TYPE_CARDS.map((v) => (
                     <div
                       key={v.id}
                       onClick={() => setFormData(prev => ({ ...prev, vehicleType: v.id }))}
-                      className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                      className={`p-4 rounded-[20px] border transition-all cursor-pointer flex items-center justify-between ${
                         formData.vehicleType === v.id
-                          ? 'bg-[#111114] text-white border-[#111114] shadow-sm'
+                          ? 'bg-[#120F11] text-white border-[#120F11] shadow-sm'
                           : 'bg-white text-slate-800 border-slate-200 hover:border-slate-300'
                       }`}
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="font-bold text-[14px] leading-tight">{v.label}</h4>
+                          <h4 className="font-bold text-[14.5px] leading-tight">{v.label}</h4>
                           <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${
                             formData.vehicleType === v.id ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-600'
                           }`}>
                             {v.capacity}
                           </span>
                         </div>
-                        <p className={`text-[11px] mt-0.5 ${formData.vehicleType === v.id ? 'text-white/60' : 'text-slate-400'}`}>
+                        <p className={`text-[12px] mt-1 ${formData.vehicleType === v.id ? 'text-white/70' : 'text-slate-500'}`}>
                           {v.desc}
                         </p>
                       </div>
-                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-2 ${
-                        formData.vehicleType === v.id ? 'border-[#F43F43] bg-[#F43F43] text-slate-950' : 'border-slate-300'
+                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
+                        formData.vehicleType === v.id ? 'border-[#BE8A44] bg-[#BE8A44] text-slate-950' : 'border-slate-300'
                       }`}>
                         {formData.vehicleType === v.id && <span className="w-2 h-2 rounded-full bg-slate-950" />}
                       </div>
@@ -544,7 +529,7 @@ export default function RequestFormPage() {
               {/* Optional Flight Number & Checkbox */}
               <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-2">
                 <div className="flex items-center gap-2 text-[12px] font-bold text-slate-800">
-                  <Plane className="w-4 h-4 text-[#F43F43]" />
+                  <Plane className="w-4 h-4 text-[#BE8A44]" />
                   <span>Aviation Radar Tracking (Optional)</span>
                 </div>
                 <input
@@ -560,7 +545,7 @@ export default function RequestFormPage() {
                     type="checkbox"
                     checked={formData.flightLater}
                     onChange={(e) => setFormData(prev => ({ ...prev, flightLater: e.target.checked }))}
-                    className="w-4 h-4 rounded text-[#F43F43]"
+                    className="w-4 h-4 rounded text-[#BE8A44]"
                   />
                   <span>I don't have flight number yet (will provide prior)</span>
                 </label>
@@ -574,7 +559,7 @@ export default function RequestFormPage() {
                     type="checkbox"
                     checked={formData.returnTrip}
                     onChange={(e) => setFormData(prev => ({ ...prev, returnTrip: e.target.checked }))}
-                    className="w-5 h-5 rounded text-[#F43F43]"
+                    className="w-5 h-5 rounded text-[#BE8A44]"
                   />
                 </label>
 
@@ -607,7 +592,7 @@ export default function RequestFormPage() {
                     type="checkbox"
                     checked={formData.childSeat}
                     onChange={(e) => setFormData(prev => ({ ...prev, childSeat: e.target.checked }))}
-                    className="w-5 h-5 rounded text-[#F43F43]"
+                    className="w-5 h-5 rounded text-[#BE8A44]"
                   />
                 </label>
 
@@ -617,7 +602,7 @@ export default function RequestFormPage() {
                     type="checkbox"
                     checked={formData.accessible}
                     onChange={(e) => setFormData(prev => ({ ...prev, accessible: e.target.checked }))}
-                    className="w-5 h-5 rounded text-[#F43F43]"
+                    className="w-5 h-5 rounded text-[#BE8A44]"
                   />
                 </label>
               </div>
@@ -632,7 +617,7 @@ export default function RequestFormPage() {
                   value={formData.additionalDetails}
                   onChange={(e) => setFormData(prev => ({ ...prev, additionalDetails: e.target.value }))}
                   placeholder="Luggage specs, gate instructions, preferred chauffeur protocols..."
-                  className="w-full rounded-2xl bg-white border border-slate-200 p-3.5 text-[13px] text-slate-900 outline-none focus:border-[#F43F43]"
+                  className="w-full rounded-2xl bg-white border border-slate-200 p-3.5 text-[13px] text-slate-900 outline-none focus:border-[#BE8A44]"
                 />
               </div>
             </motion.div>
@@ -655,7 +640,7 @@ export default function RequestFormPage() {
                   <select
                     value={formData.topic}
                     onChange={(e) => setFormData(prev => ({ ...prev, topic: e.target.value }))}
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 text-[14px] text-slate-900 font-medium outline-none appearance-none focus:border-[#F43F43]"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 text-[14px] text-slate-900 font-medium outline-none appearance-none focus:border-[#BE8A44]"
                   >
                     {activeType === 'change' ? (
                       <>
@@ -697,7 +682,7 @@ export default function RequestFormPage() {
                     value={formData.bookingRef}
                     onChange={(e) => setFormData(prev => ({ ...prev, bookingRef: e.target.value.toUpperCase() }))}
                     placeholder="e.g. PCS-10492"
-                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 text-[14px] font-sans text-slate-900 outline-none focus:border-[#F43F43]"
+                    className="w-full h-12 rounded-[14px] bg-white border border-slate-200 px-4 text-[14px] font-sans text-slate-900 outline-none focus:border-[#BE8A44]"
                   />
                 </div>
               )}
@@ -718,7 +703,7 @@ export default function RequestFormPage() {
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   placeholder="Describe your inquiry, requested changes or questions in detail..."
-                  className="w-full rounded-2xl bg-white border border-slate-200 p-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#F43F43]"
+                  className="w-full rounded-2xl bg-white border border-slate-200 p-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#BE8A44]"
                 />
                 {errors.message && <p className="text-[11px] text-red-500 mt-1">{errors.message}</p>}
               </div>
@@ -758,7 +743,7 @@ export default function RequestFormPage() {
               type="text"
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#F43F43]"
+              className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#BE8A44]"
             />
             {errors.name && <p className="text-[11px] text-red-500 mt-1">{errors.name}</p>}
           </div>
@@ -772,7 +757,7 @@ export default function RequestFormPage() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#F43F43]"
+                className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#BE8A44]"
               />
               {errors.email && <p className="text-[11px] text-red-500 mt-1">{errors.email}</p>}
             </div>
@@ -785,7 +770,7 @@ export default function RequestFormPage() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#F43F43]"
+                className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-3.5 text-[13.5px] text-slate-900 outline-none focus:border-[#BE8A44]"
               />
               {errors.phone && <p className="text-[11px] text-red-500 mt-1">{errors.phone}</p>}
             </div>
@@ -803,7 +788,7 @@ export default function RequestFormPage() {
                   onClick={() => setFormData(prev => ({ ...prev, preferredContact: ch }))}
                   className={`py-2 rounded-xl text-[12px] font-bold border transition-colors cursor-pointer ${
                     formData.preferredContact === ch
-                      ? 'bg-[#111114] text-white border-[#111114]'
+                      ? 'bg-[#120F11] text-white border-[#120F11]'
                       : 'bg-slate-50 text-slate-700 border-slate-200'
                   }`}
                 >
@@ -816,12 +801,12 @@ export default function RequestFormPage() {
       </form>
 
       {/* STICKY BOTTOM ACTION BAR (Containment: absolute inside frame) */}
-      <div className="absolute bottom-0 left-0 right-0 z-40 p-3 bg-white/95 backdrop-blur-md border-t border-[#E8E8EC] shadow-lg space-y-1">
+      <div className="absolute bottom-0 left-0 right-0 z-40 px-5 py-3.5 bg-white/95 backdrop-blur-md border-t border-[#E2E2E2] shadow-lg space-y-1.5">
         <button
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-full h-12 rounded-[14px] bg-gradient-to-r from-[#FDEEEA] via-[#F43F43] to-[#EC3A40] text-slate-950 font-extrabold text-[14px] flex items-center justify-center gap-2 shadow-lg shadow-[#F43F43]/30 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50"
+          className="w-full h-12 rounded-[14px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] text-white font-extrabold text-[14.5px] flex items-center justify-center gap-2 shadow-lg shadow-[#BE8A44]/30 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50"
         >
           {isSubmitting ? (
             <span>Transmitting to Dispatch...</span>

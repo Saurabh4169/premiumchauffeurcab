@@ -91,14 +91,14 @@ export default function FleetPage() {
       <div className="px-4 my-3">
         <div className="flex items-center gap-2">
           {/* Search Input 44px */}
-          <div className="flex-1 relative flex items-center h-11 rounded-[14px] px-3.5 bg-white border border-[#ebe7e1] shadow-xs focus-within:border-[#c9a24b] transition-all">
-            <Search className="w-4 h-4 text-[#6b6670] mr-2 shrink-0" />
+          <div className="flex-1 relative flex items-center h-11 rounded-[14px] px-3.5 bg-white border border-[#E2E2E2] shadow-xs focus-within:border-[#BE8A44] transition-all">
+            <Search className="w-4 h-4 text-[#555555] mr-2 shrink-0" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search Escalade, S-Class, Sprinter..."
-              className="w-full bg-transparent text-[14px] text-[#0b0b0c] placeholder:text-[#6b6670] outline-none font-medium"
+              className="w-full bg-transparent text-[14px] text-[#12100F] placeholder:text-[#555555] outline-none font-medium"
             />
             {searchQuery && (
               <button
@@ -134,7 +134,7 @@ export default function FleetPage() {
               <button
                 type="button"
                 onClick={() => { setMinPassengers(0); setMinLuggage(0); setSavedOnly(false); }}
-                className="text-[#c9a24b] hover:underline font-semibold cursor-pointer"
+                className="text-[#BE8A44] hover:underline font-semibold cursor-pointer"
               >
                 Reset
               </button>
@@ -156,7 +156,7 @@ export default function FleetPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] font-semibold text-[#6b6670] mb-1">Min Passengers</label>
+                <label className="block text-[11px] font-semibold text-[#555555] mb-1">Min Passengers</label>
                 <div className="flex items-center gap-1">
                   {[0, 3, 6, 14, 20].map((num) => (
                     <button
@@ -164,8 +164,8 @@ export default function FleetPage() {
                       type="button"
                       onClick={() => setMinPassengers(num)}
                       className={`flex-1 py-1 rounded-[8px] text-[11px] font-semibold border transition-all cursor-pointer ${minPassengers === num
-                        ? 'bg-[#0b0b0c] text-white border-[#0b0b0c]'
-                        : 'bg-slate-50 text-slate-700 border-[#ebe7e1]'
+                        ? 'bg-[#12100F] text-white border-[#12100F]'
+                        : 'bg-slate-50 text-slate-700 border-[#E2E2E2]'
                         }`}
                     >
                       {num === 0 ? 'Any' : `${num}+`}
@@ -175,7 +175,7 @@ export default function FleetPage() {
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-[#6b6670] mb-1">Min Bags</label>
+                <label className="block text-[11px] font-semibold text-[#555555] mb-1">Min Bags</label>
                 <div className="flex items-center gap-1">
                   {[0, 3, 6, 14].map((num) => (
                     <button
@@ -183,8 +183,8 @@ export default function FleetPage() {
                       type="button"
                       onClick={() => setMinLuggage(num)}
                       className={`flex-1 py-1 rounded-[8px] text-[11px] font-semibold border transition-all cursor-pointer ${minLuggage === num
-                        ? 'bg-[#0b0b0c] text-white border-[#0b0b0c]'
-                        : 'bg-slate-50 text-slate-700 border-[#ebe7e1]'
+                        ? 'bg-[#12100F] text-white border-[#12100F]'
+                        : 'bg-slate-50 text-slate-700 border-[#E2E2E2]'
                         }`}
                     >
                       {num === 0 ? 'Any' : `${num}+`}

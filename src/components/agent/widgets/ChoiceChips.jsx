@@ -21,7 +21,7 @@ export default function ChoiceChips({ widget, answered, answeredValue, onSelect,
           key={option.value}
           type="button"
           onClick={() => onSelect(widget.id, widget.id, option.value)}
-          className="px-3 py-2 rounded-[12px] text-[13px] font-medium bg-white border border-[#E8E8EC] text-[#101417] hover:border-[#F43F43] hover:text-[#F43F43] hover:bg-rose-50/50 active:scale-95 transition-all text-left shadow-xs cursor-pointer"
+          className="px-3 py-2 rounded-[12px] text-[13px] font-medium bg-white border border-[#E2E2E2] text-[#120F11] hover:border-[#BE8A44] hover:text-[#BE8A44] hover:bg-[#FAF5ED]/50 active:scale-95 transition-all text-left shadow-xs cursor-pointer"
         >
           {option.label}
         </button>

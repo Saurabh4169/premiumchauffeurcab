@@ -16,8 +16,8 @@ export default function Chip({
       onClick={onClick}
       whileTap={{ scale: 0.97 }}
       className={`h-9 px-3.5 rounded-full text-[13px] font-semibold transition-all select-none cursor-pointer shrink-0 border inline-flex items-center gap-1.5 ${active
-        ? 'bg-[#0b0b0c] text-white border-[#0b0b0c] shadow-xs'
-        : 'bg-white text-slate-700 border-[#ebe7e1] hover:bg-slate-50 hover:border-slate-300 shadow-xs'
+        ? 'bg-[#12100F] text-white border-[#12100F] shadow-xs'
+        : 'bg-white text-slate-700 border-[#E2E2E2] hover:bg-slate-50 hover:border-slate-300 shadow-xs'
         } ${className}`}
     >
       {Icon && <Icon className={`w-3.5 h-3.5 ${active ? 'text-white' : 'text-slate-400'}`} />}

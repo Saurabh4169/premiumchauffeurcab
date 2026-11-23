@@ -39,7 +39,7 @@ export default function DispatchFleet() {
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span className="text-[11px] font-sans tracking-wider uppercase text-[#F43F43] font-bold">
+          <span className="text-[11px] font-sans tracking-wider uppercase text-[#BE8A44] font-bold">
             Asset Inventory & Telemetry
           </span>
           <h2 className="font-sans text-2xl font-bold text-white">
@@ -80,7 +80,7 @@ export default function DispatchFleet() {
               key={vehicle.id}
               className={`glass-panel rounded-3xl p-5 border transition-all flex flex-col justify-between ${
                 vehicle.serviceFlag
-                  ? 'border-[#c8102e]/40 ring-1 ring-[#c8102e]/20'
+                  ? 'border-[#BE8A44]/40 ring-1 ring-[#BE8A44]/20'
                   : 'border-white/10 hover:border-white/20'
               }`}
             >
@@ -88,7 +88,7 @@ export default function DispatchFleet() {
                 {/* Header row */}
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <div>
-                    <span className="font-sans text-[11px] px-2 py-0.5 rounded bg-black/40 text-[#FDEEEA] font-bold border border-white/10">
+                    <span className="font-sans text-[11px] px-2 py-0.5 rounded bg-black/40 text-[#FAF5ED] font-bold border border-white/10">
                       {vehicle.plate}
                     </span>
                     <h3 className="font-sans font-bold text-[16px] text-white mt-1">
@@ -109,7 +109,7 @@ export default function DispatchFleet() {
                 {/* Staging & Driver */}
                 <div className="space-y-1.5 my-3 text-[12px] text-white/70 bg-white/5 rounded-2xl p-3 border border-white/5">
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#F43F43] shrink-0" />
+                    <MapPin className="w-3.5 h-3.5 text-[#BE8A44] shrink-0" />
                     <span className="truncate">{vehicle.currentLocation}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -122,14 +122,14 @@ export default function DispatchFleet() {
                 <div className="space-y-1 pt-1">
                   <div className="flex justify-between text-[11px] font-sans">
                     <span className="text-white/50">Odometer: {vehicle.mileage.toLocaleString()} mi</span>
-                    <span className={isServiceDue ? 'text-[#f87171] font-bold' : 'text-white/50'}>
+                    <span className={isServiceDue ? 'text-[#D19C52] font-bold' : 'text-white/50'}>
                       Next Service: {vehicle.nextServiceMileage.toLocaleString()} mi
                     </span>
                   </div>
                   <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
                     <div
                       className={`h-full rounded-full ${
-                        isServiceDue ? 'bg-[#c8102e]' : 'bg-[#F43F43]'
+                        isServiceDue ? 'bg-[#BE8A44]' : 'bg-[#BE8A44]'
                       }`}
                       style={{ width: `${Math.min(100, (vehicle.mileage / vehicle.nextServiceMileage) * 100)}%` }}
                     />
@@ -138,7 +138,7 @@ export default function DispatchFleet() {
 
                 {/* Service warning tag */}
                 {vehicle.serviceFlag && (
-                  <div className="mt-3 p-2 rounded-xl bg-[#c8102e]/15 border border-[#c8102e]/30 text-[11px] text-[#f87171] flex items-center gap-2">
+                  <div className="mt-3 p-2 rounded-xl bg-[#BE8A44]/15 border border-[#BE8A44]/30 text-[11px] text-[#D19C52] flex items-center gap-2">
                     <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
                     <span>Inspection or maintenance due immediately.</span>
                   </div>
@@ -155,7 +155,7 @@ export default function DispatchFleet() {
                   onClick={() => handleToggleMaintenance(vehicle.id)}
                   className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-semibold text-white flex items-center gap-1.5 cursor-pointer"
                 >
-                  <Wrench className="w-3 h-3 text-[#F43F43]" />
+                  <Wrench className="w-3 h-3 text-[#BE8A44]" />
                   <span>{vehicle.status === 'in_service' ? 'Return to Service' : 'Flag Service'}</span>
                 </button>
               </div>

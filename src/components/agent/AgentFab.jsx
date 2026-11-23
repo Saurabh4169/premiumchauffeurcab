@@ -23,13 +23,13 @@ export default function AgentFab({ frameRef }) {
   const dragStartPos = useRef({ x: 0, y: 0 });
   const controls = useAnimation();
 
-  // Route visibility rules
+  // Route visibility rules (hidden on /support per design rules)
   const isHiddenRoute = (() => {
     const p = location.pathname;
     if (p === '/' || p === '/auth' || p === '/ai' || p.startsWith('/book') || p.startsWith('/dispatch')) {
       return true;
     }
-    if (p === '/support/request' || p === '/support/chat' || p === '/compare') {
+    if (p === '/support' || p === '/support/request' || p === '/support/chat' || p === '/compare') {
       return true;
     }
     return false;
@@ -119,7 +119,7 @@ export default function AgentFab({ frameRef }) {
 
   return (
     <div
-      className="absolute bottom-[92px] right-4 pointer-events-auto"
+      className="absolute bottom-[96px] right-4 pointer-events-auto"
       style={{
         zIndex: 45,
         transform: `translateY(${collisionShiftY}px)`,
@@ -132,15 +132,15 @@ export default function AgentFab({ frameRef }) {
           initial={{ opacity: 0, y: 6, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 4, scale: 0.95 }}
-          className="absolute right-0 bottom-[64px] bg-[#101417] text-white px-3 py-1.5 rounded-[12px] shadow-lg whitespace-nowrap text-[12px] font-semibold flex items-center gap-1.5 pointer-events-none"
+          className="absolute right-0 bottom-[64px] bg-[#120F11] text-white px-3 py-1.5 rounded-[12px] shadow-lg whitespace-nowrap text-[12px] font-semibold flex items-center gap-1.5 pointer-events-none"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#F43F43]" />
           <span>Ask AI · Book or ask anything</span>
-          <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[#101417] rotate-45" />
+          <div className="absolute -bottom-1 right-6 w-2 h-2 bg-[#120F11] rotate-45" />
         </motion.div>
       )}
 
-      {/* Draggable FAB */}
+      {/* Draggable FAB (52px size) */}
       <motion.button
         type="button"
         drag
@@ -159,14 +159,14 @@ export default function AgentFab({ frameRef }) {
         whileHover={{ scale: 1.05 }}
         whileDrag={{ scale: 1.08, boxShadow: '0 12px 28px rgba(244, 63, 67, 0.45)' }}
         aria-label="Open AI assistant"
-        className="w-14 h-14 rounded-full flex items-center justify-center text-white ring-2 ring-white focus:outline-none focus:ring-4 focus:ring-rose-400 cursor-grab active:cursor-grabbing relative transition-shadow"
+        className="w-[52px] h-[52px] rounded-full flex items-center justify-center text-white ring-2 ring-white focus:outline-none focus:ring-4 focus:ring-[#F43F43] cursor-grab active:cursor-grabbing relative transition-shadow"
         style={{
-          background: 'linear-gradient(180deg, #F43F43 0%, #DC2626 100%)',
+          background: 'linear-gradient(180deg, #F84146 0%, #EC3A40 100%)',
           boxShadow: '0 8px 20px rgba(244, 63, 67, 0.35)',
           touchAction: 'none'
         }}
       >
-        <Sparkles className="w-6 h-6 text-white" />
+        <Sparkles className="w-5 h-5 text-white" />
 
         {/* Pulse ring animation on first 3 opens */}
         {fabOpenCount < 3 && (
@@ -176,7 +176,7 @@ export default function AgentFab({ frameRef }) {
         {/* Unread reply dot */}
         {unreadRepliesCount > 0 && (
           <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-white rounded-full flex items-center justify-center p-0.5">
-            <span className="w-full h-full bg-[#101417] rounded-full animate-pulse" />
+            <span className="w-full h-full bg-[#120F11] rounded-full animate-pulse" />
           </span>
         )}
       </motion.button>

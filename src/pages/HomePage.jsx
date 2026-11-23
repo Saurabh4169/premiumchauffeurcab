@@ -125,7 +125,7 @@ export default function HomePage() {
 
       {/* 3. HERO FEATURE BANNER (Clean Luxury Edition - Crystal Clear Vehicle Imagery) */}
       <div className="px-4 mb-4">
-        <div className="relative rounded-[22px] p-5 bg-gradient-to-br from-[#12161A] via-[#101417] to-[#0A0C0E] border border-white/10 text-white shadow-md overflow-hidden flex flex-col justify-between min-h-[160px]">
+        <div className="relative rounded-[22px] p-5 bg-gradient-to-br from-[#120F11] via-[#120F11] to-[#120F11] border border-white/10 text-white shadow-md overflow-hidden flex flex-col justify-between min-h-[160px]">
           {/* Crystal Clear Vehicle Photo on Right */}
           <div className="absolute right-0 top-0 bottom-0 w-[55%] pointer-events-none overflow-hidden">
             <img
@@ -134,7 +134,7 @@ export default function HomePage() {
               className="w-full h-full object-cover object-right select-none"
             />
             {/* Subtle feathering strictly on the left transition edge to keep text legible while the car remains 100% clear */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#12161A] via-[#12161A]/60 to-transparent pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#120F11] via-[#120F11]/60 to-transparent pointer-events-none" />
           </div>
 
           {/* Left Content: Clean, uncluttered, premium copy */}
@@ -259,7 +259,7 @@ export default function HomePage() {
               <h2 className="text-[22px] leading-[26px] font-display font-semibold text-[var(--ink)]">
                 Where we drive
               </h2>
-              <span className="text-[12px] font-display italic text-[#C9A24B] font-medium">
+              <span className="text-[12px] font-display italic text-[#BE8A44] font-medium">
                 Five cities, one standard
               </span>
             </div>
@@ -270,7 +270,7 @@ export default function HomePage() {
           <button
             type="button"
             onClick={() => setShowAllLocations(true)}
-            className="text-[12px] font-semibold text-[#C9A24B] hover:underline cursor-pointer shrink-0"
+            className="text-[12px] font-semibold text-[#BE8A44] hover:underline cursor-pointer shrink-0"
           >
             View all &gt;
           </button>
@@ -308,8 +308,8 @@ export default function HomePage() {
                 onClick={() => setSelectedLocation(loc)}
                 className={`relative h-[134px] rounded-[18px] overflow-hidden cursor-pointer shadow-xs group select-none transition-all ${
                   isSelected
-                    ? 'ring-1.5 ring-[#C9A24B] border-[#C9A24B] shadow-md'
-                    : 'border border-[var(--border)] hover:border-[#C9A24B]/50'
+                    ? 'ring-1.5 ring-[#BE8A44] border-[#BE8A44] shadow-md'
+                    : 'border border-[var(--border)] hover:border-[#BE8A44]/50'
                 }`}
               >
                 {/* Full-bleed photo with fallback */}

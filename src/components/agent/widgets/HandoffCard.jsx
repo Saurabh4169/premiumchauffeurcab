@@ -18,36 +18,36 @@ export default function HandoffCardWidget() {
   };
 
   return (
-    <div className="bg-white rounded-[18px] p-4 border border-[#E8E8EC] shadow-xs my-2 space-y-3">
+    <div className="bg-white rounded-[18px] p-4 border border-[#E2E2E2] shadow-xs my-2 space-y-3">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-[#F43F43]">
+        <div className="w-8 h-8 rounded-full bg-[#FAF5ED] flex items-center justify-center text-[#BE8A44]">
           <Headset className="w-4 h-4" />
         </div>
         <div>
-          <h4 className="font-bold text-[14px] text-[#101417]">
+          <h4 className="font-bold text-[14px] text-[#120F11]">
             24/7 Live Human Dispatch
           </h4>
-          <span className="text-[11px] text-[#6B7075]">
+          <span className="text-[11px] text-[#555555]">
             Lombard, IL Operations Center
           </span>
         </div>
       </div>
 
-      <p className="text-[12px] text-[#6B7075] leading-relaxed">
+      <p className="text-[12px] text-[#555555] leading-relaxed">
         Speak with a senior dispatcher for custom itineraries, multi-vehicle motorcades, or immediate updates.
       </p>
 
       {/* Direct Call Button */}
       <a
         href={`tel:${COMPANY_CONTACT.phoneRaw}`}
-        className="w-full h-10 rounded-[12px] bg-[#101417] hover:bg-[#F43F43] text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+        className="w-full h-10 rounded-[12px] bg-[#120F11] hover:bg-[#BE8A44] text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
       >
         <Phone className="w-4 h-4" />
         <span>Call Dispatch {COMPANY_CONTACT.phone}</span>
       </a>
 
       {/* Request Callback */}
-      <div className="pt-2 border-t border-[#E8E8EC]">
+      <div className="pt-2 border-t border-[#E2E2E2]">
         {requested ? (
           <div className="flex items-center gap-2 text-emerald-600 text-[12px] font-semibold py-1">
             <Check className="w-4 h-4" />
@@ -60,11 +60,11 @@ export default function HandoffCardWidget() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Your callback phone..."
-              className="flex-1 h-8.5 px-2.5 bg-[#F5F5F7] rounded-[8px] text-[12px] text-[#101417] placeholder:text-[#9EA3A8] focus:outline-none focus:ring-1 focus:ring-[#F43F43]"
+              className="flex-1 h-8.5 px-2.5 bg-[#FAF5ED] rounded-[8px] text-[12px] text-[#120F11] placeholder:text-[#555555] focus:outline-none focus:ring-1 focus:ring-[#BE8A44]"
             />
             <button
               type="submit"
-              className="h-8.5 px-3 rounded-[8px] bg-[#F5F5F7] hover:bg-slate-200 text-[#101417] text-[12px] font-semibold cursor-pointer shrink-0"
+              className="h-8.5 px-3 rounded-[8px] bg-[#FAF5ED] hover:bg-slate-200 text-[#120F11] text-[12px] font-semibold cursor-pointer shrink-0"
             >
               Request Call
             </button>

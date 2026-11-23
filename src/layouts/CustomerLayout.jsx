@@ -6,14 +6,14 @@ import ToastContainer from '../components/common/Toast.jsx';
 
 export default function CustomerLayout() {
   return (
-    <div className="min-h-screen bg-white text-[#0b0b0c] relative overflow-x-hidden flex flex-col justify-center items-center py-0 md:py-6 antialiased">
+    <div className="min-h-screen bg-white text-[#12100F] relative overflow-x-hidden flex flex-col justify-center items-center py-0 md:py-6 antialiased">
       {/* Toast notifications container */}
       <ToastContainer />
 
       {/* Centered Phone Simulator (Max 430px, calibrated for 390px viewport) */}
-      <div className="w-full min-h-screen md:min-h-[880px] md:max-h-[920px] max-w-[430px] bg-[#f7f5f2] md:rounded-[50px] md:border-[10px] md:border-[#16161a] md:shadow-[0_25px_70px_rgba(0,0,0,0.12),0_10px_25px_rgba(0,0,0,0.06)] flex flex-col relative overflow-hidden ring-1 ring-black/5">
+      <div className="w-full min-h-screen md:min-h-[880px] md:max-h-[920px] max-w-[430px] bg-[#FAF5ED] md:rounded-[50px] md:border-[10px] md:border-[#120F11] md:shadow-[0_25px_70px_rgba(0,0,0,0.12),0_10px_25px_rgba(0,0,0,0.06)] flex flex-col relative overflow-hidden ring-1 ring-black/5">
         {/* Screen Content Scroll Area (96px padding bottom to clear 64px tab bar + 8px margin + safe area) */}
-        <main className="flex-1 overflow-y-auto pb-24 relative bg-[#f7f5f2]">
+        <main className="flex-1 overflow-y-auto pb-24 relative bg-[#FAF5ED]">
           <Outlet />
         </main>
 

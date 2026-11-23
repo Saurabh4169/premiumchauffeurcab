@@ -46,7 +46,7 @@ export default function BottomSheet({
               <div className="w-10 h-1 rounded-full bg-slate-300" />
             </div>
 
-            {/* Header (Subtitle 16/22/600 in Manrope) */}
+            {/* Header (Subtitle 16/22/600 in Jost) */}
             <div className="px-4 pb-3 flex items-center justify-between border-b border-[var(--border)] shrink-0">
               <div className="min-w-0 pr-2">
                 <h3 className="text-[16px] font-bold text-[var(--ink)] leading-[22px] truncate">{title}</h3>

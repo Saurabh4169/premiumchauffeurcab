@@ -54,63 +54,52 @@ export default function HeroHeader({
       {/* Gradient Scrim */}
       <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-black/40 to-black/30 pointer-events-none" />
 
-      {/* Top Controls Bar: 40px glass circles */}
-      <div className="absolute top-3 left-4 right-4 z-20 flex items-center justify-between">
+      {/* Top Controls Bar: Floating Action Glass Circles (Share, Compare, Save) */}
+      <div className="absolute top-3 right-4 z-20 flex items-center gap-2">
+        {/* Share */}
         <button
           type="button"
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-white/40 flex items-center justify-center text-[var(--ink)] transition-all cursor-pointer shadow-xs active:scale-95"
-          aria-label="Back"
+          onClick={handleShare}
+          className="w-9 h-9 rounded-full bg-white/85 backdrop-blur-md border border-white/40 flex items-center justify-center text-[var(--ink)] transition-all cursor-pointer shadow-xs active:scale-95"
+          aria-label="Share"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <Share2 className="w-4 h-4" />
         </button>
 
-        <div className="flex items-center gap-2">
-          {/* Share */}
-          <button
-            type="button"
-            onClick={handleShare}
-            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-white/40 flex items-center justify-center text-[var(--ink)] transition-all cursor-pointer shadow-xs active:scale-95"
-            aria-label="Share"
-          >
-            <Share2 className="w-4 h-4" />
-          </button>
+        {/* Compare */}
+        <button
+          type="button"
+          onClick={() => toggleCompare(type, itemId, itemTitle)}
+          aria-pressed={inCompare}
+          aria-label={`Add ${itemTitle} to compare`}
+          className={`relative w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 ${
+            inCompare
+              ? 'bg-[var(--ink)] text-white shadow-sm'
+              : 'bg-white/85 backdrop-blur-md text-[var(--ink)] border border-white/40 hover:bg-white'
+          }`}
+        >
+          <Scale className="w-4 h-4 stroke-[1.75]" />
+          {inCompare && (
+            <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#F43F43] text-white flex items-center justify-center">
+              <Check className="w-2.5 h-2.5 stroke-[3]" />
+            </span>
+          )}
+        </button>
 
-          {/* Compare */}
-          <button
-            type="button"
-            onClick={() => toggleCompare(type, itemId, itemTitle)}
-            aria-pressed={inCompare}
-            aria-label={`Add ${itemTitle} to compare`}
-            className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 ${
-              inCompare
-                ? 'bg-[var(--ink)] text-white shadow-sm'
-                : 'bg-white/80 backdrop-blur-md text-[var(--ink)] border border-white/40 hover:bg-white'
-            }`}
-          >
-            <Scale className="w-4 h-4 stroke-[1.75]" />
-            {inCompare && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[var(--accent)] text-white flex items-center justify-center">
-                <Check className="w-2.5 h-2.5 stroke-[3]" />
-              </span>
-            )}
-          </button>
-
-          {/* Save */}
-          <button
-            type="button"
-            onClick={() => toggleSave(type, itemId, itemTitle)}
-            aria-pressed={saved}
-            aria-label={`Save ${itemTitle}`}
-            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 ${
-              saved
-                ? 'bg-[var(--accent)] text-white fill-white shadow-sm'
-                : 'bg-white/80 backdrop-blur-md text-[var(--ink)] border border-white/40 hover:bg-white'
-            }`}
-          >
-            <Heart className={`w-4 h-4 ${saved ? 'fill-white text-white' : 'text-[var(--ink)]'}`} />
-          </button>
-        </div>
+        {/* Save */}
+        <button
+          type="button"
+          onClick={() => toggleSave(type, itemId, itemTitle)}
+          aria-pressed={saved}
+          aria-label={`Save ${itemTitle}`}
+          className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95 ${
+            saved
+              ? 'bg-[#F43F43] text-white fill-white shadow-sm'
+              : 'bg-white/85 backdrop-blur-md text-[var(--ink)] border border-white/40 hover:bg-white'
+          }`}
+        >
+          <Heart className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />
+        </button>
       </div>
 
       {/* Bottom Overlaid Title and Meta */}

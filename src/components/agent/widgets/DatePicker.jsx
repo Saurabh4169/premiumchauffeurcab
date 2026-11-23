@@ -26,9 +26,9 @@ export default function DatePickerWidget({ widget, answered, answeredValue, onSe
   }
 
   return (
-    <div className="bg-white rounded-[16px] p-3 border border-[#E8E8EC] shadow-xs my-2">
-      <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#6B7075] uppercase tracking-wider mb-2">
-        <Calendar className="w-3.5 h-3.5 text-[#F43F43]" />
+    <div className="bg-white rounded-[16px] p-3 border border-[#E2E2E2] shadow-xs my-2">
+      <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#555555] uppercase tracking-wider mb-2">
+        <Calendar className="w-3.5 h-3.5 text-[#BE8A44]" />
         <span>Select Travel Date</span>
       </div>
 
@@ -38,9 +38,9 @@ export default function DatePickerWidget({ widget, answered, answeredValue, onSe
             key={d.iso}
             type="button"
             onClick={() => onSelect(widget.id, 'date', `${d.weekday}, ${d.monthDay} (${d.iso})`)}
-            className="flex flex-col items-center justify-center min-w-[70px] py-2 px-1.5 rounded-[12px] bg-[#F5F5F7] hover:bg-[#101417] hover:text-white text-[#101417] transition-all cursor-pointer border border-[#E8E8EC] group"
+            className="flex flex-col items-center justify-center min-w-[70px] py-2 px-1.5 rounded-[12px] bg-[#FAF5ED] hover:bg-[#120F11] hover:text-white text-[#120F11] transition-all cursor-pointer border border-[#E2E2E2] group"
           >
-            <span className="text-[11px] font-medium text-[#6B7075] group-hover:text-slate-300">
+            <span className="text-[11px] font-medium text-[#555555] group-hover:text-slate-300">
               {d.weekday}
             </span>
             <span className="text-[13px] font-bold mt-0.5">

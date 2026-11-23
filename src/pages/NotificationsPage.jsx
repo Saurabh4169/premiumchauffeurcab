@@ -13,17 +13,17 @@ export default function NotificationsPage() {
   const getIcon = (iconName) => {
     switch (iconName) {
       case 'Car':
-        return <Car className="w-4 h-4 text-[#F43F43]" />;
+        return <Car className="w-4 h-4 text-[#BE8A44]" />;
       case 'Plane':
         return <Plane className="w-4 h-4 text-emerald-600" />;
       case 'FileText':
         return <FileText className="w-4 h-4 text-blue-600" />;
       case 'UserCheck':
-        return <UserCheck className="w-4 h-4 text-[#F43F43]" />;
+        return <UserCheck className="w-4 h-4 text-[#BE8A44]" />;
       case 'Receipt':
         return <Receipt className="w-4 h-4 text-emerald-600" />;
       default:
-        return <Bell className="w-4 h-4 text-[#F43F43]" />;
+        return <Bell className="w-4 h-4 text-[#BE8A44]" />;
     }
   };
 
@@ -38,17 +38,17 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="min-h-full pb-8 bg-[#f8f9fb]">
+    <div className="min-h-full pb-8 bg-white">
       {/* App Header */}
       <AppHeader title="Dispatch Alerts" showBack />
 
       {/* Hero Banner */}
       <div className="px-4 pt-3 pb-2 flex items-center justify-between">
         <div>
-          <span className="text-[11px] font-semibold tracking-wider text-[#F43F43] uppercase block mb-0.5">
+          <span className="text-[11px] font-semibold tracking-wider text-[#BE8A44] uppercase block mb-0.5">
             Live Updates & Briefs
           </span>
-          <h1 className="text-[28px] leading-[32px] font-display font-semibold text-[#101417]">
+          <h1 className="text-[28px] leading-[32px] font-display font-semibold text-[#120F11]">
             Notifications
           </h1>
         </div>
@@ -56,7 +56,7 @@ export default function NotificationsPage() {
         <button
           type="button"
           onClick={markAllNotificationsAsRead}
-          className="text-[13px] text-[#F43F43] font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+          className="text-[13px] text-[#BE8A44] font-semibold hover:underline flex items-center gap-1 cursor-pointer"
         >
           <CheckCheck className="w-3.5 h-3.5" />
           <span>Mark all read</span>
@@ -81,30 +81,30 @@ export default function NotificationsPage() {
                     onClick={() => handleNotificationClick(notif)}
                     className={`p-3.5 rounded-[16px] border transition-all cursor-pointer flex items-start gap-3 bg-white shadow-xs ${
                       !notif.read
-                        ? 'border-[#F43F43]/40 ring-1 ring-[#F43F43]/20'
-                        : 'border-[#E8E8EC] opacity-80 hover:opacity-100 hover:border-slate-300'
+                        ? 'border-[#BE8A44]/40 ring-1 ring-[#BE8A44]/20'
+                        : 'border-[#E2E2E2] opacity-80 hover:opacity-100 hover:border-slate-300'
                     }`}
                   >
-                    <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 mt-0.5 border border-[#E8E8EC]">
+                    <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 mt-0.5 border border-[#E2E2E2]">
                       {getIcon(notif.icon)}
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1 mb-0.5">
-                        <h4 className="text-[13px] font-semibold text-[#101417] truncate">
+                        <h4 className="text-[13px] font-semibold text-[#120F11] truncate">
                           {notif.title}
                         </h4>
-                        <span className="text-[11px] text-[#6B7075] shrink-0 font-medium">
+                        <span className="text-[11px] text-[#555555] shrink-0 font-medium">
                           {notif.time}
                         </span>
                       </div>
-                      <p className="text-[12px] text-[#6B7075] leading-snug">
+                      <p className="text-[12px] text-[#555555] leading-snug">
                         {notif.body}
                       </p>
                     </div>
 
                     {!notif.read && (
-                      <span className="w-2 h-2 rounded-full bg-[#c8102e] shrink-0 mt-1.5" />
+                      <span className="w-2 h-2 rounded-full bg-[#BE8A44] shrink-0 mt-1.5" />
                     )}
                   </div>
                 ))}

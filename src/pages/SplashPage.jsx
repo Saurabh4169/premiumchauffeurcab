@@ -49,9 +49,9 @@ export default function SplashPage() {
   ];
 
   return (
-    <div className="min-h-full flex flex-col justify-between p-6 bg-[#f8f9fb] text-slate-900 relative overflow-hidden">
+    <div className="min-h-full flex flex-col justify-between p-6 bg-white text-slate-900 relative overflow-hidden">
       {/* Decorative ambient subtle circle */}
-      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-red-100/30 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#BE8A44]/10 blur-3xl pointer-events-none" />
 
       <AnimatePresence mode="wait">
         {showSplash ? (
@@ -88,18 +88,18 @@ export default function SplashPage() {
               className="space-y-2 relative z-10"
             >
               <div className="flex items-center justify-center gap-2">
-                <span className="h-[1px] w-6 bg-[#C9A24B]/40" />
-                <span className="text-[10px] font-sans tracking-[0.22em] uppercase text-[#6B7075] font-bold">
+                <span className="h-[1px] w-6 bg-[#BE8A44]/40" />
+                <span className="text-[10px] font-sans tracking-[0.22em] uppercase text-[#555555] font-bold">
                   Lombard • Chicago • New York • Miami • LA
                 </span>
-                <span className="h-[1px] w-6 bg-[#C9A24B]/40" />
+                <span className="h-[1px] w-6 bg-[#BE8A44]/40" />
               </div>
 
-              <p className="italic text-[#F43F43] font-display text-[15px] font-semibold">
+              <p className="italic text-[#BE8A44] font-display text-[15px] font-semibold">
                 "The car is there before you are."
               </p>
 
-              <div className="pt-2 flex items-center justify-center gap-1.5 text-[11px] text-[#6B7075] font-medium">
+              <div className="pt-2 flex items-center justify-center gap-1.5 text-[11px] text-[#555555] font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>24/7 Lombard Dispatch · Fixed Written Quotes</span>
               </div>
@@ -144,7 +144,7 @@ export default function SplashPage() {
                   {/* Cardless Floating Luxury Vehicle Showcase */}
                   <div className="relative w-full max-w-[340px] h-44 flex items-center justify-center mb-4 select-none">
                     {/* Ambient subtle warm backlight */}
-                    <div className="absolute inset-0 bg-radial from-rose-500/10 via-amber-500/5 to-transparent blur-2xl rounded-full scale-110 pointer-events-none" />
+                    <div className="absolute inset-0 bg-radial from-[#BE8A44]/15 via-amber-500/5 to-transparent blur-2xl rounded-full scale-110 pointer-events-none" />
 
                     {/* Floating S-Class Cutout */}
                     <motion.img
@@ -162,18 +162,18 @@ export default function SplashPage() {
                     <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4/5 h-3 bg-black/15 blur-md rounded-full pointer-events-none" />
                   </div>
 
-                  <span className="inline-block px-3 py-1 rounded-full bg-white text-[10.5px] font-bold text-[#101417] uppercase tracking-wider mb-2.5 border border-[#E8E8EC] shadow-2xs">
+                  <span className="inline-block px-3 py-1 rounded-full bg-white text-[10.5px] font-bold text-[#120F11] uppercase tracking-wider mb-2.5 border border-[#E2E2E2] shadow-2xs">
                     {slides[currentSlide].badge}
                   </span>
 
-                  <h2 className="text-[26px] leading-[30px] font-display font-semibold text-[#101417] mb-2">
+                  <h2 className="text-[26px] leading-[30px] font-display font-semibold text-[#120F11] mb-2">
                     {slides[currentSlide].title}{' '}
-                    <span className="text-[#F43F43] italic font-display block">
+                    <span className="text-[#BE8A44] italic font-display block">
                       {slides[currentSlide].italicAccent}
                     </span>
                   </h2>
 
-                  <p className="text-[13.5px] text-[#6B7075] max-w-[330px] leading-[19px] mb-3.5 font-normal">
+                  <p className="text-[13.5px] text-[#555555] max-w-[330px] leading-[19px] mb-3.5 font-normal">
                     {slides[currentSlide].description}
                   </p>
 
@@ -196,7 +196,7 @@ export default function SplashPage() {
                     onClick={() => setCurrentSlide(index)}
                     className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                       currentSlide === index
-                        ? 'w-7 bg-[#F43F43]'
+                        ? 'w-7 bg-[#BE8A44]'
                         : 'w-2 bg-slate-300 hover:bg-slate-400'
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
@@ -210,7 +210,7 @@ export default function SplashPage() {
                   <button
                     type="button"
                     onClick={() => setCurrentSlide(prev => prev + 1)}
-                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-rose-500/25 transition-all cursor-pointer"
+                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-[#BE8A44]/25 transition-all cursor-pointer"
                   >
                     <span>Continue</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -219,7 +219,7 @@ export default function SplashPage() {
                   <button
                     type="button"
                     onClick={() => navigate('/home')}
-                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-rose-500/25 transition-all cursor-pointer"
+                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-[#BE8A44]/25 transition-all cursor-pointer"
                   >
                     <span>Get Started</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -229,7 +229,7 @@ export default function SplashPage() {
                 <button
                   type="button"
                   onClick={() => navigate('/home')}
-                  className="w-full py-2.5 text-center text-[13px] font-bold text-[#6B7075] hover:text-[#101417] transition-colors cursor-pointer"
+                  className="w-full py-2.5 text-center text-[13px] font-bold text-[#555555] hover:text-[#120F11] transition-colors cursor-pointer"
                 >
                   Explore as Guest
                 </button>

@@ -22,7 +22,7 @@ export default function BookingSuccessPage() {
         particleCount: 80,
         spread: 60,
         origin: { y: 0.6 },
-        colors: ['#ff3b47', '#F43F43', '#111114', '#ffffff']
+        colors: ['#ff3b47', '#BE8A44', '#120F11', '#ffffff']
       });
     } catch {
       // ignore
@@ -46,7 +46,7 @@ export default function BookingSuccessPage() {
   };
 
   return (
-    <div className="min-h-full px-6 py-8 flex flex-col justify-between text-center bg-[#f8f9fb] relative">
+    <div className="min-h-full px-6 py-8 flex flex-col justify-between text-center bg-white relative">
       <div className="my-auto py-6">
         {/* Animated Coral Checkmark Badge */}
         <motion.div
@@ -58,11 +58,11 @@ export default function BookingSuccessPage() {
           <Check className="w-10 h-10 stroke-[3]" />
         </motion.div>
 
-        <span className="text-[11px] font-semibold tracking-wider text-[#F43F43] uppercase block mb-1">
+        <span className="text-[11px] font-semibold tracking-wider text-[#BE8A44] uppercase block mb-1">
           Confirmed & Buffer-Dispatched
         </span>
-        <h1 className="text-[28px] leading-[32px] font-display font-semibold text-[#101417]">
-          Your chauffeur <span className="text-[#F43F43] italic">is reserved</span>
+        <h1 className="text-[28px] leading-[32px] font-display font-semibold text-[#120F11]">
+          Your chauffeur <span className="text-[#BE8A44] italic">is reserved</span>
         </h1>
         <p className="text-[13px] text-slate-500 font-medium mt-1 max-w-[300px] mx-auto">
           "The car is there before you are." A written confirmation receipt has been sent to your email.

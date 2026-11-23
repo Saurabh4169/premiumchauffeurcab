@@ -51,7 +51,7 @@ export default function CompareTray() {
         }}
       >
         <div 
-          className="h-15 rounded-[18px] bg-white/95 backdrop-blur-md border border-[#E8E8EC] px-3 flex items-center justify-between gap-2 shadow-xl shadow-black/8"
+          className="h-15 rounded-[18px] bg-white/95 backdrop-blur-md border border-[#E2E2E2] px-3 flex items-center justify-between gap-2 shadow-xl shadow-black/8"
         >
           {/* Thumbnails + Counter */}
           <div className="flex items-center gap-2 min-w-0">
@@ -64,7 +64,7 @@ export default function CompareTray() {
                   return (
                     <div 
                       key={slotIdx}
-                      className="relative w-9 h-9 rounded-[9px] overflow-hidden bg-slate-900 border border-[#E8E8EC] shrink-0"
+                      className="relative w-9 h-9 rounded-[9px] overflow-hidden bg-slate-900 border border-[#E2E2E2] shrink-0"
                     >
                       <img 
                         src={img} 
@@ -77,7 +77,7 @@ export default function CompareTray() {
                           e.stopPropagation();
                           removeFromCompare(item.id || item.slug);
                         }}
-                        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#101417] text-white flex items-center justify-center cursor-pointer shadow-xs hover:bg-[#F43F43] transition-colors"
+                        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#120F11] text-white flex items-center justify-center cursor-pointer shadow-xs hover:bg-[#BE8A44] transition-colors"
                         aria-label="Remove item"
                       >
                         <X className="w-2.5 h-2.5 stroke-[3]" />
@@ -89,7 +89,7 @@ export default function CompareTray() {
                 return (
                   <div 
                     key={slotIdx}
-                    className="w-9 h-9 rounded-[9px] border border-dashed border-[#D1D1D6] flex items-center justify-center text-[#9E9EA7] shrink-0"
+                    className="w-9 h-9 rounded-[9px] border border-dashed border-[#D1D1D6] flex items-center justify-center text-[#555555] shrink-0"
                   >
                     <Plus className="w-3.5 h-3.5" />
                   </div>
@@ -99,10 +99,10 @@ export default function CompareTray() {
 
             {/* Non-overlapping text description */}
             <div className="min-w-0 pl-1">
-              <span className="text-[12px] font-bold text-[#101417] block leading-tight truncate">
+              <span className="text-[12px] font-bold text-[#120F11] block leading-tight truncate">
                 {count} {type === 'vehicle' ? 'selected' : 'services'}
               </span>
-              <span className="text-[10px] text-[#6B7075] font-medium block leading-tight truncate">
+              <span className="text-[10px] text-[#555555] font-medium block leading-tight truncate">
                 {count === 1 ? 'Add 1 more' : 'Ready to compare'}
               </span>
             </div>
@@ -113,7 +113,7 @@ export default function CompareTray() {
             <button
               type="button"
               onClick={clearCompare}
-              className="text-[11.5px] font-semibold text-[#6B7075] hover:text-[#101417] px-1.5 py-1 cursor-pointer transition-colors"
+              className="text-[11.5px] font-semibold text-[#555555] hover:text-[#120F11] px-1.5 py-1 cursor-pointer transition-colors"
             >
               Clear
             </button>
@@ -124,8 +124,8 @@ export default function CompareTray() {
               disabled={count < 2}
               className={`h-9 px-3.5 rounded-full text-[12.5px] font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm ${
                 count >= 2
-                  ? 'bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:from-[#E02E32] hover:to-[#C51F23] text-white shadow-rose-500/25 active:scale-95'
-                  : 'bg-[#F5F5F7] text-[#9E9EA7] cursor-not-allowed opacity-75'
+                  ? 'bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] text-white shadow-[#BE8A44]/25 active:scale-95'
+                  : 'bg-[#FAF5ED] text-[#555555] cursor-not-allowed opacity-75'
               }`}
             >
               <Scale className="w-3.5 h-3.5 stroke-[2.2]" />

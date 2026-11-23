@@ -1,54 +1,63 @@
 // src/pages/profile/LegalTermsPage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ScrollText, ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Plane, Clock, Award } from 'lucide-react';
+import AppHeader from '../../components/AppHeader.jsx';
 
 export default function LegalTermsPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-full pb-28 bg-[#f8f9fb]">
-      <div className="sticky top-0 z-30 px-4 h-[52px] bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => navigate('/profile')}
-          className="w-10 h-10 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200 transition-all cursor-pointer shadow-sm"
-          aria-label="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </button>
-        <h1 className="font-sans font-bold text-[16px] text-slate-900">
-          Terms & Privacy
-        </h1>
-        <div className="w-10" />
-      </div>
+    <div className="min-h-full pb-28 bg-[#F5F5F7]">
+      <AppHeader title="Terms & Authority" showBack />
 
-      <div className="px-4 pt-4 space-y-4">
-        <div className="bg-white rounded-3xl p-5 border border-slate-200 space-y-3 text-[13px] text-slate-600 leading-relaxed">
-          <h2 className="font-sans font-bold text-[16px] text-slate-900">
-            Written Quote Price Guarantee
+      <div className="px-4 pt-4 space-y-3.5">
+        {/* Policy 1: Price Guarantee */}
+        <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-2">
+          <div className="flex items-center gap-1.5 text-emerald-700 font-bold text-[11px] uppercase tracking-wider">
+            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <span>Written Flat-Rate Guarantee</span>
+          </div>
+          <h2 className="font-sans font-bold text-[15px] text-slate-900">
+            No Surge Pricing & No Hidden Fees
           </h2>
-          <p>
+          <p className="text-[12.5px] text-slate-600 leading-relaxed font-normal">
             Premium Chauffeur Services guarantees that the total amount specified on your written quote is final and all-inclusive. This rate includes applicable highway tolls, airport gate pickup fees, portico staging buffer time, and a 20% chauffeur gratuity.
           </p>
+        </div>
 
-          <h2 className="font-sans font-bold text-[16px] text-slate-900 pt-2 border-t border-slate-100">
-            Aviation Grace Period Policy
+        {/* Policy 2: Airport Buffer */}
+        <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-2">
+          <div className="flex items-center gap-1.5 text-blue-700 font-bold text-[11px] uppercase tracking-wider">
+            <Plane className="w-4 h-4 text-blue-600" />
+            <span>Flight Tracking & Grace Period</span>
+          </div>
+          <h2 className="font-sans font-bold text-[15px] text-slate-900">
+            60 Min Domestic / 90 Min International Buffer
           </h2>
-          <p>
+          <p className="text-[12.5px] text-slate-600 leading-relaxed font-normal">
             Domestic commercial arrivals receive 60 minutes of complimentary wait time beginning at aircraft wheels-down (radar verified). International commercial arrivals receive 90 minutes. Excess wait time thereafter is billed in 15-minute intervals.
           </p>
+        </div>
 
-          <h2 className="font-sans font-bold text-[16px] text-slate-900 pt-2 border-t border-slate-100">
-            Cancellation & Modification Policy
+        {/* Policy 3: Cancellation Terms */}
+        <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-2">
+          <div className="flex items-center gap-1.5 text-slate-600 font-bold text-[11px] uppercase tracking-wider">
+            <Clock className="w-4 h-4 text-slate-500" />
+            <span>Cancellation & Modifications</span>
+          </div>
+          <h2 className="font-sans font-bold text-[15px] text-slate-900">
+            Flexible Advance Notice
           </h2>
-          <p>
+          <p className="text-[12.5px] text-slate-600 leading-relaxed font-normal">
             Sedan and SUV transfers may be modified or cancelled without penalty up to 2 hours prior to scheduled staging. Stretch limousines, Sprinter vans, and executive coaches require 24 hours written notice to release dispatch staging.
           </p>
+        </div>
 
-          <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
-            USDOT Authority #3849102 · ICC Operating Certificate · Lombard, IL Headquarters
-          </div>
+        {/* Regulatory Badge */}
+        <div className="p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-3 text-[11.5px] text-slate-500">
+          <Award className="w-5 h-5 text-[#F43F43] shrink-0" />
+          <span>USDOT Authority #3849102 · ICC Operating Certificate · Lombard, IL Dispatch Headquarters</span>
         </div>
       </div>
     </div>
