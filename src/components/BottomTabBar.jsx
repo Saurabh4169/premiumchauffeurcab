@@ -12,7 +12,7 @@ export default function BottomTabBar() {
   const activeUpcomingCount = trips.filter(t => t.type === 'upcoming').length;
 
   // Hide the tab bar on /ai, /book steps, /compare, /legal, and any screen with a sticky bottom CTA (service detail, vehicle detail, request form, live chat, dispatch)
-  const isHidden = 
+  const isHidden =
     location.pathname === '/' ||
     location.pathname === '/auth' ||
     location.pathname.startsWith('/book') ||
@@ -43,16 +43,16 @@ export default function BottomTabBar() {
   ];
 
   return (
-    <div 
+    <div
       className="absolute left-4 right-4 z-40 pointer-events-auto select-none"
       style={{
         bottom: 'calc(12px + var(--safe-bottom))',
         height: 'var(--tabbar-h)'
       }}
     >
-      <nav 
+      <nav
         className="h-16 rounded-[32px] px-1.5 flex items-center justify-between border border-white/30 shadow-[var(--shadow-float)] relative overflow-hidden"
-        style={{ 
+        style={{
           backgroundColor: 'rgba(60, 64, 68, 0.70)',
           backdropFilter: 'blur(24px) saturate(160%)',
           WebkitBackdropFilter: 'blur(24px) saturate(160%)',
@@ -67,7 +67,7 @@ export default function BottomTabBar() {
 
           if (isActive) {
             return (
-              <div 
+              <div
                 key={tab.to}
                 className="flex-1 flex items-center justify-center relative z-10"
               >
@@ -100,18 +100,18 @@ export default function BottomTabBar() {
               aria-label={tab.label}
             >
               <div className="relative flex items-center justify-center shrink-0">
-                <Icon 
-                  className="w-[22px] h-[22px] stroke-[1.75]" 
+                <Icon
+                  className="w-[22px] h-[22px] stroke-[1.75]"
                   style={{ color: 'rgba(255, 255, 255, 0.88)' }}
                 />
                 {tab.hasDot && (
-                  <span 
-                    className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full ring-2 ring-white" 
+                  <span
+                    className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full ring-2 ring-white"
                     style={{ backgroundColor: 'var(--accent)' }}
                   />
                 )}
               </div>
-              <span 
+              <span
                 className="text-[10px] font-semibold leading-none tracking-tight whitespace-nowrap"
                 style={{ color: 'rgba(255, 255, 255, 0.78)' }}
               >

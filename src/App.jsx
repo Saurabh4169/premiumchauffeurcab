@@ -8,7 +8,6 @@ import AppShell from './layouts/AppShell.jsx';
 import DispatcherLayout from './layouts/DispatcherLayout.jsx';
 
 // Customer Pages
-import SplashPage from './pages/SplashPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import FleetPage from './pages/FleetPage.jsx';
@@ -54,7 +53,7 @@ export default function App() {
         <Routes>
           {/* Customer Mobile App Shell (Layout Containment) */}
           <Route element={<AppShell />}>
-            <Route path="/" element={<SplashPage />} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/auth" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/fleet" element={<FleetPage />} />
