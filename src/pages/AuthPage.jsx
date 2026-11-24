@@ -204,7 +204,7 @@ export default function AuthPage() {
           <div className="pt-2">
             <button
               type="submit"
-              className="btn-primary w-full h-12 rounded-[14px] flex items-center justify-center gap-2 text-[15px] font-semibold text-[#120F11] cursor-pointer"
+              className="btn-primary w-full h-12 rounded-[14px] flex items-center justify-center gap-2 text-[15px] font-semibold text-white cursor-pointer"
             >
               <span>{mode === 'register' ? 'Sign Up' : 'Sign In'}</span>
               <ArrowRight className="w-4 h-4 stroke-[2.2]" />

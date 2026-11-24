@@ -65,7 +65,7 @@ export default function VehicleRecommendationWidget({ widget, answered, answered
             <button
               type="button"
               onClick={() => onSelect(widget.id, 'vehicle', bestMatch.id)}
-              className="h-8.5 px-3 rounded-[10px] bg-[#120F11] text-white hover:bg-[#BE8A44] font-semibold text-[12px] flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+              className="h-8.5 px-3 rounded-[10px] bg-[#120F11] text-white hover:bg-[#F43F43] font-semibold text-[12px] flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
             >
               <span>Select {bestMatch.name.split(' ')[0]}</span>
               <ArrowRight className="w-3.5 h-3.5" />

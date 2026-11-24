@@ -517,9 +517,9 @@ export default function RequestFormPage() {
                         </p>
                       </div>
                       <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
-                        formData.vehicleType === v.id ? 'border-[#BE8A44] bg-[#BE8A44] text-slate-950' : 'border-slate-300'
+                        formData.vehicleType === v.id ? 'border-[#F43F43] bg-[#F43F43] text-white' : 'border-slate-300'
                       }`}>
-                        {formData.vehicleType === v.id && <span className="w-2 h-2 rounded-full bg-slate-950" />}
+                        {formData.vehicleType === v.id && <span className="w-2 h-2 rounded-full bg-white" />}
                       </div>
                     </div>
                   ))}
@@ -806,7 +806,7 @@ export default function RequestFormPage() {
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-full h-12 rounded-[14px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] text-white font-extrabold text-[14.5px] flex items-center justify-center gap-2 shadow-lg shadow-[#BE8A44]/30 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50"
+          className="w-full h-12 rounded-[14px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white font-extrabold text-[14.5px] flex items-center justify-center gap-2 shadow-lg shadow-red-500/25 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50"
         >
           {isSubmitting ? (
             <span>Transmitting to Dispatch...</span>

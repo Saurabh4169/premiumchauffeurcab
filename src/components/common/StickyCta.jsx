@@ -25,7 +25,7 @@ export default function StickyCta({
               type="button"
               onClick={secondaryAction.onClick}
               disabled={secondaryAction.disabled}
-              className="flex-[4] min-w-0 h-12 rounded-[14px] bg-[#FAF5ED] border border-[#E2E2E2] hover:bg-[#E2E2E2] active:scale-[0.98] text-[#120F11] text-[14px] font-bold transition-all truncate cursor-pointer"
+              className="flex-[4] min-w-0 h-12 rounded-[14px] bg-white border border-slate-200 hover:bg-slate-50 active:scale-[0.98] text-[#101417] text-[14px] font-bold transition-all truncate cursor-pointer shadow-2xs"
             >
               <span className="truncate">{secondaryAction.label}</span>
             </button>
@@ -36,7 +36,7 @@ export default function StickyCta({
               type="button"
               onClick={primaryAction.onClick}
               disabled={primaryAction.disabled}
-              className={`${secondaryAction ? 'flex-[6]' : 'flex-1'} min-w-0 h-12 rounded-[14px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] text-white text-[14px] font-bold shadow-md shadow-[#BE8A44]/25 flex items-center justify-center gap-2 transition-all truncate cursor-pointer`}
+              className={`${secondaryAction ? 'flex-[6]' : 'flex-1'} min-w-0 h-12 rounded-[14px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 active:scale-[0.98] text-white text-[14px] font-bold shadow-md shadow-red-500/25 flex items-center justify-center gap-2 transition-all truncate cursor-pointer`}
             >
               <span className="truncate">{primaryAction.label}</span>
               {primaryAction.icon && <span className="shrink-0">{primaryAction.icon}</span>}

@@ -40,7 +40,7 @@ export default function HandoffCardWidget() {
       {/* Direct Call Button */}
       <a
         href={`tel:${COMPANY_CONTACT.phoneRaw}`}
-        className="w-full h-10 rounded-[12px] bg-[#120F11] hover:bg-[#BE8A44] text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+        className="w-full h-10 rounded-[12px] bg-[#120F11] hover:bg-[#F43F43] text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
       >
         <Phone className="w-4 h-4" />
         <span>Call Dispatch {COMPANY_CONTACT.phone}</span>

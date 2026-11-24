@@ -74,7 +74,7 @@ export default function ChatBubble({ message }) {
                   <button
                     type="button"
                     onClick={() => handleBookVehicle(message.card.data)}
-                    className="btn-primary h-9 px-3.5 rounded-[10px] text-[13px] font-semibold text-[#120F11] flex items-center gap-1.5 cursor-pointer shadow-xs"
+                    className="btn-primary h-9 px-3.5 rounded-[10px] text-[13px] font-semibold text-white flex items-center gap-1.5 cursor-pointer shadow-xs"
                   >
                     <span>Select & Quote</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -123,7 +123,7 @@ export default function ChatBubble({ message }) {
                   <button
                     type="button"
                     onClick={() => navigate('/book')}
-                    className="btn-primary h-9 px-3.5 rounded-[10px] text-[13px] font-semibold text-[#120F11] flex items-center gap-1.5 cursor-pointer shadow-xs"
+                    className="btn-primary h-9 px-3.5 rounded-[10px] text-[13px] font-semibold text-white flex items-center gap-1.5 cursor-pointer shadow-xs"
                   >
                     <span>Confirm Booking</span>
                     <ArrowRight className="w-3.5 h-3.5" />

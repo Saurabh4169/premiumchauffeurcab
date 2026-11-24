@@ -372,9 +372,9 @@ export default function LiveChatPage() {
           {/* Typing Indicator */}
           {isTyping && (
             <div className="flex items-center gap-2 text-slate-400 text-[12px] p-2 bg-white rounded-2xl border border-slate-200 w-fit shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-[#BE8A44] animate-bounce" />
-              <span className="w-2 h-2 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.2s]" />
-              <span className="w-2 h-2 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.4s]" />
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-bounce" />
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.2s]" />
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.4s]" />
               <span className="text-[11px] font-medium ml-1">Dispatch is typing...</span>
             </div>
           )}
@@ -392,7 +392,7 @@ export default function LiveChatPage() {
                 key={i}
                 type="button"
                 onClick={() => handleUserSend(reply)}
-                className="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-[#BE8A44]/20 border border-slate-200 text-[11px] font-bold text-slate-800 transition-colors whitespace-nowrap cursor-pointer shrink-0"
+                className="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-red-50 hover:border-red-200 hover:text-[var(--accent)] border border-slate-200 text-[11px] font-bold text-slate-800 transition-colors whitespace-nowrap cursor-pointer shrink-0"
               >
                 {reply}
               </button>
@@ -489,10 +489,10 @@ export default function LiveChatPage() {
                 type="button"
                 onClick={() => {
                   setShowRatingModal(false);
-                  showToast('Thank you! Dispatch transcript has been emailed to you.', 'gold');
+                  showToast('Thank you! Dispatch transcript has been emailed to you.', 'success');
                   navigate('/profile');
                 }}
-                className="w-full py-3 rounded-full bg-gradient-to-r from-[#BE8A44] via-[#BE8A44] to-[#A97633] text-slate-950 font-bold text-[13px] shadow-md shadow-[#BE8A44]/20 cursor-pointer"
+                className="w-full py-3 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 text-white font-bold text-[13px] shadow-md shadow-red-500/20 cursor-pointer transition-all"
               >
                 Submit & Email Transcript
               </button>

@@ -97,7 +97,7 @@ export default function StepperGroupWidget({ widget, answered, answeredValue, on
       <button
         type="button"
         onClick={handleConfirm}
-        className="w-full h-9 rounded-[10px] bg-[#120F11] text-white hover:bg-[#BE8A44] font-semibold text-[13px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs mt-1"
+        className="w-full h-9 rounded-[10px] bg-[#120F11] text-white hover:bg-[#F43F43] font-semibold text-[13px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-xs mt-1"
       >
         <Check className="w-4 h-4" />
         <span>Confirm Capacity ({pax} pax, {bags} bags)</span>

@@ -104,7 +104,7 @@ export default function NotificationsPage() {
                     </div>
 
                     {!notif.read && (
-                      <span className="w-2 h-2 rounded-full bg-[#BE8A44] shrink-0 mt-1.5" />
+                      <span className="w-2 h-2 rounded-full bg-[var(--accent)] shrink-0 mt-1.5" />
                     )}
                   </div>
                 ))}

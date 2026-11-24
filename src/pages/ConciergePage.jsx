@@ -274,9 +274,9 @@ export default function ConciergePage() {
         {isThinking && (
           <div className="flex items-center gap-2 text-[#555555] text-[12px] p-2.5 bg-white border border-[#E2E2E2] rounded-[14px] w-fit shadow-xs ml-10">
             <div className="flex gap-1 items-center">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.2s]" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.4s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.2s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.4s]" />
             </div>
             <span className="text-[11px] font-medium italic">Butler is reviewing fleet schedules & rates...</span>
           </div>

@@ -83,7 +83,7 @@ export default function ConfirmationCardWidget({ widget }) {
         <button
           type="button"
           onClick={handleReturnToMainMenu}
-          className="w-full h-10 rounded-[12px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:opacity-95 text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md active:scale-98"
+          className="w-full h-10 rounded-[12px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md shadow-red-500/25 active:scale-98"
         >
           <RotateCcw className="w-4 h-4" />
           <span>Return to Main Menu (Fresh Chat)</span>
@@ -92,7 +92,7 @@ export default function ConfirmationCardWidget({ widget }) {
         <button
           type="button"
           onClick={handleViewTrip}
-          className="w-full h-9 rounded-[10px] bg-[#120F11] text-white hover:bg-[#BE8A44] font-semibold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
+          className="w-full h-9 rounded-[10px] bg-[#120F11] text-white hover:bg-[#F43F43] font-semibold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs"
         >
           <span>View in My Trips</span>
           <ArrowRight className="w-4 h-4" />

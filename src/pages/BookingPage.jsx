@@ -184,18 +184,18 @@ export default function BookingPage() {
                       onClick={() => updateBookingDraft({ serviceType: s.id })}
                       className={`relative p-3.5 rounded-[18px] border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[82px] ${
                         isSelected
-                          ? 'bg-[#FAF5ED]/60 border-[#BE8A44] ring-1.5 ring-[#BE8A44]/30 shadow-sm'
+                          ? 'bg-red-50/60 border-[#F43F43] ring-1.5 ring-red-500/30 shadow-sm'
                           : 'bg-white border-[#E2E2E2] hover:border-[#D1D1D6] hover:bg-[#FAFAFA] shadow-xs'
                       }`}
                     >
                       <div className="flex items-center justify-between w-full mb-1">
                         <div className={`w-7 h-7 rounded-[10px] flex items-center justify-center transition-colors ${
-                          isSelected ? 'bg-[#BE8A44] text-white shadow-xs' : 'bg-[#FAF5ED] text-[#555555]'
+                          isSelected ? 'bg-[#F43F43] text-white shadow-xs' : 'bg-slate-100 text-[#555555]'
                         }`}>
                           <Icon className="w-3.5 h-3.5" />
                         </div>
                         {isSelected && (
-                          <div className="w-2 h-2 rounded-full bg-[#BE8A44] shadow-xs" />
+                          <div className="w-2 h-2 rounded-full bg-[#F43F43] shadow-xs" />
                         )}
                       </div>
                       <div>
@@ -218,13 +218,13 @@ export default function BookingPage() {
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#BE8A44] ring-4 ring-[#BE8A44]/20 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F43F43] ring-4 ring-red-500/20 shrink-0" />
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#555555]">
                       Pickup Location
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#FAF5ED] border border-[#E2E2E2] focus-within:border-[#BE8A44] focus-within:bg-white transition-all">
+                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-slate-50 border border-slate-200 focus-within:border-[#F43F43] focus-within:bg-white transition-all">
                   <input
                     type="text"
                     value={bookingDraft.pickup}
@@ -241,7 +241,7 @@ export default function BookingPage() {
                       key={i}
                       type="button"
                       onClick={() => updateBookingDraft({ pickup: loc.name })}
-                      className="px-2.5 py-1 rounded-[10px] bg-[#FAF5ED] hover:bg-[#E2E2E2] active:scale-95 border border-[#E2E2E2] text-[11px] text-[#120F11] font-semibold whitespace-nowrap cursor-pointer transition-all"
+                      className="px-2.5 py-1 rounded-[10px] bg-slate-100 hover:bg-slate-200 active:scale-95 border border-slate-200 text-[11px] text-[#120F11] font-semibold whitespace-nowrap cursor-pointer transition-all"
                     >
                       {loc.name.split('(')[0].trim()}
                     </button>
@@ -251,7 +251,7 @@ export default function BookingPage() {
 
               {/* Intermediate Stops */}
               {stops.map((stop, index) => (
-                <div key={index} className="pt-1 border-t border-[#FAF5ED]">
+                <div key={index} className="pt-1 border-t border-slate-100">
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-500 ring-4 ring-amber-100 shrink-0" />
@@ -262,13 +262,13 @@ export default function BookingPage() {
                     <button
                       type="button"
                       onClick={() => removeStop(index)}
-                      className="text-[11px] text-[#BE8A44] hover:underline flex items-center gap-1 cursor-pointer font-bold"
+                      className="text-[11px] text-[#F43F43] hover:underline flex items-center gap-1 cursor-pointer font-bold"
                     >
                       <Trash2 className="w-3 h-3" />
                       <span>Remove</span>
                     </button>
                   </div>
-                  <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#FAF5ED] border border-[#E2E2E2] focus-within:border-[#BE8A44] focus-within:bg-white transition-all">
+                  <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-slate-50 border border-slate-200 focus-within:border-[#F43F43] focus-within:bg-white transition-all">
                     <input
                       type="text"
                       value={stop}
@@ -286,7 +286,7 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={addStop}
-                    className="inline-flex items-center gap-1 text-[11.5px] font-bold text-[#BE8A44] hover:text-[#A97633] active:scale-95 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11.5px] font-bold text-[#F43F43] hover:text-[#DC2626] active:scale-95 transition-all cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Add intermediate stop (+$35)</span>
@@ -295,7 +295,7 @@ export default function BookingPage() {
               )}
 
               {/* Drop-off Location */}
-              <div className="pt-1 border-t border-[#FAF5ED]">
+              <div className="pt-1 border-t border-slate-100">
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 shrink-0" />
@@ -304,7 +304,7 @@ export default function BookingPage() {
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-[#FAF5ED] border border-[#E2E2E2] focus-within:border-[#BE8A44] focus-within:bg-white transition-all">
+                <div className="flex items-center h-11 rounded-[14px] px-3.5 bg-slate-50 border border-slate-200 focus-within:border-[#F43F43] focus-within:bg-white transition-all">
                   <input
                     type="text"
                     value={bookingDraft.dropoff}
@@ -391,7 +391,7 @@ export default function BookingPage() {
             <div className="space-y-2.5 pt-0.5">
               <label className="flex items-center justify-between p-3.5 rounded-[18px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#D1D1D6] transition-all cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-[10px] bg-[#FAF5ED] text-[#BE8A44] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-[10px] bg-red-50 text-[#F43F43] flex items-center justify-center shrink-0">
                     <Baby className="w-4 h-4" />
                   </div>
                   <div>
@@ -404,14 +404,14 @@ export default function BookingPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <span className="text-[11px] font-bold text-[#BE8A44] bg-[#FAF5ED] px-2 py-0.5 rounded-full">
+                  <span className="text-[11px] font-bold text-[#F43F43] bg-red-50 px-2 py-0.5 rounded-full">
                     +$15
                   </span>
                   <input
                     type="checkbox"
                     checked={bookingDraft.childSeat}
                     onChange={(e) => updateBookingDraft({ childSeat: e.target.checked })}
-                    className="w-5 h-5 accent-[#BE8A44] rounded cursor-pointer"
+                    className="w-5 h-5 accent-[#F43F43] rounded cursor-pointer"
                   />
                 </div>
               </label>
@@ -438,7 +438,7 @@ export default function BookingPage() {
                     type="checkbox"
                     checked={bookingDraft.accessible}
                     onChange={(e) => updateBookingDraft({ accessible: e.target.checked })}
-                    className="w-5 h-5 accent-[#BE8A44] rounded cursor-pointer"
+                    className="w-5 h-5 accent-[#F43F43] rounded cursor-pointer"
                   />
                 </div>
               </label>
@@ -710,7 +710,7 @@ export default function BookingPage() {
         <button
           type="button"
           onClick={handleNext}
-          className="bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] transition-all h-12 px-6 rounded-[14px] text-[15px] font-bold text-white flex items-center gap-2 cursor-pointer shadow-md shadow-[#BE8A44]/25 shrink-0"
+          className="bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 active:scale-[0.98] transition-all h-12 px-6 rounded-[14px] text-[15px] font-bold text-white flex items-center gap-2 cursor-pointer shadow-md shadow-red-500/25 shrink-0"
         >
           <span>{currentStep === 5 ? 'Confirm Booking' : currentStep === 4 ? 'Pay & Book' : 'Continue'}</span>
           <ArrowRight className="w-4 h-4 stroke-[2.5]" />

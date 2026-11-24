@@ -150,7 +150,7 @@ export default function AgentSheet() {
             {/* Header (52px) */}
             <div className="h-[52px] px-4 border-b border-[#E2E2E2] flex items-center justify-between shrink-0 bg-white">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#BE8A44] to-[#A97633] flex items-center justify-center text-white shadow-xs">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-b from-[#F43F43] to-[#DC2626] flex items-center justify-center text-white shadow-xs">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
@@ -427,9 +427,9 @@ export default function AgentSheet() {
               {isThinking && (
                 <div className="flex items-center gap-2 text-[#555555] text-[12px] p-2.5 bg-white border border-[#E2E2E2] rounded-[14px] w-fit shadow-xs ml-9">
                   <div className="flex gap-1 items-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#BE8A44] animate-bounce [animation-delay:0.4s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F43F43] animate-bounce [animation-delay:0.4s]" />
                   </div>
                   <span className="text-[11px] font-medium italic">Concierge is verifying fleet & rates...</span>
                 </div>
@@ -479,12 +479,12 @@ export default function AgentSheet() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything or enter ride details..."
-                  className="flex-1 h-10 px-3.5 bg-[#FAF5ED] rounded-[12px] text-[13px] text-[#120F11] placeholder:text-[#555555] focus:outline-none focus:ring-1 focus:ring-[#BE8A44] border border-transparent focus:border-[#BE8A44]"
+                  className="flex-1 h-10 px-3.5 bg-slate-50 rounded-[12px] text-[13px] text-[#120F11] placeholder:text-[#555555] focus:outline-none focus:ring-1 focus:ring-[#F43F43] border border-slate-200 focus:border-[#F43F43]"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim()}
-                  className="w-10 h-10 rounded-[12px] bg-[#120F11] hover:bg-[#BE8A44] disabled:opacity-40 disabled:hover:bg-[#120F11] text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-xs"
+                  className="w-10 h-10 rounded-[12px] bg-[#120F11] hover:bg-[#F43F43] disabled:opacity-40 disabled:hover:bg-[#120F11] text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 shadow-xs"
                 >
                   <Send className="w-4 h-4" />
                 </button>

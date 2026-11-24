@@ -32,7 +32,7 @@ export default function SupportPage() {
       <div className="px-5 pt-4 space-y-4">
         {/* Header Eyebrow & Subtitle (No duplicate title) */}
         <div className="space-y-1">
-          <span className="text-[11px] uppercase tracking-wider text-[#BE8A44] font-semibold block">
+          <span className="text-[11px] uppercase tracking-wider text-[var(--accent)] font-semibold block">
             24/7 Lombard Dispatch Desk
           </span>
           <p className="text-[13px] text-[#555555] leading-[18px]">
@@ -47,7 +47,7 @@ export default function SupportPage() {
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Online 24/7
             </span>
-            <span className="text-[11.5px] font-semibold text-[#BE8A44]">
+            <span className="text-[11.5px] font-semibold text-[var(--accent)]">
               Immediate Response
             </span>
           </div>
@@ -76,7 +76,7 @@ export default function SupportPage() {
           {/* Direct Hotline */}
           <a
             href={`tel:${companyInfo.phone}`}
-            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[var(--accent)]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
             <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -97,7 +97,7 @@ export default function SupportPage() {
           {/* Dispatch Email - Full text, never truncated */}
           <a
             href={`mailto:${companyInfo.email || 'info@premiumchauffeurservices.com'}`}
-            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[var(--accent)]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
             <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-11 h-11 rounded-[12px] bg-slate-100 text-[#120F11] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -118,7 +118,7 @@ export default function SupportPage() {
           {/* Request Custom Quote */}
           <div
             onClick={() => navigate('/support/request')}
-            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[var(--accent)]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
             <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-tint)] text-[var(--accent)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -142,10 +142,10 @@ export default function SupportPage() {
           {/* Ask AI Concierge Card */}
           <div
             onClick={() => openAgent({ context: { route: '/support' } })}
-            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[#BE8A44]/50 transition-all flex items-center justify-between group cursor-pointer"
+            className="p-4 rounded-[20px] bg-white border border-[#E2E2E2] shadow-xs hover:border-[var(--accent)]/50 transition-all flex items-center justify-between group cursor-pointer"
           >
             <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-11 h-11 rounded-[12px] bg-[#120F11] text-[#BE8A44] flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-[12px] bg-[#120F11] text-[var(--accent)] flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                 <Sparkles className="w-5 h-5 stroke-[2]" />
               </div>
               <div className="min-w-0">
@@ -164,7 +164,7 @@ export default function SupportPage() {
         {/* 3. FAQ Accordion Section */}
         <div className="space-y-3 pt-2">
           <div>
-            <span className="text-[11px] uppercase tracking-wider text-[#BE8A44] font-semibold block">
+            <span className="text-[11px] uppercase tracking-wider text-[var(--accent)] font-semibold block">
               Policies & Answers
             </span>
             <h3 className="text-[17px] font-bold text-[#120F11]">
@@ -190,13 +190,13 @@ export default function SupportPage() {
                     </span>
                     <ChevronDown
                       className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-[#BE8A44]' : ''
+                        isOpen ? 'rotate-180 text-[var(--accent)]' : ''
                       }`}
                     />
                   </button>
 
                   {isOpen && (
-                    <div className="px-4 pb-4 pt-1 text-[13px] text-[#555555] leading-[19px] border-t border-[#E2E2E2] bg-[#FAF5ED]/40">
+                    <div className="px-4 pb-4 pt-1 text-[13px] text-[#555555] leading-[19px] border-t border-[#E2E2E2] bg-slate-50">
                       {faq.answer}
                     </div>
                   )}

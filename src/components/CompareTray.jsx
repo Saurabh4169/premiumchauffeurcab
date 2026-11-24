@@ -77,7 +77,7 @@ export default function CompareTray() {
                           e.stopPropagation();
                           removeFromCompare(item.id || item.slug);
                         }}
-                        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#120F11] text-white flex items-center justify-center cursor-pointer shadow-xs hover:bg-[#BE8A44] transition-colors"
+                        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#120F11] text-white flex items-center justify-center cursor-pointer shadow-xs hover:bg-[#F43F43] transition-colors"
                         aria-label="Remove item"
                       >
                         <X className="w-2.5 h-2.5 stroke-[3]" />
@@ -124,8 +124,8 @@ export default function CompareTray() {
               disabled={count < 2}
               className={`h-9 px-3.5 rounded-full text-[12.5px] font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm ${
                 count >= 2
-                  ? 'bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] text-white shadow-[#BE8A44]/25 active:scale-95'
-                  : 'bg-[#FAF5ED] text-[#555555] cursor-not-allowed opacity-75'
+                  ? 'bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 text-white shadow-red-500/25 active:scale-95'
+                  : 'bg-slate-100 text-[#555555] cursor-not-allowed opacity-75'
               }`}
             >
               <Scale className="w-3.5 h-3.5 stroke-[2.2]" />

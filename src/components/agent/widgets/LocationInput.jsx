@@ -75,7 +75,7 @@ export default function LocationInput({ widget, answered, answeredValue, onSelec
         <button
           type="submit"
           disabled={!val.trim()}
-          className="h-9.5 px-3 rounded-[10px] bg-[#120F11] text-white hover:bg-[#BE8A44] disabled:opacity-40 disabled:hover:bg-[#120F11] text-[13px] font-semibold flex items-center justify-center transition-colors cursor-pointer"
+          className="h-9.5 px-3 rounded-[10px] bg-[#120F11] text-white hover:bg-[#F43F43] disabled:opacity-40 disabled:hover:bg-[#120F11] text-[13px] font-semibold flex items-center justify-center transition-colors cursor-pointer"
         >
           <ArrowRight className="w-4 h-4" />
         </button>

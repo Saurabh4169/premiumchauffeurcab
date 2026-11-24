@@ -60,7 +60,7 @@ export default function ComparePage() {
           <button
             type="button"
             onClick={() => navigate(isVehicle ? '/fleet' : '/services')}
-            className="h-11 px-6 rounded-[14px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] text-white font-bold text-[14px] shadow-md shadow-[#BE8A44]/25 cursor-pointer active:scale-95 transition-all"
+            className="h-11 px-6 rounded-[14px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] text-white font-bold text-[14px] shadow-md shadow-red-500/25 cursor-pointer active:scale-95 transition-all"
           >
             Browse {isVehicle ? 'fleet' : 'services'}
           </button>
@@ -174,7 +174,7 @@ export default function ComparePage() {
                     <button
                       type="button"
                       onClick={() => removeFromCompare(itemId)}
-                      className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#120F11]/80 hover:bg-[#BE8A44] text-white flex items-center justify-center cursor-pointer shadow-xs transition-colors"
+                      className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#120F11]/80 hover:bg-[#F43F43] text-white flex items-center justify-center cursor-pointer shadow-xs transition-colors"
                       aria-label={`Remove ${title}`}
                     >
                       <X className="w-3 h-3 stroke-[2.5]" />
@@ -208,7 +208,7 @@ export default function ComparePage() {
                       navigate(`/services/${item.slug}`);
                     }
                   }}
-                  className="mt-2.5 h-8.5 px-2 rounded-full bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-95 text-white text-[12px] font-bold shadow-sm shadow-[#BE8A44]/25 flex items-center justify-center gap-1 w-full cursor-pointer transition-all"
+                  className="mt-2.5 h-8.5 px-2 rounded-full bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 active:scale-95 text-white text-[12px] font-bold shadow-sm shadow-red-500/25 flex items-center justify-center gap-1 w-full cursor-pointer transition-all"
                 >
                   <span>Book Now</span>
                   <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
@@ -224,7 +224,7 @@ export default function ComparePage() {
             <button
               type="button"
               onClick={() => navigate(isVehicle ? '/fleet' : '/services')}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-dashed border-[#D1D1D6] hover:border-[#BE8A44] text-[11.5px] font-bold text-[#555555] hover:text-[#BE8A44] cursor-pointer transition-all shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-dashed border-[#D1D1D6] hover:border-[#F43F43] text-[11.5px] font-bold text-[#555555] hover:text-[#F43F43] cursor-pointer transition-all shadow-2xs"
             >
               <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Add a 3rd {isVehicle ? 'car' : 'service'} to compare</span>

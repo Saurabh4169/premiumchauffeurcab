@@ -276,9 +276,9 @@
   font-size: 15px;
   line-height: 20px;
   font-weight: 600;
-  background: linear-gradient(135deg, #dfbe73 0%, #c9a24b 50%, #b38a36 100%);
-  color: #0b0b0c;
-  box-shadow: 0 4px 14px rgba(201, 162, 75, 0.32);
+  background: linear-gradient(135deg, #F84146 0%, #F43F43 50%, #DC2626 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(244, 63, 67, 0.30);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
@@ -289,7 +289,7 @@
 
 .btn-primary:hover,
 .btn-gold-shiny:hover {
-  box-shadow: 0 6px 18px rgba(201, 162, 75, 0.45);
+  box-shadow: 0 6px 18px rgba(244, 63, 67, 0.45);
   transform: translateY(-1px);
 }
 

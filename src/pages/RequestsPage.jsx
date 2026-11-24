@@ -67,7 +67,7 @@ export default function RequestsPage() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="font-sans text-[11px] font-bold text-[#BE8A44] uppercase bg-slate-100 px-2 py-0.5 rounded-md">
+                  <span className="font-sans text-[11px] font-bold text-[var(--accent)] uppercase bg-red-50 px-2 py-0.5 rounded-md">
                     {req.id}
                   </span>
                   <span className="text-[11px] text-slate-400 font-medium">
@@ -166,13 +166,13 @@ export default function RequestsPage() {
               </span>
               <div className="relative pl-5 space-y-3 border-l-2 border-slate-200">
                 <div className="relative">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#BE8A44] absolute -left-[25px] top-1" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] absolute -left-[25px] top-1" />
                   <p className="font-bold text-slate-900 text-[12px]">Request Received & Logged</p>
                   <p className="text-[11px] text-slate-400">Transmitted to Lombard dispatch center</p>
                 </div>
                 <div className="relative">
                   <span className={`w-2.5 h-2.5 rounded-full absolute -left-[25px] top-1 ${
-                    selectedRequest.status !== 'Received' ? 'bg-[#BE8A44]' : 'bg-slate-300'
+                    selectedRequest.status !== 'Received' ? 'bg-[var(--accent)]' : 'bg-slate-300'
                   }`} />
                   <p className="font-bold text-slate-900 text-[12px]">Dispatcher Review & Route Staging</p>
                   <p className="text-[11px] text-slate-400">Reviewing traffic corridors and vehicle buffer</p>
@@ -195,7 +195,7 @@ export default function RequestsPage() {
               }}
               className="w-full py-3.5 rounded-full bg-[#120F11] text-white font-bold text-[13px] flex items-center justify-center gap-2 shadow-md cursor-pointer hover:bg-black transition-colors"
             >
-              <MessagesSquare className="w-4 h-4 text-[#BE8A44]" />
+              <MessagesSquare className="w-4 h-4 text-[var(--accent)]" />
               <span>Chat with Dispatcher about this request</span>
             </button>
           </div>

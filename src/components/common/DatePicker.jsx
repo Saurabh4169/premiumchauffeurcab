@@ -128,7 +128,7 @@ export default function DatePicker({
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="btn-primary h-9 px-4 rounded-[10px] text-[13px] font-semibold text-[#120F11] cursor-pointer"
+              className="btn-primary h-9 px-4 rounded-[10px] text-[13px] font-semibold text-white cursor-pointer"
             >
               Set Date & Time
             </button>

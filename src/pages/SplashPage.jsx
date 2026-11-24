@@ -210,7 +210,7 @@ export default function SplashPage() {
                   <button
                     type="button"
                     onClick={() => setCurrentSlide(prev => prev + 1)}
-                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-[#BE8A44]/25 transition-all cursor-pointer"
+                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-red-500/25 transition-all cursor-pointer"
                   >
                     <span>Continue</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -219,7 +219,7 @@ export default function SplashPage() {
                   <button
                     type="button"
                     onClick={() => navigate('/home')}
-                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#BE8A44] to-[#A97633] hover:from-[#BE8A44] hover:to-[#A97633] active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-[#BE8A44]/25 transition-all cursor-pointer"
+                    className="w-full h-12 rounded-[16px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2 shadow-md shadow-red-500/25 transition-all cursor-pointer"
                   >
                     <span>Get Started</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5]" />

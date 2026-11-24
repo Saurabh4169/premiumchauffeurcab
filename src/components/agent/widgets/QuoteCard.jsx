@@ -82,7 +82,7 @@ export default function QuoteCardWidget({ widget }) {
       <button
         type="button"
         onClick={handleConfirm}
-        className="w-full h-10 rounded-[12px] bg-[#BE8A44] hover:bg-[#A97633] text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-md"
+        className="w-full h-10 rounded-[12px] bg-gradient-to-r from-[#F43F43] to-[#DC2626] hover:brightness-105 text-white font-bold text-[13px] flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md shadow-red-500/25"
       >
         <CheckCircle2 className="w-4 h-4" />
         <span>Confirm Reservation Request</span>

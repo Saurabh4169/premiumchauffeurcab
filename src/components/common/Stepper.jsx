@@ -17,7 +17,7 @@ export default function Stepper({
         
         {/* Active progress fill */}
         <div
-          className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-[#BE8A44] transition-all duration-300 z-0"
+          className="absolute left-6 top-1/2 -translate-y-1/2 h-[2px] bg-[var(--accent)] transition-all duration-300 z-0"
           style={{
             width: `${((currentStep - 1) / (steps.length - 1)) * 88}%`
           }}
@@ -39,8 +39,8 @@ export default function Stepper({
                   isCompleted
                     ? 'bg-emerald-600 text-white cursor-pointer shadow-xs hover:scale-105'
                     : isCurrent
-                    ? 'bg-[#BE8A44] text-white ring-4 ring-[#BE8A44]/20 shadow-md shadow-[#BE8A44]/25 scale-105'
-                    : 'bg-[#FAF5ED] border border-[#E2E2E2] text-[#555555] cursor-default'
+                    ? 'bg-[#F43F43] text-white ring-4 ring-red-500/20 shadow-md shadow-red-500/25 scale-105'
+                    : 'bg-slate-100 border border-slate-200 text-[#555555] cursor-default'
                 }`}
               >
                 {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : stepNumber}
@@ -52,7 +52,7 @@ export default function Stepper({
 
       {/* Step Label Display (High Contrast & Visible) */}
       <div className="text-center mt-2.5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#BE8A44] block">
+        <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--accent)] block">
           STEP {currentStep} OF {steps.length}
         </span>
         <h4 className="text-[15px] font-bold text-[#120F11] leading-tight mt-0.5">
